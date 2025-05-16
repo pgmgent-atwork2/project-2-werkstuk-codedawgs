@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.set("layout", "layouts/main");
-app.set("views", path.resolve("src", "views"));
+app.set("views", path.resolve("server", "views"));
 
 // Auth Routes
 app.get("/login", authController.login);
