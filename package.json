@@ -2,6 +2,7 @@
   "name": "project-2-werkstuk-codedawgs",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon  --config nodemon.json --env-file=.env ./server/server.js"

@@ -1,0 +1,31 @@
+<section class="select_user">
+
+    <h1 id="pageTitle">Nieuwe gebruiker toevoegen</h1>
+    <button id="backButton">&lt; Terug</button>
+
+    <form method="POST" action="/login">
+
+        <div class="users" id="userSelect">
+
+            <% users.forEach(user=> { %>
+                <% if (user.pincode) { %>
+                    <div class="user">
+                        <input type="radio" name="first_name" id="<%= user.first_name %>" value="<%= user.first_name %>">
+                        <label for="<%= user.first_name %>">
+                            <%= user.first_name %>
+                                <%= user.last_name.charAt(0) %>.
+                        </label>
+                    </div>
+                    <% } %>
+                <% }); %>
+        </div>
+
+        <div id="pinEnter">
+            <input type="<%= input.type %>" id="pinInput" name="<%= input.name %>" placeholder="<%= input.label %>">
+            <span class="error-msg" id="pinError"></span>
+        </div>
+    </form>
+
+    <a id="register" href="/register">Nieuwe gebruiker?</a>
+
+</section>
