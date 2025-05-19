@@ -27,6 +27,7 @@ app.set("views", path.resolve("server", "views"));
 // Auth Routes
 app.get("/login", authController.login);
 app.post("/login", authLoginValidation, authController.postLogin, authController.login);
+app.post("/logout", authController.logout);
 
 // Homepage
 app.get("/", jwtAuth, pageController.home);

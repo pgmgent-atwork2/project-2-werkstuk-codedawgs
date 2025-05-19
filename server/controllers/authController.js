@@ -64,9 +64,13 @@ export const postLogin = async (req, res, next) => {
       { expiresIn: '1h' });
 
     res.cookie("userToken", userToken, { httpOnly: true });
-    console.log('login succes');
     res.redirect('/')
   } catch (e) {
     console.error(e);
   }
+};
+
+export const logout = async (req, res) => {
+  res.clearCookie("token");
+  res.redirect('/login');
 };
