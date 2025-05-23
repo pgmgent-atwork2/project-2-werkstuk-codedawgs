@@ -20,6 +20,6 @@ export const userPage = async (req, res) => {
     res.render("pages/users", { users });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Fout bij laden van gebruikers.");
+    res.status(500).send("Error while loading the users.");
   }
 };

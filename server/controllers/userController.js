@@ -10,9 +10,9 @@ export const postUser = async (req, res) => {
       last_name,
       token,
     });
-    res.redirect("/admin/gebruikers");
+    res.redirect("/admin/users");
   } catch (error) {
     console.error(error);
-    res.status(500).send("Gebruiker toevoegen mislukt.");
+    res.status(500).send("Error while trying to create the user.");
   }
 };
