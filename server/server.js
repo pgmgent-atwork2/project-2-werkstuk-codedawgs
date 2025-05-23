@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 
 import * as pageController from "./controllers/pageController.js";
 import * as authController from "./controllers/authController.js";
+import * as userController from "./controllers/userController.js";
 import authLoginValidation from "./middleware/validation/authLoginValidation.js";
 
 
@@ -33,9 +34,11 @@ app.post("/logout", authController.logout);
 // Homepage
 app.get("/", jwtAuth, pageController.home);
 
+app.get("/admin", jwtAuth, isAdmin, pageController.admin);
+
 // Gebruikersbeheer
 app.get("/admin/gebruikers", jwtAuth, isAdmin, pageController.userPage);
-app.post("/admin/gebruikers", jwtAuth, isAdmin, authController.postUser);
+app.post("/admin/gebruikers", jwtAuth, isAdmin, userController.postUser);
 
 app.use((error, req, res, next) => {
   console.error(error);
