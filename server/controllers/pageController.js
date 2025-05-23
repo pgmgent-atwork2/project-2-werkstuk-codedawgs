@@ -1,3 +1,5 @@
+import knex from "../lib/Knex.js";
+
 export const home = async (req, res) => {
   res.render("pages/home", {
     title: "Home",
