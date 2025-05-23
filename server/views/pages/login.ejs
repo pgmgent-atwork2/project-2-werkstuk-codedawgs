@@ -1,31 +1,29 @@
-<section class="select_user">
+<section class="login">
+    <h4 class="login__title">Login</h4>
+    <button id="backButton" class="login__back">&lt; Terug</button>
 
-    <h1 id="pageTitle">Nieuwe gebruiker toevoegen</h1>
-    <button id="backButton">&lt; Terug</button>
+    <form method="post" action="/login" class="login__form">
 
-    <form method="POST" action="/login">
-
-        <div class="users" id="userSelect">
-
+        <div id="userSelect" class="login__users">
             <% users.forEach(user=> { %>
-                <% if (user.pincode) { %>
-                    <div class="user">
+                <div class="login__user">
+                    <% if(user.pincode) {%>
                         <input type="radio" name="first_name" id="<%= user.first_name %>" value="<%= user.first_name %>">
-                        <label for="<%= user.first_name %>">
-                            <%= user.first_name %>
-                                <%= user.last_name.charAt(0) %>.
+                        <label for="<%= user.first_name %>" class="login__label">
+                            <div class="login__profile-picture"></div>
+                            <span class="login__name"><%= user.first_name %> <%= user.last_name.charAt(0)%>.</span>
                         </label>
-                    </div>
                     <% } %>
-                <% }); %>
+                </div>
+            <% }); %>
         </div>
 
-        <div id="pinEnter">
-            <input type="<%= input.type %>" id="pinInput" name="<%= input.name %>" placeholder="<%= input.label %>">
-            <span class="error-msg" id="pinError"></span>
+        <div id="pinEnter" class="login__pin-enter">
+            <%- include('../partials/pincodepanel.ejs')%>
+            <input class="login__pin-input" type="<%= input.type %>" id="pinInput" name="<%= input.name %>" placeholder="<%= input.label %>">
+            <span class="login__error-msg" id="pinError"></span>
         </div>
     </form>
 
-    <a id="register" href="/register">Nieuwe gebruiker?</a>
-
+    <a href="/register" class="login__register">Register</a>
 </section>
