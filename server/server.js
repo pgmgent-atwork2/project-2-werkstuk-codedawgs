@@ -3,10 +3,12 @@ import expressLayouts from "express-ejs-layouts";
 import { PORT, VIEWS_PATH } from "./consts.js";
 import path from "path";
 import jwtAuth from "./middleware/jwtAuth.js";
+import isAdmin from './middleware/isAdmin.js';
 import cookieParser from "cookie-parser";
 
 import * as pageController from "./controllers/pageController.js";
 import * as authController from "./controllers/authController.js";
+import * as userController from "./controllers/userController.js";
 import authLoginValidation from "./middleware/validation/authLoginValidation.js";
 
 
@@ -32,7 +34,16 @@ app.post("/logout", authController.logout);
 // Homepage
 app.get("/", jwtAuth, pageController.home);
 
+app.get("/admin", jwtAuth, isAdmin, pageController.admin);
 
+// Gebruikersbeheer
+app.get("/admin/users", jwtAuth, isAdmin, pageController.userPage);
+app.post("/admin/users", jwtAuth, isAdmin, userController.postUser);
+
+app.use((error, req, res, next) => {
+  console.error(error);
+  res.status(500).send("Something went wrong.");
+});
 
 app.listen(PORT, () => {
   console.log(`Application is running on http://localhost:${PORT}/.`);

@@ -1,0 +1,12 @@
+<h1>User Management</h1>
+<form action="/admin/users" method="POST">
+  <label>Voornaam: <input type="text" name="first_name" required></label><br>
+  <label>Achternaam: <input type="text" name="last_name" required></label><br>
+  <button type="submit">Toevoegen</button>
+</form>
+<h2>Existing Users</h2>
+<ul>
+  <% users.forEach(user => { %>
+    <li>Name: <%= user.first_name %> <%= user.last_name %> - Token: <%= user.token %> - Pincode: <%= user.pincode %></li>
+  <% }) %>
+</ul>
