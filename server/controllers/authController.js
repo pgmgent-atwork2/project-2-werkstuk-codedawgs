@@ -61,7 +61,7 @@ export const postLogin = async (req, res, next) => {
     const userToken = jwt.sign(
       { userId: user.id, },
       process.env.TOKEN_SALT,
-      { expiresIn: '1h' });
+      { expiresIn: '10h' });
 
     res.cookie("userToken", userToken, { httpOnly: true });
     res.redirect('/')
