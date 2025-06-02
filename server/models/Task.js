@@ -1,5 +1,6 @@
 import knex from "../lib/Knex.js";
 import { Model } from "objection";
+import TasksLog from "./TasksLog.js";
 
 Model.knex(knex);
 
@@ -27,6 +28,19 @@ class Task extends Model {
           enum: ["department", "sub_department", "filter", "pump"],
         },
         object_id: { type: "integer" },
+      },
+    };
+  }
+
+  static get relationMappings() {
+    return {
+      task_log: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: TasksLog,
+        join: {
+          from: "tasks.id",
+          to: "task_logs.task_id",
+        },
       },
     };
   }
