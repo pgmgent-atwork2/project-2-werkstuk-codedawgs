@@ -70,6 +70,27 @@ export const postLogin = async (req, res, next) => {
   }
 };
 
+
+// Register
+
+export const registerFirstStep = async (req, res) => {
+  const input = {
+      name: "token",
+      label: "Token",
+      type: "text",
+      value: req.body?.token ? req.body.token : "",
+      err: req.formErrorFields?.token ? req.formErrorFields["token"] : "",
+  }
+  const flash = req.flash || {};
+
+  res.render("pages/register-first-step", {
+    layout: "layouts/authentication",
+    input,
+    flash,
+    title: "Enter Token",
+  });
+};
+
 export const logout = async (req, res) => {
   res.clearCookie("token");
   res.redirect('/login');
