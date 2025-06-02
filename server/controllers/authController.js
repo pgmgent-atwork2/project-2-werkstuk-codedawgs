@@ -91,6 +91,39 @@ export const registerFirstStep = async (req, res) => {
   });
 };
 
+export const postRegisterFirstStep = async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      req.formErrorFields = {};
+      errors.array().forEach((error) => {
+        req.formErrorFields[error.path] = error.msg;
+      });
+
+      req.flash = {
+        type: "danger",
+        message: "Er zijn fouten opgetreden",
+      };
+
+      return next();
+    } else {
+      const user = await User.query().findOne({ token: req.body.token });    
+
+      if (!user) {
+        req.formErrorFields = { token: "Invalid token" };
+        req.flash = { type: "danger", message: "Errors occurred" };
+        return next();
+      }
+
+      res.redirect(`/register/${user.token}`);
+    }
+  } catch (e) {
+    next(e.message);
+  }
+};
+
+
 export const logout = async (req, res) => {
   res.clearCookie("token");
   res.redirect('/login');
