@@ -123,6 +123,47 @@ export const postRegisterFirstStep = async (req, res, next) => {
   }
 };
 
+export const registerSecondStep = async (req, res) => {
+  const clearPincode = req.formErrorFields?.pincode
+    ? ""
+    : req.body?.pincode || ""; 
+
+  const inputs = [
+    {
+      name: "token",
+      label: "Token",
+      type: "text",
+      value: req.params.token ? req.params.token : "",
+      err: req.formErrorFields?.token ? req.formErrorFields.token : "",
+    },
+    {
+      name: "pincode",
+      label: "Pincode",
+      type: "text",
+      value: clearPincode,
+      err: req.formErrorFields?.pincode ? req.formErrorFields.pincode : "",
+    },
+  ];
+
+  const imageInput = {
+    name: "image-select",
+    label: "Image",
+    type: "radio",
+    value: req.body?.image ? req.body.image : "",
+    err: req.formErrorFields?.image ? req.formErrorFields.image : "",
+  };
+
+  const flash = req.flash || {};
+
+  res.render("pages/register-second-step", {
+    layout: "layouts/authentication",
+    inputs,
+    imageInput,
+    flash,
+    title: "Register",
+  });
+};
+
 
 export const logout = async (req, res) => {
   res.clearCookie("token");
