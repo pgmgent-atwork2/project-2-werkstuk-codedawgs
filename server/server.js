@@ -10,6 +10,7 @@ import * as userController from "./controllers/userController.js";
 
 import authLoginValidation from "./middleware/validation/authLoginValidation.js";
 import authRegisterFirstStepValidation from './middleware/validation/authRegisterFirstStepValidation.js';
+import authRegisterSecondStepValidation from "./middleware/validation/authRegisterSecondStepValidation.js";
 
 import jwtAuth from "./middleware/jwtAuth.js";
 import isAdmin from './middleware/isAdmin.js';
@@ -35,6 +36,9 @@ app.post("/logout", authController.logout);
 
 app.get("/register", authController.registerFirstStep);
 app.post("/register", authRegisterFirstStepValidation, authController.postRegisterFirstStep, authController.registerFirstStep);
+
+app.get("/register/:token", authController.registerSecondStep);
+app.post("/register/:token", AuthRegisterSecondStepValidation, authController.postRegisterSecondStep, authController.registerSecondStep);
 
 
 // Homepage
