@@ -1,5 +1,6 @@
 import knex from "../lib/Knex.js";
 import { Model } from "objection";
+import SubDepartment from "./SubDepartment.js";
 
 Model.knex(knex);
 
@@ -20,6 +21,19 @@ class Filter extends Model {
         id: { type: "integer" },
         title: { type: "string", minLength: 1, maxLength: 255 },
         sub_department_id: { type: "integer" },
+      },
+    };
+  }
+
+  static get relationMappings() {
+    return {
+      sub_department: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: SubDepartment,
+        join: {
+          from: "filters.sub_department_id",
+          to: "sub_departments.id",
+        },
       },
     };
   }
