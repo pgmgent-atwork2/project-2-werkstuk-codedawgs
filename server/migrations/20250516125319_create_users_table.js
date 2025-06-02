@@ -5,9 +5,11 @@ export function up(knex) {
     table.increments("id").primary().unique();
     table.string("first_name");
     table.string("last_name");
+    table.integer("image_id");
     table.string("token").notNullable();
     table.string("pincode");
-    table.boolean("admin");
+    table.string('role').notNullable()
+      .checkIn(['admin', 'user', 'aqua']);
     table.timestamps(true, true);
   });
 }
