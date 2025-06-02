@@ -1,0 +1,28 @@
+<section class="register">
+    <h2 class="title">Choose a 4-digit pincode</h2>
+    <a href="/register" class="register__back">&lt; Back</a>
+
+
+    <form class="register-form" method="post" action="/register/:token">
+        <% inputs.forEach(input => { %>
+            <input class="register__<%= input.name %>" type="<%= input.type %>" name="<%= input.name %>" placeholder="<%= input.label %>" value="<%= input.value || '' %>">
+            <% }); %>
+        <span class="register__error-msg"></span>
+        <button class="button button--register-next" type="submit">Next</button>
+        
+        <div class="<%= imageInput.name %>">
+            <h2>Choose a profile picture</h2>
+            <div class="<%= imageInput.name %>__grid" >
+                <% for (let i=1; i <=16; i++) { %>
+                    <label class="image-select__image">
+                        <input type="<%= imageInput.type %>" name="image_id" value="<%= i %>" required>
+                        <img src="/assets/images/pfp<%= i %>.png" alt="Profile <%= i %>">
+                    </label>
+                <% } %>
+            </div>
+            <button class="button button--register-submit" type="submit">Enter</button>
+        </div>
+    </form>
+</section>
+
+<script src="../scripts/register.js"></script>

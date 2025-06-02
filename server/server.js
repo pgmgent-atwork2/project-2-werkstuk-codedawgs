@@ -2,15 +2,18 @@ import express from "express";
 import expressLayouts from "express-ejs-layouts";
 import { PORT, VIEWS_PATH } from "./consts.js";
 import path from "path";
-import jwtAuth from "./middleware/jwtAuth.js";
-import isAdmin from './middleware/isAdmin.js';
 import cookieParser from "cookie-parser";
 
 import * as pageController from "./controllers/pageController.js";
 import * as authController from "./controllers/authController.js";
 import * as userController from "./controllers/userController.js";
-import authLoginValidation from "./middleware/validation/authLoginValidation.js";
 
+import authLoginValidation from "./middleware/validation/authLoginValidation.js";
+import authRegisterFirstStepValidation from './middleware/validation/authRegisterFirstStepValidation.js';
+import authRegisterSecondStepValidation from "./middleware/validation/authRegisterSecondStepValidation.js";
+
+import jwtAuth from "./middleware/jwtAuth.js";
+import isAdmin from './middleware/isAdmin.js';
 
 // APP config
 const app = express();
@@ -30,6 +33,13 @@ app.set("views", path.resolve("server", "views"));
 app.get("/login", authController.login);
 app.post("/login", authLoginValidation, authController.postLogin, authController.login);
 app.post("/logout", authController.logout);
+
+app.get("/register", authController.registerFirstStep);
+app.post("/register", authRegisterFirstStepValidation, authController.postRegisterFirstStep, authController.registerFirstStep);
+
+app.get("/register/:token", authController.registerSecondStep);
+app.post("/register/:token", authRegisterSecondStepValidation, authController.postRegisterSecondStep, authController.registerSecondStep);
+
 
 // Homepage
 app.get("/", jwtAuth, pageController.home);
