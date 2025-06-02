@@ -1,6 +1,7 @@
 import { validationResult } from "express-validator";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
+import { v4 as uuidv4 } from "uuid";
 
 export const login = async (req, res) => {
   const users = await User.query().select("*");

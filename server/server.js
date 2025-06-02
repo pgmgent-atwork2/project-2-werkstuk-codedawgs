@@ -38,7 +38,7 @@ app.get("/register", authController.registerFirstStep);
 app.post("/register", authRegisterFirstStepValidation, authController.postRegisterFirstStep, authController.registerFirstStep);
 
 app.get("/register/:token", authController.registerSecondStep);
-app.post("/register/:token", AuthRegisterSecondStepValidation, authController.postRegisterSecondStep, authController.registerSecondStep);
+app.post("/register/:token", authRegisterSecondStepValidation, authController.postRegisterSecondStep, authController.registerSecondStep);
 
 
 // Homepage
