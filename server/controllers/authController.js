@@ -164,6 +164,47 @@ export const registerSecondStep = async (req, res) => {
   });
 };
 
+export const postRegisterSecondStep = async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      req.formErrorFields = {};
+      errors.array().forEach((error) => {
+        req.formErrorFields[error.path] = error.msg;
+      });
+
+      req.flash = {
+        type: "danger",
+        message: "Er zijn fouten opgetreden",
+      };
+
+      return next();
+    } else {
+      const user = await User.query().findOne({ token: req.body.token });
+      const regenToken = uuidv4().slice(0, 13).replace("-", "");
+
+      if (!user) {
+        req.formErrorFields = { token: "Invalid token" };
+        req.flash = { type: "danger", message: "Errors occurred" };
+        return next();
+      }
+
+      await User.query().findById(user.id).patch({
+        pincode: req.body.pincode,
+        token: regenToken,
+        image_id: req.body.image_id,
+      });
+
+      res.redirect("/login");
+    }
+  } catch (e) {
+    next(e.message);
+  }
+};
+
+
+//Logout
 
 export const logout = async (req, res) => {
   res.clearCookie("token");
