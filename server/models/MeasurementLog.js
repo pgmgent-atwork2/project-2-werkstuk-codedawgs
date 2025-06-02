@@ -1,5 +1,7 @@
 import knex from "../lib/Knex.js";
 import { Model } from "objection";
+import User from "./User.js";
+import SubDepartment from "./SubDepartment.js";
 
 Model.knex(knex);
 
@@ -22,6 +24,27 @@ class MeasurementLog extends Model {
         sub_department_id: { type: "integer" },
         measured_date: { type: "date" },
         measurements: { type: "string" },
+      },
+    };
+  }
+
+  static get relationMappings() {
+    return {
+      user: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: User,
+        join: {
+          from: "measurement_logs.user_id",
+          to: "users.id",
+        },
+      },
+      sub_department: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: SubDepartment,
+        join: {
+          from: "measurement_logs.sub_department_id",
+          to: "sub_departments.id",
+        },
       },
     };
   }
