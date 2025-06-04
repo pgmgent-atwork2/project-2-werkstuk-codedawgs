@@ -6,7 +6,7 @@ export const home = async (req, res) => {
   res.render("pages/home", {
     title: "Home",
     first_name: req.user.first_name,
-    userRole: req.user.role, 
+    userRole: req.user.role,
     departments: departments,
   });
 };
@@ -20,10 +20,13 @@ export const admin = async (req, res) => {
 export const userPage = async (req, res) => {
   try {
     const users = await knex("users").select("*");
-    res.render("pages/users", { users });
+    res.render("pages/users", {
+      users,
+      userRole: req.user.role,
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error while loading the users.");
+    res.status(500).send("Fout bij laden van gebruikers.");
   }
 };
 
