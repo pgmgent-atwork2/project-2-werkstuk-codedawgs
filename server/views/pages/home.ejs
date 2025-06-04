@@ -1,10 +1,5 @@
-<form action="./logout" method="post">
-    <button class="button" type="submit">Log out</button>
-</form>
+<%- include('../partials/header.ejs')%>
 
-<section class="header">
-     <%= title %>
-     <% if (admin) {%>
-          <%- include('../partials/adminpanel.ejs')%>
-     <%}%>
-</section>
+<% if (userRole === 'user' || userRole === "admin") { %>
+     <%- include('../partials/intervalSelect.ejs') %>
+<% } %>
