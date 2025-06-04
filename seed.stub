@@ -1,0 +1,10 @@
+const tableName = "TABLENAME";
+ 
+const seed = async function (knex) {
+  await knex(tableName).truncate();
+  await knex(tableName).insert([
+    { title: "title" },
+  ]);
+};
+ 
+export { seed };
