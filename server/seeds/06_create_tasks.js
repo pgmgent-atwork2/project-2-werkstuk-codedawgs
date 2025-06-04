@@ -946,14 +946,6 @@ const seed = async function (knex) {
       object_id: 4,
       completed: false,
     },
-    {
-      title: "Backwash",
-      visible: true,
-      interval: "none",
-      object_type: "filter",
-      object_id: 1,
-      completed: false,
-    },
   ]);
 };
 
