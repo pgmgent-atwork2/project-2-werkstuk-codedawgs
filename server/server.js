@@ -44,11 +44,17 @@ app.post("/register/:token", authRegisterSecondStepValidation, authController.po
 // Homepage
 app.get("/", jwtAuth, pageController.home);
 
+// Admin pages
 app.get("/admin", jwtAuth, isAdmin, pageController.admin);
 
 // Gebruikersbeheer
 app.get("/admin/users", jwtAuth, isAdmin, pageController.userPage);
 app.post("/admin/users", jwtAuth, isAdmin, userController.postUser);
+
+//task pages
+app.get('/daily/:departmentString', jwtAuth, pageController.taskPage);
+app.get('/weekly/:departmentString', jwtAuth, pageController.taskPage);
+app.get('/monthly/:departmentString', jwtAuth, pageController.taskPage);
 
 app.use((error, req, res, next) => {
   console.error(error);
