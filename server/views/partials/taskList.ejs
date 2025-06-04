@@ -1,0 +1,73 @@
+<div>
+  <h1><%= intervalString %></h1>
+  <%
+    let departmentId = null;
+    for (const d of departments) {
+      if (d.title.replace(/\s/g, '').toLowerCase() === departmentString) {
+        departmentId = d.id;
+        break;
+      }
+    }
+
+    if (departmentId === null) return;
+  %>
+    
+    <% tasks.forEach(task => {
+      if (task.interval !== intervalString) return;
+
+      let titleToShow = null;
+
+      if (task.object_type === "department") {
+        for (const dept of departments) {
+          if (dept.id === task.object_id && dept.id === departmentId) {
+            titleToShow = dept.title;
+            break;
+          }
+        }
+      } else if (task.object_type === "sub_department") {
+        for (const sub of sub_departments) {
+          if (sub.id === task.object_id && sub.department_id === departmentId) {
+            titleToShow = sub.title;
+            break;
+          }
+        }
+      } else if (task.object_type === "pump") {
+        let pump = null;
+        for (const p of pumps) {
+          if (p.id === task.object_id) {
+            pump = p;
+            break;
+          }
+        }
+        if (pump) {
+          for (const sub of sub_departments) {
+            if (sub.id === pump.sub_department_id && sub.department_id === departmentId) {
+              titleToShow = pump.title;
+              break;
+            }
+          }
+        }
+      } else if (task.object_type === "filter") {
+        let filter = null;
+        for (const f of filters) {
+          if (f.id === task.object_id) {
+            filter = f;
+            break;
+          }
+        }
+        if (filter) {
+          for (const sub of sub_departments) {
+            if (sub.id === filter.sub_department_id && sub.department_id === departmentId) {
+              titleToShow = filter.title;
+              break;
+            }
+          }
+        }
+      }
+
+      if (titleToShow) {
+        %><%- include('./task', { task: task, title: titleToShow }) %><%
+      }
+    }) %>
+
+</div>
