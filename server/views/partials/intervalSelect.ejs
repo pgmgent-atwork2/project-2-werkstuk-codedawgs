@@ -1,0 +1,17 @@
+<% const intervals = ['daily', 'weekly', 'monthly']; %>
+
+<section>
+    <% intervals.forEach(interval => { %>
+        <details>
+            <summary><%= interval %></summary>
+                <% if(userRole === "aqua") { %>
+                    <% const url = departments[3].title.replace(/\s/g, '').toLowerCase(); %>
+                   <li><a href='<%= interval %>/<%= url %>'><%= departments[3].title %></a></li> 
+                <% } else {%>
+                <% departments.forEach(department => { %>
+                    <% const url = department.title.replace(/\s/g, '').toLowerCase(); %>
+                   <li><a href='<%= interval %>/<%= url %>'><%= department.title %></a></li> 
+                <% }); }%>
+        </details>
+    <% }); %>
+</section>

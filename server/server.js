@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import * as pageController from "./controllers/pageController.js";
 import * as authController from "./controllers/authController.js";
 import * as userController from "./controllers/userController.js";
+import * as taskController from "./controllers/taskController.js";
 
 import authLoginValidation from "./middleware/validation/authLoginValidation.js";
 import authRegisterFirstStepValidation from './middleware/validation/authRegisterFirstStepValidation.js';
@@ -44,11 +45,20 @@ app.post("/register/:token", authRegisterSecondStepValidation, authController.po
 // Homepage
 app.get("/", jwtAuth, pageController.home);
 
+// Admin pages
 app.get("/admin", jwtAuth, isAdmin, pageController.admin);
 
 // Gebruikersbeheer
 app.get("/admin/users", jwtAuth, isAdmin, pageController.userPage);
 app.post("/admin/users", jwtAuth, isAdmin, userController.postUser);
+
+//task pages
+app.get('/daily/:departmentString', jwtAuth, pageController.taskPage);
+app.get('/weekly/:departmentString', jwtAuth, pageController.taskPage);
+app.get('/monthly/:departmentString', jwtAuth, pageController.taskPage);
+
+// Task Routes
+app.post('/tasks/:id/completed', jwtAuth, taskController.taskComplete);
 
 app.use((error, req, res, next) => {
   console.error(error);

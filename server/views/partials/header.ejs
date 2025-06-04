@@ -1,0 +1,11 @@
+<header class="header">
+    <nav>
+        <a href="/">Home</a>
+        <% if (userRole === 'admin') {%>
+            <a href="/admin">Admin</a>
+        <%}%>
+        <form action="/logout" method="post">
+            <button class="button" type="submit">Log out</button>
+        </form>
+    </nav>
+</header>

@@ -6,6 +6,6 @@ export default [
     .notEmpty()
     .withMessage({ msg: "Pincode is required", code: "REQUIRED_PINCODE" })
     .bail()
-    .matches(/^\d{6}$/)
-    .withMessage({ msg: "Pincode is 6 digitis", code: "INVALID_PINCODE_FORMAT" }),
+    .matches(/^\d{4}$/)
+    .withMessage({ msg: "Pincode is 4 digitis", code: "INVALID_PINCODE_FORMAT" }),
 ];
