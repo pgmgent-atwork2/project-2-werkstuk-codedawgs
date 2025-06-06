@@ -1,5 +1,4 @@
 import { body } from "express-validator";
-import User from "../../models/User.js";
 
 export default [
   body("pincode")
