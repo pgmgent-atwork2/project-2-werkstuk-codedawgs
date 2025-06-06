@@ -27,13 +27,13 @@
                 </td>
                 <td>
                     <% if(tasks[task.task_id-1].object_type === "department") { %>
-                        department
+                        <%= departments[tasks[task.task_id].object_id].title %>
                     <% } else if(tasks[task.task_id-1].object_type === "sub_department") { %>
-                        sub department
+                        <%= sub_departments[tasks[task.task_id].object_id].title %>
                     <% } else if(tasks[task.task_id-1].object_type === "pump") { %>
-                        pump
+                        <%= pumps[tasks[task.task_id-1].object_id-1].title %>
                     <% } else if(tasks[task.task_id-1].object_type === "filter") { %>
-                        filter
+                        <%= filters[tasks[task.task_id-1].object_id-1].title %>
                     <% } %>
                 </td>
                 <td>
