@@ -26,7 +26,15 @@
                     <%= tasks[task.task_id-1].object_type %>
                 </td>
                 <td>
-                    department
+                    <% if(tasks[task.task_id-1].object_type === "department") { %>
+                        department
+                    <% } else if(tasks[task.task_id-1].object_type === "sub_department") { %>
+                        sub department
+                    <% } else if(tasks[task.task_id-1].object_type === "pump") { %>
+                        pump
+                    <% } else if(tasks[task.task_id-1].object_type === "filter") { %>
+                        filter
+                    <% } %>
                 </td>
                 <td>
                     <%= task.action %>
