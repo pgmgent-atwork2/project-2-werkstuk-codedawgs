@@ -56,7 +56,7 @@ app.post("/admin/users", jwtAuth, isAdmin, userController.postUser);
 app.get("/admin/tasks", jwtAuth, isAdmin, pageController.taskPageAdmin);
 
 
-//task pages
+// Task pages
 app.get('/daily/:departmentString', jwtAuth, pageController.taskPage);
 app.get('/weekly/:departmentString', jwtAuth, pageController.taskPage);
 app.get('/monthly/:departmentString', jwtAuth, pageController.taskPage);
@@ -64,12 +64,14 @@ app.get('/monthly/:departmentString', jwtAuth, pageController.taskPage);
 // Task Routes
 app.post('/tasks/:id/completed', jwtAuth, taskController.taskComplete);
 
+
+// Error handling
 app.use((error, req, res, next) => {
   console.error(error);
   res.status(500).send("Something went wrong.");
 });
 
-//404
+// 404
 app.use((req, res) => {
   res.render("errors/404")
 });
