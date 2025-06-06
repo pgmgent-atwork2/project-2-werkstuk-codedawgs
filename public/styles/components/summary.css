@@ -2,8 +2,8 @@ details {
   border-left: 5px solid #bdd28c;
   background-color: #d9d9d9;
   margin: 0;
-  width: 15rem;
-  padding: 1.5rem 1rem;
+  width: 20rem;
+  padding: 1.5rem 0 0 0;
   border-radius: 5px;
   font-size: 1.5rem;
   text-transform: capitalize;
@@ -45,10 +45,39 @@ details:last-child {
   align-items: center;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+.chevron {
+  margin-right: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 details[open] summary .chevron {
   transform: rotate(90deg);
   transition: transform 0.2s ease-in-out;
+}
+
+.summary__ul {
+  background-color: #e7e7e7;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.summary__li {
+  background-color: #d9d9d9;
+  padding: 0.5rem;
+  border-radius: 0.7rem;
+}
+
+.summary span {
+  margin-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary__link {
+    padding-left: .4rem;
 }
