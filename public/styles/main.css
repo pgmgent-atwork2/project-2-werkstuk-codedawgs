@@ -2,12 +2,14 @@
 
 @import url("./pages/login.css");
 @import url("./pages/register.css");
+@import url("./pages/home.css");
 
 @import url("./layout/header.css");
 
 @import url("./components/pincodepanel.css");
 @import url("./components/input.css");
 @import url("./components/btn.css");
+@import url("./components/summary.css");
 
 :root {
   --primary-100: #273787;
