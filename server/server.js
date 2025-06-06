@@ -45,12 +45,17 @@ app.post("/register/:token", authRegisterSecondStepValidation, authController.po
 // Homepage
 app.get("/", jwtAuth, pageController.home);
 
+
 // Admin pages
 app.get("/admin", jwtAuth, isAdmin, pageController.admin);
 
-// Gebruikersbeheer
+// User management
 app.get("/admin/users", jwtAuth, isAdmin, pageController.userPage);
 app.post("/admin/users", jwtAuth, isAdmin, userController.postUser);
+
+// Task management
+app.get("/admin/tasks", jwtAuth, isAdmin, pageController.taskPageAdmin);
+
 
 //task pages
 app.get('/daily/:departmentString', jwtAuth, pageController.taskPage);
