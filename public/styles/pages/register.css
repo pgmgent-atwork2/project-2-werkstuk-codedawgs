@@ -29,3 +29,39 @@
     }
   }
 }
+
+.register__error-msg {
+  height: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-200);
+}
+
+.register__back {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.image-select__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.image-select__image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 5rem;
+  transition-property: transform outline;
+  transition: ease 200ms;
+  outline: thin solid transparent;
+  img {
+    border-radius: 5rem;
+  }
+}
