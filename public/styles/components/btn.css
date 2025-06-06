@@ -1,0 +1,16 @@
+.button {
+    background-color: var(--accent-100);
+    color: var(--bg-100);
+    cursor: pointer;
+    border: none;
+    border-radius: .5rem;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+        background-color: var(--accent-200);
+    }
+}
+
+.button--register-submit {
+    margin-top: 1rem;
+}

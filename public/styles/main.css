@@ -3,6 +3,7 @@
 @import url("./components/pincodepanel.css");
 @import url("./layout/header.css");
 @import url("./components/input.css");
+@import url("./components/btn.css");
 
 :root {
   --primary-100: #273787;
