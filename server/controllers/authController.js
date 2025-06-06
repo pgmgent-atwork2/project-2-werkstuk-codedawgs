@@ -58,17 +58,17 @@ export const postLogin = async (req, res, next) => {
       return next();
     }
 
-    const token = jwt.sign(
+    const userToken = jwt.sign(
       {
         userId: user.id,
       },
       process.env.TOKEN_SALT,
       {
-        expiresIn: "1h",
+        expiresIn: "10h",
       }
     );
 
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("userToken", userToken, { httpOnly: true });
 
     return res.status(200).json({
       success: true,
@@ -79,7 +79,6 @@ export const postLogin = async (req, res, next) => {
     next(e.message);
   }
 };
-
 
 // Register
 

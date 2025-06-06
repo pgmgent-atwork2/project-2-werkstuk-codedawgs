@@ -5,7 +5,7 @@
     <form method="post" action="/login" class="login__form">
 
         <div id="userSelect" class="login__users">
-            <% users.forEach(user=> { %>
+            <% users.forEach(user => { %>
                 <% if(user.pincode) {%>
                     <div class="login__user">
                         <input type="radio" name="first_name" id="<%= user.first_name %>" value="<%= user.first_name %>">
