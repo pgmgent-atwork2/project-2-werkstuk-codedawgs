@@ -1,0 +1,41 @@
+<section>
+    <h2>Task Logs:</h2>
+    <table class="tasks-log">
+        <tr>
+            <th>Performed by</th>
+            <th>Task name</th>
+            <th>Task type</th>
+            <th>Type name</th>
+            <th>Status</th>
+            <th>Comment</th>
+            <th>Date</th>
+        </tr>
+
+        <% taskLogs.forEach(task=> { %>
+            <tr>
+                <td>
+                    <%= users[task.user_id-1].first_name %>
+                    <%= users[task.user_id-1].last_name %>
+                </td>
+                <td>
+                    <%= tasks[task.task_id-1].title %>
+                </td>
+                <td>
+                    <%= tasks[task.task_id-1].object_type %>
+                </td>
+                <td>
+                    department
+                </td>
+                <td>
+                    <%= task.action %>
+                </td>
+                <td>
+                    <%= task.comment %>
+                </td>
+                <td>
+                    date
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+</section>
