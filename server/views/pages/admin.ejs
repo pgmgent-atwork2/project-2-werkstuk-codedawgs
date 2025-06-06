@@ -1,5 +1,11 @@
+<%- include('../partials/header.ejs')%>
+
+
 <section>
     <h2>Admin Panel</h2>
     <button onclick="window.location.href='/admin/users'">Users</button>
-    <button>Tasks</button>
+    <button onclick="window.location.href='/admin/tasks'">Tasks</button>
 </section>
+
+
+<%- include('../partials/task-logs.ejs')%>
