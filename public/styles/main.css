@@ -1,5 +1,6 @@
 @import url("./base/reset.css");
 @import url("./pages/login.css");
+@import url("./components/pincodepanel.css");
 
 :root {
   --primary-100: #273787;

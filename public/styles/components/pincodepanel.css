@@ -1,0 +1,57 @@
+.pincode-panel {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.pincode-panel__key {
+  margin: 0 auto;
+  cursor: pointer;
+  text-align: center;
+  background-color: var(--bg-200);
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  user-select: none;
+  &:active {
+    background-color: var(--bg-300);
+  }
+}
+
+.pincode-panel__key:nth-child(10) {
+  grid-column: 2;
+  grid-row: 4;
+}
+.pincode-panel__key--del {
+  grid-column: 3;
+  grid-row: 4;
+  background: transparent;
+  &:active {
+    background-color: transparent;
+    path {
+      fill: var(--text-100);
+    }
+  }
+}
+
+.pincode-display {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.pincode-display__circle {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 5rem;
+  border: 2px solid var(--bg-300);
+}
+
+.pincode-display__circle--filled {
+  border: none;
+  background-color: var(--accent-100);
+}
