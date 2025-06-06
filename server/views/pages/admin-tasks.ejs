@@ -16,6 +16,25 @@
       </thead>
       <tbody>
 
+        <% tasks.forEach(task=> { %>
+
+        <tr>
+            <td>
+              <%= task.title %>
+            </td>
+            <td>
+              <%= task.completed? "Yes" : "No" %>
+            </td>
+            <td>
+              <form method="POST" action="/admin/tasks/<%= task.id %>">
+              <input type="hidden" name="taskId" value="<%= task.id %>">
+                <button type="button" class="edit-task-btn" data-task-id="<%= task.id %>">
+                  Edit
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
       </tbody>
     </table>
     <% }) %>
