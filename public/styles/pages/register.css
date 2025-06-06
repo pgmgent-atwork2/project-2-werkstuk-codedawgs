@@ -65,3 +65,8 @@
     border-radius: 5rem;
   }
 }
+
+.image-select__image:has(input[type="radio"]:checked) {
+  transform: scale(1.1);
+  outline: thick solid var(--accent-100);
+}
