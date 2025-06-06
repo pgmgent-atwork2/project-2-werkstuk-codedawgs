@@ -36,5 +36,42 @@ document.addEventListener("DOMContentLoaded", () => {
         register.style.display = "none";
     });
 
-   
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            
+            if (response.ok) {
+                pinInput.value = '';
+                window.location.href = result.redirectUrl;
+            } else {
+                pinInput.value = '';
+                document.querySelectorAll('.pincode-display__circle').forEach(display => {
+                    display.classList.remove('pincode-display__circle--filled')
+                });
+                console.error(result.message || "An error occurred");
+            }
+        } catch (error) {
+            pinInput.value = '';
+            document.querySelectorAll('.pincode-display__circle').forEach(display => {
+                    display.classList.remove('pincode-display__circle--filled')
+            });
+            pinAmount = 0;
+            document.getElementById('pinError').innerHTML = 'Incorrect Pin'
+            console.error("Error:", error);
+        }
+    });
 });
