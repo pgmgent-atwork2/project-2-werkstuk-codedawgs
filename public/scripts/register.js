@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       title.style.display = "none";
     } else {
       document.querySelector(".register__error-msg").innerHTML =
-        "Pincode must be 4 digits long";
+        "Pincode must be 4 digits long.";
     }
   });
 });
