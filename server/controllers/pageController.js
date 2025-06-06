@@ -57,7 +57,7 @@ export const taskPageAdmin = async (req, res) => {
     const filters = await knex("filters").select("*");
     const pumps = await knex("pumps").select("*");
     
-    res.render("pages/tasks", { 
+    res.render("pages/admin-tasks", { 
       userRole: req.user.role,
       tasks, 
       intervalString, 
