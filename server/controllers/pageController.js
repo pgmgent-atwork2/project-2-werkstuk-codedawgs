@@ -12,8 +12,24 @@ export const home = async (req, res) => {
 };
 
 export const admin = async (req, res) => {
+    const taskLogs = await knex("task_logs").select("*");
+    const tasks = await knex("tasks").select("*");
+    const users = await knex("users").select("*");
+    const departments = await knex("departments").select("*");    
+    const sub_departments = await knex("sub_departments").select("*");    
+    const filters = await knex("filters").select("*");
+    const pumps = await knex("pumps").select("*");
+    
   res.render("./pages/admin", {
     title: "Admin",
+    userRole: req.user.role,
+    taskLogs,
+    tasks,
+    users,
+    departments,
+    sub_departments,
+    filters,
+    pumps
   });
 };
 
