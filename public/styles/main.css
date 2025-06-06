@@ -1,5 +1,7 @@
 @import url("./base/reset.css");
+
 @import url("./pages/login.css");
+@import url("./pages/register.css");
 
 :root {
   --primary-100: #273787;
