@@ -41,7 +41,6 @@ app.post("/register", authRegisterFirstStepValidation, authController.postRegist
 app.get("/register/:token", authController.registerSecondStep);
 app.post("/register/:token", authRegisterSecondStepValidation, authController.postRegisterSecondStep, authController.registerSecondStep);
 
-
 // Homepage
 app.get("/", jwtAuth, pageController.home);
 
@@ -63,6 +62,11 @@ app.post('/tasks/:id/completed', jwtAuth, taskController.taskComplete);
 app.use((error, req, res, next) => {
   console.error(error);
   res.status(500).send("Something went wrong.");
+});
+
+//404
+app.use((req, res) => {
+  res.render("errors/404")
 });
 
 app.listen(PORT, () => {
