@@ -1,0 +1,9 @@
+input[type="radio"] {
+  display: none;
+}
+
+input {
+  padding: 0.5rem;
+  border: 1px solid var(--bg-400);
+  border-radius: .25rem;
+}
