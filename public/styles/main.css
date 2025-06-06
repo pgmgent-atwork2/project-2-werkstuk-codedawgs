@@ -3,6 +3,7 @@
 @import url("./components/pincodepanel.css");
 @import url("./layout/header.css");
 @import url("./components/input.css");
+@import url("./components/btn.css");
 
 :root {
   --primary-100: #273787;
@@ -43,4 +44,11 @@ ul {
 
 ol {
   padding: 0;
+}
+
+.profile-pic {
+  width: 3rem;
+  path {
+    fill: var(--bg-100);
+  }
 }
