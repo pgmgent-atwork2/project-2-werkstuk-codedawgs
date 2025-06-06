@@ -1,8 +1,12 @@
 details {
   border-left: 4px solid #bdd28c;
-  border-right: 1px solid gray;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
+  background-color: #d9d9d9;
+  margin: 0;
+  width: 12.5rem;
+  padding: 1.5rem 1rem;
+  border-radius: 3px;
+  font-size: 1.5rem;
+  text-transform: capitalize;
 
   details::details-content {
     border-left: 4px solid #bdd28c;
@@ -19,19 +23,10 @@ details:nth-child(2) {
 
 details:last-child {
   border-left: 4px solid #d9a1a2;
-  margin: 0;
-  padding: 0 1rem;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 500px;
 
   details::details-content {
     border-left: 4px solid #d9a1a2;
   }
-}
-
-.summary__link {
-  margin-left: 1rem;
 }
 
 .summary {
