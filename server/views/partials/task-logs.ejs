@@ -11,5 +11,31 @@
             <th>Date</th>
         </tr>
 
+        <% taskLogs.forEach(task=> { %>
+            <tr>
+                <td>
+                    <%= users[task.user_id-1].first_name %>
+                    <%= users[task.user_id-1].last_name %>
+                </td>
+                <td>
+                    <%= tasks[task.task_id-1].title %>
+                </td>
+                <td>
+                    <%= tasks[task.task_id-1].object_type %>
+                </td>
+                <td>
+                    department
+                </td>
+                <td>
+                    <%= task.action %>
+                </td>
+                <td>
+                    <%= task.comment %>
+                </td>
+                <td>
+                    date
+                </td>
+            </tr>
+        <% }); %>
     </table>
 </section>
