@@ -1,17 +1,37 @@
-<% const intervals = ['daily', 'weekly', 'monthly']; %>
+<% const intervals=['daily', 'weekly' , 'monthly' ]; %>
 
-<section>
-    <% intervals.forEach(interval => { %>
-        <details>
-            <summary><%= interval %></summary>
-                <% if(userRole === "aqua") { %>
-                    <% const url = departments[3].title.replace(/\s/g, '').toLowerCase(); %>
-                   <li><a href='<%= interval %>/<%= url %>'><%= departments[3].title %></a></li> 
-                <% } else {%>
-                <% departments.forEach(department => { %>
-                    <% const url = department.title.replace(/\s/g, '').toLowerCase(); %>
-                   <li><a href='<%= interval %>/<%= url %>'><%= department.title %></a></li> 
-                <% }); }%>
-        </details>
-    <% }); %>
-</section>
+    <section class="summary__section">
+        <% intervals.forEach(interval=> { %>
+            <details>
+                <summary class="summary">
+                    <span>
+                        <%= interval %>
+                    </span>
+                    <svg class="chevron" width="12" height="21" viewBox="0 0 12 21" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L11 10.5L1 20" stroke="black" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </summary>
+                <% if(userRole==="aqua" ) { %>
+                    <% const url=departments[3].title.replace(/\s/g, '' ).toLowerCase(); %>
+                        <ul class="summary__ul">
+                            <li class="summary__li"><a class="summary__link" href='<%= interval %>/<%= url %>'>
+                                    <%= departments[3].title %>
+                                </a></li>
+                        </ul>
+                        <% } else {%>
+                            <ul class="summary__ul">
+                                <% departments.forEach(department=> { %>
+                                    <% const url=department.title.replace(/\s/g, '' ).toLowerCase(); %>
+                                        <li class="summary__li">
+                                            <a class="summary__link" href='<%= interval %>/<%= url %>'>
+                                                <%= department.title %>
+                                            </a>
+                                        </li>
+                                        <% }); }%>
+                            </ul>
+
+            </details>
+            <% }); %>
+    </section>
