@@ -1,4 +1,6 @@
 @import url("./base/reset.css");
+
+@import url("/pages/login.css");
 @import url("./pages/login.css");
 
 :root {
