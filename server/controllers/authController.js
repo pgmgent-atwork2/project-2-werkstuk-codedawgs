@@ -9,13 +9,12 @@ export const login = async (req, res) => {
   const input = {
     name: "pincode",
     label: "Pincode",
-    type: "number",
+    type: "password",
     value: req.body?.pincode ? req.body.pincode : "",
     err: req.formErrorFields?.pincode ? req.formErrorFields["pincode"] : "",
   };
-
   const flash = req.flash || {};
-  
+
   res.render("pages/login", {
     layout: "layouts/authentication",
     users,
@@ -30,17 +29,17 @@ export const postLogin = async (req, res, next) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-        req.formErrorFields = {};
-        errors.array().forEach((error) => {
-            req.formErrorFields[error.path] = error.msg
-        });
+      req.formErrorFields = {};
+      errors.array().forEach((error) => {
+        req.formErrorFields[error.path] = error.msg;
+      });
 
-        req.flash = {
-            type: "danger",
-            message: "er zijn fouten",
-        }
+      req.flash = {
+        type: "danger",
+        message: "Er zijn fouten opgetreden",
+      };
 
-        return next();
+      return next();
     }
 
     const user = await User.query().findOne({
@@ -48,26 +47,36 @@ export const postLogin = async (req, res, next) => {
     });
 
     if (!user) {
-        req.formErrorFields = { first_name: "user does not exist" };
-        req.flash = { type: "danger", message: "errors" };
-        return next();
+      req.formErrorFields = { first_name: "User does not exist" };
+      req.flash = { type: "danger", message: "Errors occurred" };
+      return next();
     }
 
     if (req.body.pincode !== user.pincode) {
-        req.formErrorFields = { pincode: "invalid pincode" };
-        req.flash = { type: "danger", message: "errors" };
-        return next();
+      req.formErrorFields = { pincode: "Invalid pincode" };
+      req.flash = { type: "danger", message: "Errors occurred" };
+      return next();
     }
 
-    const userToken = jwt.sign(
-      { userId: user.id, },
+    const token = jwt.sign(
+      {
+        userId: user.id,
+      },
       process.env.TOKEN_SALT,
-      { expiresIn: '10h' });
+      {
+        expiresIn: "1h",
+      }
+    );
 
-    res.cookie("userToken", userToken, { httpOnly: true });
-    res.redirect('/')
+    res.cookie("token", token, { httpOnly: true });
+
+    return res.status(200).json({
+      success: true,
+      message: "Login successful",
+      redirectUrl: "/",
+    });
   } catch (e) {
-    console.error(e);
+    next(e.message);
   }
 };
 
