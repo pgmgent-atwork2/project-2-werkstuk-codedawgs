@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   let events = [];
   let resources = [];
 
-  generateResources()
-  
   let generalTaskLogs = [];
 
   async function fetchData(url, slug) {
@@ -98,7 +96,134 @@ document.addEventListener("DOMContentLoaded", async function () {
         title: filter.title,
       });
     });
-    console.log(resources);
-    
+  }
+
+  generateTableWeek();
+
+  async function generateTableWeek() {
+    const calendarBackwash = document.getElementById("calendarBackwash");
+    calendarBackwash.innerHTML = "";
+    await generateResources();
+    await generateEvents();
+
+    const filteredResources = resources.filter((res) =>
+      events.some(
+        (ev) => ev.resourceId === res.id && ev.department === currentDepartment
+      )
+    );
+
+    const table = document.createElement("table");
+    table.style.borderCollapse = "collapse";
+
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+
+    const firstTh = headerRow.appendChild(document.createElement("th"));
+    firstTh.textContent = "Filter";
+
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+
+    const monday = new Date(today);
+    monday.setDate(today.getDate() + mondayOffset);
+
+    const days = [];
+
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(monday);
+      date.setDate(monday.getDate() + i);
+
+      const yyyyMmDd = date.toISOString().split("T")[0];
+      days.push(yyyyMmDd);
+
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+
+      const th = document.createElement("th");
+      th.textContent = `${day}/${month}`;
+
+      const todayDate = new Date().toISOString().split("T")[0];
+      if (yyyyMmDd === todayDate) {
+        th.className = "table__today";
+      }
+
+      headerRow.appendChild(th);
+    }
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    filteredResources.forEach((res) => {
+      const row = document.createElement("tr");
+      const labelCell = document.createElement("td");
+      labelCell.textContent = res.title;
+      row.appendChild(labelCell);
+
+      for (let day of days) {
+        const cell = document.createElement("td");
+        const event = events.find(
+          (ev) =>
+            ev.resourceId === res.id &&
+            ev.date === day &&
+            ev.department === currentDepartment
+        );
+
+        if (event) {
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.id = event.id;
+
+          const eventTaskId = event.id.split("-")[0];
+          const eventDate = event.date;
+
+          const logsForTaskDate = generalTaskLogs.filter((log) => {
+            const logDate = new Date(log.task_date);
+            const localLogDate = new Date(
+              logDate.getFullYear(),
+              logDate.getMonth(),
+              logDate.getDate()
+            )
+              .toISOString()
+              .split("T")[0];
+            return (
+              String(log.task_id) === eventTaskId && localLogDate === eventDate
+            );
+          });
+
+          let isCompleted = false;
+          if (logsForTaskDate.length === 0) {
+            isCompleted = false;
+          } else {
+            logsForTaskDate.sort(
+              (a, b) => new Date(b.task_date) - new Date(a.task_date)
+            );
+            const latestLog = logsForTaskDate[0];
+            isCompleted = latestLog.action === "completed";
+          }
+
+          const todayDate = new Date().toISOString().split("T")[0];
+
+          if (event.date !== todayDate) {
+            checkbox.disabled = true;
+          }
+
+          checkbox.checked = isCompleted;
+          checkbox.dataset.eventId = event.id;
+
+          checkbox.addEventListener("change", function () {
+            const id = String(event.id).split("-")[0];
+            postData(URL, id, checkbox.checked);
+          });
+
+          cell.appendChild(checkbox);
+        }
+        row.appendChild(cell);
+      }
+      tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+    calendarEl.appendChild(table);
   }
 });
