@@ -9,6 +9,8 @@ import * as authController from "./controllers/authController.js";
 import * as userController from "./controllers/userController.js";
 import * as taskController from "./controllers/taskController.js";
 
+import * as API_TaskController from "./controllers/api/taskController.js";
+
 import authLoginValidation from "./middleware/validation/authLoginValidation.js";
 import authRegisterFirstStepValidation from './middleware/validation/authRegisterFirstStepValidation.js';
 import authRegisterSecondStepValidation from "./middleware/validation/authRegisterSecondStepValidation.js";
