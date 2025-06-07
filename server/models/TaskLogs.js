@@ -5,7 +5,7 @@ import Task from "./Task.js";
 
 Model.knex(knex);
 
-class TasksLog extends Model {
+class TaskLogs extends Model {
   static get tableName() {
     return "task_logs";
   }
@@ -56,4 +56,4 @@ class TasksLog extends Model {
   }
 }
 
-export default TasksLog;
+export default TaskLogs;

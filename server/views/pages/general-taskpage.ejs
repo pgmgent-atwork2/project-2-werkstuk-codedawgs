@@ -1,6 +1,7 @@
 <%- include('../partials/header.ejs')%>
 
-    <section>
+<% if(taskName !== "backwash") { %>
+<section>
     <% tasks.forEach(task => { %>
         <% let titleToShow = null %>
         <% if (task.title.toLowerCase().startsWith(taskName)) { %>
@@ -17,3 +18,16 @@
         <% } %>
     <% }); %>
 </section>
+<% } %>
+
+<% if(taskName === "backwash") { %>
+    <h1>Backwash agenda</h1>
+    <div>
+        <p>Select department</p>
+        <select id="backwashSelect"></select>
+    </div>
+    <section id="calendarBackwash">
+    </section>
+
+    <script src="/scripts/calendarBackwash.js" defer></script>
+<% } %>

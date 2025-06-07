@@ -1,6 +1,6 @@
 import knex from "../lib/Knex.js";
 import { Model } from "objection";
-import TasksLog from "./TasksLog.js";
+import TasksLog from "./TaskLogs.js";
 
 Model.knex(knex);
 

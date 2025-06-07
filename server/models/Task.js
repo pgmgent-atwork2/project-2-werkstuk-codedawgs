@@ -1,6 +1,6 @@
 import knex from "../lib/Knex.js";
 import { Model } from "objection";
-import TasksLog from "./TasksLog.js";
+import TasksLog from "./TaskLogs.js";
 
 Model.knex(knex);
 
@@ -22,7 +22,10 @@ class Task extends Model {
         title: { type: "string", minLength: 1, maxLength: 255 },
         visible: { type: "boolean" },
         completed: { type: "boolean" },
-        interval: { type: "string", enum: ["daily", "weekly", "monthly", "none"] },
+        interval: {
+          type: "string",
+          enum: ["daily", "weekly", "monthly", "none"],
+        },
         object_type: {
           type: "string",
           enum: ["department", "sub_department", "filter", "pump"],
