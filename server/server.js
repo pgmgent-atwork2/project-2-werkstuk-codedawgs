@@ -10,6 +10,7 @@ import * as userController from "./controllers/userController.js";
 import * as taskController from "./controllers/taskController.js";
 
 import * as API_TaskController from "./controllers/api/taskController.js";
+import * as API_FilterController from "./controllers/api/filterController.js";
 
 import authLoginValidation from "./middleware/validation/authLoginValidation.js";
 import authRegisterFirstStepValidation from './middleware/validation/authRegisterFirstStepValidation.js';
@@ -31,6 +32,11 @@ app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.set("layout", "layouts/main");
 app.set("views", path.resolve("server", "views"));
+
+//API
+app.get("/api/tasks", API_TaskController.tasks);
+app.get("/api/tasklogs", API_TaskController.tasklogs);
+app.get("/api/filters", API_FilterController.filters);
 
 // Auth Routes
 app.get("/login", authController.login);
