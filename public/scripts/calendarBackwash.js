@@ -3,7 +3,22 @@ document.addEventListener("DOMContentLoaded", async function () {
   let events = [];
   let resources = [];
 
+  const backwashSelect = document.getElementById("backwashSelect");
+
+  async function generateSelect() {
+    const departments = await fetchData(URL, "departments");
+    departments.forEach((department) => {
+      backwashSelect.innerHTML += `
+      <option value=${department.id}>
+        ${department.title}
+      </option>
+      `;
+    });
+  }
+
   let generalTaskLogs = [];
+
+  generateTableWeek();
 
   async function fetchData(url, slug) {
     try {
@@ -97,8 +112,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
     });
   }
-
-  generateTableWeek();
 
   async function generateTableWeek() {
     const calendarBackwash = document.getElementById("calendarBackwash");
