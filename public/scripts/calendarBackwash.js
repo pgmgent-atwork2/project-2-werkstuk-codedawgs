@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const backwashSelect = document.getElementById("backwashSelect");
 
+  let currentDepartment = 1;
+  let generalTaskLogs = [];
+
   async function generateSelect() {
     const departments = await fetchData(URL, "departments");
     departments.forEach((department) => {
@@ -16,8 +19,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 
-  let generalTaskLogs = [];
+  backwashSelect.addEventListener("change", function () {
+    currentDepartment = parseInt(backwashSelect.value);
+    regenerateTable();
+  });
 
+  generateSelect();
   generateTableWeek();
 
   async function fetchData(url, slug) {
@@ -237,6 +244,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       tbody.appendChild(row);
     });
     table.appendChild(tbody);
-    calendarEl.appendChild(table);
+    calendarBackwash.appendChild(table);
   }
 });
