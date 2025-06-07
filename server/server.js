@@ -11,6 +11,7 @@ import * as taskController from "./controllers/taskController.js";
 
 import * as API_TaskController from "./controllers/api/taskController.js";
 import * as API_FilterController from "./controllers/api/filterController.js";
+import * as API_DepartmentController from "./controllers/api/departmentController.js";
 
 import authLoginValidation from "./middleware/validation/authLoginValidation.js";
 import authRegisterFirstStepValidation from './middleware/validation/authRegisterFirstStepValidation.js';
@@ -35,8 +36,10 @@ app.set("views", path.resolve("server", "views"));
 
 //API
 app.get("/api/tasks", API_TaskController.tasks);
-app.get("/api/tasklogs", API_TaskController.tasklogs);
+app.get("/api/tasklogs", API_TaskController.taskLogs);
 app.get("/api/filters", API_FilterController.filters);
+app.get("/api/departments", API_DepartmentController.departments);
+app.get("/api/subdepartments", API_DepartmentController.subDepartments);
 
 // Auth Routes
 app.get("/login", authController.login);
