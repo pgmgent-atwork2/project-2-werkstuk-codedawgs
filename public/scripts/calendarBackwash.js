@@ -132,20 +132,25 @@ document.addEventListener("DOMContentLoaded", async function () {
     await generateResources();
     await generateEvents();
 
+    const matchingResourceIds = new Set(
+      events
+        .filter((event) => event.department === currentDepartment)
+        .map((event) => event.resourceId)
+    );
+
     const filteredResources = resources.filter((res) =>
-      events.some(
-        (ev) => ev.resourceId === res.id && ev.department === currentDepartment
-      )
+      matchingResourceIds.has(res.id)
     );
 
     const table = document.createElement("table");
-    table.style.borderCollapse = "collapse";
 
     const thead = document.createElement("thead");
     const headerRow = document.createElement("tr");
 
     const firstTh = headerRow.appendChild(document.createElement("th"));
     firstTh.textContent = "Filter";
+
+    const days = [];
 
     const today = new Date();
     const dayOfWeek = today.getDay();
@@ -154,14 +159,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     const monday = new Date(today);
     monday.setDate(today.getDate() + mondayOffset);
 
-    const days = [];
-
     for (let i = 0; i < 7; i++) {
       const date = new Date(monday);
       date.setDate(monday.getDate() + i);
 
-      const yyyyMmDd = date.toISOString().split("T")[0];
-      days.push(yyyyMmDd);
+      days.push(date.toISOString().split("T")[0]);
 
       const day = String(date.getDate()).padStart(2, "0");
       const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -170,7 +172,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       th.textContent = `${day}/${month}`;
 
       const todayDate = new Date().toISOString().split("T")[0];
-      if (yyyyMmDd === todayDate) {
+      if (date.toISOString().split("T")[0] === todayDate) {
         th.className = "table__today";
       }
 
@@ -181,19 +183,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     table.appendChild(thead);
 
     const tbody = document.createElement("tbody");
-    filteredResources.forEach((res) => {
+    filteredResources.forEach((resource) => {
       const row = document.createElement("tr");
-      const labelCell = document.createElement("td");
-      labelCell.textContent = res.title;
-      row.appendChild(labelCell);
+      const rowTitle = document.createElement("td");
+      rowTitle.textContent = resource.title;
+
+      row.appendChild(rowTitle);
 
       for (let day of days) {
         const cell = document.createElement("td");
         const event = events.find(
-          (ev) =>
-            ev.resourceId === res.id &&
-            ev.date === day &&
-            ev.department === currentDepartment
+          (event) =>
+            event.resourceId === resource.id &&
+            event.date === day &&
+            event.department === currentDepartment
         );
 
         if (event) {
@@ -203,6 +206,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           const eventTaskId = event.id.split("-")[0];
           const eventDate = event.date;
+
 
           const logsForTaskDate = generalTaskLogs.filter((log) => {
             const logDate = new Date(log.task_date);
@@ -219,13 +223,19 @@ document.addEventListener("DOMContentLoaded", async function () {
           });
 
           let isCompleted = false;
-          if (logsForTaskDate.length === 0) {
-            isCompleted = false;
-          } else {
-            logsForTaskDate.sort(
-              (a, b) => new Date(b.task_date) - new Date(a.task_date)
-            );
-            const latestLog = logsForTaskDate[0];
+          
+          if (logsForTaskDate.length > 0) {
+              let latestLog = logsForTaskDate[0];
+
+            for (let i = 1; i < logsForTaskDate.length; i++) {
+              if (
+                new Date(logsForTaskDate[i].task_date) >
+                new Date(latestLog.task_date)
+              ) {
+                latestLog = logsForTaskDate[i];
+              }
+            }
+
             isCompleted = latestLog.action === "completed";
           }
 
