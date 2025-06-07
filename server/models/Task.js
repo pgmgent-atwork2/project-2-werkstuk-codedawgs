@@ -22,7 +22,7 @@ class Task extends Model {
         title: { type: "string", minLength: 1, maxLength: 255 },
         visible: { type: "boolean" },
         completed: { type: "boolean" },
-        interval: { type: "string", enum: ["daily", "weekly", "monthly"] },
+        interval: { type: "string", enum: ["daily", "weekly", "monthly", "none"] },
         object_type: {
           type: "string",
           enum: ["department", "sub_department", "filter", "pump"],

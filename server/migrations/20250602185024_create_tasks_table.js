@@ -9,7 +9,7 @@ export function up(knex) {
     table
       .string("interval")
       .notNullable()
-      .checkIn(["daily", "weekly", "monthly"]);
+      .checkIn(['daily', 'weekly', 'monthly', "none"]);
     table
       .string("object_type")
       .notNullable()

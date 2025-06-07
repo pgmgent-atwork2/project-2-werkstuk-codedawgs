@@ -1,0 +1,29 @@
+<section class="summary__section">
+    <details>
+        <summary class="summary">
+            <span>
+                General Tasks
+            </span>
+            <svg class="chevron" width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L11 10.5L1 20" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </summary>
+            <ul class="summary__ul">
+                <% const taskList = [] %>
+                <% tasks.forEach(task => { %>
+                    <% if(task.interval === "none") { %>
+                        <% if(!taskList.includes(task.title)) {%>
+                            <% taskList.push(task.title); %>
+                        <%}%>
+                    <% } %>
+                <% }); %> 
+                
+                <% taskList.forEach(taskListItem => { %>
+                    <li class="summary__li">
+                        <a href='/general/<%= taskListItem.split(" ")[0].toLowerCase() %>'><%= taskListItem %></a>
+                    </li>
+                <% }) %>
+            </ul>
+    </details>
+</section>
+

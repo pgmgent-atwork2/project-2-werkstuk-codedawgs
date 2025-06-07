@@ -1,5 +1,7 @@
 <%- include('../partials/header.ejs')%>
 
-<% if (userRole === 'user' || userRole === "admin") { %>
+<!-- !!!change later to aqua!!! -->
+<% if (userRole === 'user' || userRole === "admin") { %> 
      <%- include('../partials/intervalSelect.ejs') %>
+     <%- include('../partials/generalTasksSelect.ejs') %>
 <% } %>
