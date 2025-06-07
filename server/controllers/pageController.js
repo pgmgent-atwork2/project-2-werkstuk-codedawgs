@@ -2,12 +2,14 @@ import knex from "../lib/Knex.js";
 
 export const home = async (req, res) => {
   const departments = await knex("departments").select("*");
+  const tasks = await knex("tasks").select("*");
 
   res.render("pages/home", {
     title: "Home",
     first_name: req.user.first_name,
     userRole: req.user.role,
     departments: departments,
+    tasks,
   });
 };
 
