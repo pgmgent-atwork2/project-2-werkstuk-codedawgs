@@ -24,6 +24,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     regenerateTable();
   });
 
+  async function regenerateTable() {
+    const calendarEl = document.getElementById("calendarBackwash");
+    calendarEl.innerHTML = "";
+    generateTableWeek();
+  }
+
   generateSelect();
   generateTableWeek();
 
