@@ -1,11 +1,11 @@
-
 document.addEventListener("DOMContentLoaded", async function () {
   const URL = `http://localhost:3005`;
   let events = [];
+  let resources = [];
 
+  generateResources()
+  
   let generalTaskLogs = [];
-
-  generateEvents()
 
   async function fetchData(url, slug) {
     try {
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     } catch (error) {
       console.error("error:", error.message);
     }
-  }  
+  }
 
   async function generateEvents() {
     events = [];
@@ -87,6 +87,18 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
       }
     });
-    console.log(events);
+  }
+
+  async function generateResources() {
+    resources = [];
+    const filters = await fetchData(URL, "filters");
+    filters.forEach((filter) => {
+      resources.push({
+        id: filter.title.toLowerCase(),
+        title: filter.title,
+      });
+    });
+    console.log(resources);
+    
   }
 });
