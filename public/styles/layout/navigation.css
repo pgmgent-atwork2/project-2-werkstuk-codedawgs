@@ -1,0 +1,14 @@
+.nav {
+    display: flex !important;
+    position: fixed;
+    width: 100%;
+    border-top: 2px solid var(--bg-200);
+    left: 0;
+    bottom: 0;
+}
+
+@media (width > 700px) {
+    .nav {
+        display: none !important;
+    }
+}

@@ -24,6 +24,7 @@ export const admin = async (req, res) => {
     
   res.render("./pages/admin", {
     title: "Admin",
+    user: req.user,
     userRole: req.user.role,
     taskLogs,
     tasks,
@@ -40,6 +41,7 @@ export const userPage = async (req, res) => {
     const users = await knex("users").select("*");
     res.render("pages/users", {
       users,
+      user: req.user,
       userRole: req.user.role,
     });
   } catch (error) {
@@ -59,7 +61,8 @@ export const taskPageAdmin = async (req, res) => {
     const filters = await knex("filters").select("*");
     const pumps = await knex("pumps").select("*");
     
-    res.render("pages/admin-tasks", { 
+    res.render("pages/admin-tasks", {
+      user: req.user,
       userRole: req.user.role,
       tasks, 
       intervalString, 
@@ -87,6 +90,7 @@ export const taskPage = async (req, res) => {
     const pumps = await knex("pumps").select("*");
 
     res.render("pages/taskpage", {
+      user: req.user,
       userRole: req.user.role,
       tasks,
       intervalString,
@@ -112,7 +116,8 @@ export const generalTaskPage = async (req, res) => {
 
   try {
     
-    res.render("pages/general-taskpage", { 
+    res.render("pages/general-taskpage", {
+      user: req.user,
       userRole: req.user.role,
       taskName,
       tasks,
