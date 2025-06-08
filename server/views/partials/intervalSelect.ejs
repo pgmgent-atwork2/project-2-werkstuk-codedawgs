@@ -35,3 +35,18 @@
             </details>
             <% }); %>
     </section>
+    <script>
+        document.querySelectorAll('details').forEach(details => {
+            details.addEventListener('toggle', function (e) {
+                if (details.open) {
+                    details.classList.add('is-open');
+                } else {
+                    e.preventDefault();
+                    details.classList.remove('is-open');
+                    setTimeout(() => {
+                        details.open = false;
+                    }, 300);
+                }
+            });
+        });
+    </script>
