@@ -1,25 +1,29 @@
-  <h1>Users</h1>
-  <form action="/admin/users" method="POST">
-    <label>First name: <input type="text" name="first_name" required></label>
-    <label>Last name: <input type="text" name="last_name" required></label>
-    <label>Role:
-      <select name="role" required>
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-        <option value="aqua">Aquasplash</option>
-      </select>
-    </label>
-    <button type="submit">Add user</button>
-  </form>
-  <h2>Existing users</h2>
-  <ul>
-    <% users.forEach(user=> { %>
-      <li>
-        <%= user.first_name %>
-          <%= user.last_name %> - <%= user.role %> - image id: <%= user.image_id %> - Token: <%= user.token %> -
-                  Pincode: <%= user.pincode %>
-      </li>
-      <% }) %>
-  </ul>
+<%- include('../partials/header.ejs') %>
 
-  <%- include('../partials/navigation.ejs')%>
+  <div class="main">
+    <h1>Users</h1>
+    <form action="/admin/users" method="POST">
+      <label>First name: <input type="text" name="first_name" required></label>
+      <label>Last name: <input type="text" name="last_name" required></label>
+      <label>Role:
+        <select name="role" required>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+          <option value="aqua">Aquasplash</option>
+        </select>
+      </label>
+      <button type="submit">Add user</button>
+    </form>
+    <h2>Existing users</h2>
+    <ul>
+      <% users.forEach(user=> { %>
+        <li>
+          <%= user.first_name %>
+            <%= user.last_name %> - <%= user.role %> - image id: <%= user.image_id %> - Token: <%= user.token %> -
+                    Pincode: <%= user.pincode %>
+        </li>
+        <% }) %>
+    </ul>
+
+    <%- include('../partials/navigation.ejs')%>
+  </div>

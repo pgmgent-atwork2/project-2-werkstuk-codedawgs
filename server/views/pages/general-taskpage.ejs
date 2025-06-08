@@ -1,33 +1,38 @@
-<% if(taskName !== "backwash") { %>
-<section>
-    <% tasks.forEach(task => { %>
-        <% let titleToShow = null %>
-        <% if (task.title.toLowerCase().startsWith(taskName)) { %>
-            <% if(task.object_type === "department") { %>
-                <% titleToShow = departments[task.object_id-1].title %>
-            <% } else if(task.object_type === "sub_department") { %>
-                <% titleToShow = sub_departments[task.object_id-1].title %>
-            <% } else if(task.object_type === "pump") { %>
-                <% titleToShow = pumps[task.object_id-1].title %>
-            <% } else if(task.object_type === "filter") { %>
-                <% titleToShow = filters[task.object_id-1].title %>
+<%- include('../partials/header.ejs') %>
+
+    <div class="main">
+        <% if(taskName !=="backwash" ) { %>
+            <section>
+                <% tasks.forEach(task=> { %>
+                    <% let titleToShow=null %>
+                        <% if (task.title.toLowerCase().startsWith(taskName)) { %>
+                            <% if(task.object_type==="department" ) { %>
+                                <% titleToShow=departments[task.object_id-1].title %>
+                                    <% } else if(task.object_type==="sub_department" ) { %>
+                                        <% titleToShow=sub_departments[task.object_id-1].title %>
+                                            <% } else if(task.object_type==="pump" ) { %>
+                                                <% titleToShow=pumps[task.object_id-1].title %>
+                                                    <% } else if(task.object_type==="filter" ) { %>
+                                                        <% titleToShow=filters[task.object_id-1].title %>
+                                                            <% } %>
+                                                                <%- include('../partials/task', { task: task, title:
+                                                                    titleToShow }) %>
+                                                                    <% } %>
+                                                                        <% }); %>
+            </section>
             <% } %>
-            <%- include('../partials/task', { task: task, title: titleToShow }) %>
-        <% } %>
-    <% }); %>
-</section>
-<% } %>
 
-<% if(taskName === "backwash") { %>
-    <h1>Backwash agenda</h1>
-    <div>
-        <p>Select department</p>
-        <select id="backwashSelect"></select>
+                <% if(taskName==="backwash" ) { %>
+                    <h1>Backwash agenda</h1>
+                    <div>
+                        <p>Select department</p>
+                        <select id="backwashSelect"></select>
+                    </div>
+                    <section id="calendarBackwash">
+                    </section>
+
+                    <script src="/scripts/calendarBackwash.js" defer></script>
+                    <% } %>
+
+                        <%- include('../partials/navigation.ejs')%>
     </div>
-    <section id="calendarBackwash">
-    </section>
-
-    <script src="/scripts/calendarBackwash.js" defer></script>
-<% } %>
-
-<%- include('../partials/navigation.ejs')%>

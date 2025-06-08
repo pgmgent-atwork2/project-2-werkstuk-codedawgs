@@ -63,6 +63,15 @@ ol {
   }
 }
 
-main {
+.main {
   padding-top: 5rem;
+}
+
+body, * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar, *::-webkit-scrollbar {
+  display: none;
 }
