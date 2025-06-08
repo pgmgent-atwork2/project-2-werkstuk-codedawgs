@@ -60,3 +60,7 @@ ol {
     fill: var(--bg-100);
   }
 }
+
+main {
+  padding-top: 5rem;
+}
