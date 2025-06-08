@@ -43,6 +43,10 @@ details:only-child {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .summary::-webkit-details-marker {
