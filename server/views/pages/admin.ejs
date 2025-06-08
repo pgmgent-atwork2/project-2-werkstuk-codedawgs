@@ -1,9 +1,10 @@
-<section>
-    <h2>Admin Panel</h2>
-    <button onclick="window.location.href='/admin/users'">Users</button>
-    <button onclick="window.location.href='/admin/tasks'">Tasks</button>
+<h1 class="admin__title">Admin Panel</h1>
+<section class="admin__container">
+    <aside class="admin__sidebar">
+        <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/users'">Users</button>
+        <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/tasks'">Tasks</button>
+    </aside>
+    <%- include('../partials/task-logs.ejs')%>
 </section>
-
-<%- include('../partials/task-logs.ejs')%>
 
 <%- include('../partials/navigation.ejs')%>

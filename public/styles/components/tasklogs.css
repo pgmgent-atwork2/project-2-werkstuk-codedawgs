@@ -1,0 +1,88 @@
+.task-logs {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.task-logs__title {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.task-logs__row {
+  border-bottom: 1px solid #ccc;
+}
+
+.task-logs__row--header {
+  background: #f0f0f0;
+}
+
+.task-logs__cell {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.task-logs__cell--header {
+  font-weight: bold;
+  background: #e7e7e7;
+}
+
+@media (max-width: 700px) {
+  .task-logs,
+  .task-logs thead,
+  .task-logs tbody,
+  .task-logs__row {
+    display: block;
+    width: 100%;
+  }
+
+  .task-logs__row {
+    margin-bottom: .5rem;
+    border-bottom: 2px solid #ccc;
+  }
+
+  .task-logs__cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.5rem;
+    border: none;
+    font-size: 1rem;
+    position: relative;
+  }
+
+  .task-logs__row--header {
+    display: none;
+  }
+
+  .task-logs__cell--performed-by::before {
+    content: "Performed by";
+    font-weight: bold;
+  }
+  .task-logs__cell--task-name::before {
+    content: "Task name";
+    font-weight: bold;
+  }
+  .task-logs__cell--task-type::before {
+    content: "Task type";
+    font-weight: bold;
+  }
+  .task-logs__cell--type-name::before {
+    content: "Type name";
+    font-weight: bold;
+  }
+  .task-logs__cell--status::before {
+    content: "Status";
+    font-weight: bold;
+  }
+  .task-logs__cell--comment::before {
+    content: "Comment";
+    font-weight: bold;
+  }
+  .task-logs__cell--date::before {
+    content: "Date";
+    font-weight: bold;
+  }
+}
