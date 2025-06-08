@@ -3,9 +3,9 @@
         <li class="nav__item">
             <a href="/">
                 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="800" height="800" version="1.0" viewBox="0 0 64 64">
-                    <path fill="#231F20" d="m62.8 29.2-28-28a4 4 0 0 0-5.7 0l-28 28a4 4 0 0 0 .1 5.6c1.6 1.5 3.9 1.8 5.4.2L8 33.6V60a4 4 0 0 0 4 4h16V48h8v16h16a4 4 0 0 0 4-4V33.7l1.2 1.2c1.6 1.6 4 1.4 5.5-.2 1.6-1.5 1.7-4 0-5.5z"/>
+                    <path d="m62.8 29.2-28-28a4 4 0 0 0-5.7 0l-28 28a4 4 0 0 0 .1 5.6c1.6 1.5 3.9 1.8 5.4.2L8 33.6V60a4 4 0 0 0 4 4h16V48h8v16h16a4 4 0 0 0 4-4V33.7l1.2 1.2c1.6 1.6 4 1.4 5.5-.2 1.6-1.5 1.7-4 0-5.5z"/>
                 </svg>
-                <span>Home</span>
+                Home
             </a>
         </li>
         <% if (userRole === 'admin') {%>
@@ -14,7 +14,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 24 24">
                         <path fill="none" d="M0 0h24v24H0z"/><path d="M12 14v2a6 6 0 0 0-6 6H4a8 8 0 0 1 8-8zm0-1a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm9 6h1v5h-8v-5h1v-1a3 3 0 0 1 6 0v1zm-2 0v-1a1 1 0 0 0-2 0v1h2z"/>
                     </svg>
-                    <span>Admin</span>
+                    Admin
                 </a>
             </li>
         <%}%>
@@ -23,16 +23,18 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 32 32">
                     <path d="M0 26.02q0 2.5 1.76 4.22T6.02 32h20q2.46 0 4.22-1.76T32 26.02v-20q0-1.96-1.12-3.5T28 .39v2.63q0 1.25-.86 2.14t-2.15.87-2.11-.87-.86-2.14V0h-12v3q0 1.26-.9 2.15t-2.11.87-2.15-.87T4 3.01V.38q-1.76.64-2.88 2.15T0 6.02v20zm4 0v-16h24v16q0 .83-.58 1.4t-1.4.58h-20q-.84 0-1.44-.58T4 26.02zM6.02 3q0 .41.28.7T7 4t.71-.29.29-.7V0H6.02v3zM8 24h4v-4H8v4zm0-5.98h4v-4H8v4zM14.02 24h4v-4h-4v4zm0-5.98h4v-4h-4v4zM20 24h4v-4h-4v4zm0-5.98h4v-4h-4v4zM24 3q0 .41.29.7t.7.29.7-.29.33-.7V0H24v3z"/>
                 </svg>
-                <span>Calendar</span>
+                Calendar
             </a>
         </li>
         <li class="nav__item">
-            <a>
-                <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="800" height="800" viewBox="0 0 470.8 470.8">
-                    <path d="M363 21h-73l-3-13c-1-5-6-8-10-8h-83c-5 0-9 3-10 8l-3 13h-73c-27 0-49 22-49 49v352c0 27 22 49 49 49h255c27 0 49-22 49-49V70c0-27-22-49-49-49zm17 401c0 9-8 17-17 17H108c-10 0-17-8-17-17V70c0-9 7-17 17-17h66l-2 8a10 10 0 0 0 10 12h106a10 10 0 0 0 10-12l-1-8h66c9 0 17 8 17 17v352z"/><path d="M171 188h43l-10-7a32 32 0 1 1 36-52l1 1v-12c0-8-6-14-14-14h-56c-8 0-14 6-14 14v56c0 8 6 14 14 14z"/><path d="m303 110-50 48-22-16a16 16 0 1 0-18 26l33 23a16 16 0 0 0 20-2l59-56a16 16 0 0 0-22-23zM171 298h43l-10-7a32 32 0 1 1 36-53l1 1v-12c0-8-6-14-14-14h-56c-8 0-14 6-14 14v56c0 8 6 15 14 15z"/><path d="m303 220-50 47-22-16a16 16 0 1 0-18 27l33 22a16 16 0 0 0 20-1l59-56a16 16 0 0 0-22-23zM227 322h-56c-8 0-14 7-14 14v57c0 8 6 14 14 14h56c8 0 14-6 14-14v-57c0-7-6-14-14-14z"/>
-                </svg>
-                <span>Tasks</span>
-            </a>
+            <form action="/logout" method="post">
+                <button class="button button--nav" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" fill="none" viewBox="0 0 24 24">
+                        <path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12h-8M18 15l3-3v0s0 0 0 0v0l-3-3M16 5v-.5 0c0-.8-.7-1.5-1.5-1.5H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h9.5c.8 0 1.5-.7 1.5-1.5v0-.5"/>
+                    </svg>
+                </button>
+                Log out
+            </form>
         </li>
     </ul>
 
