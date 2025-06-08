@@ -8,6 +8,7 @@
   padding: 1rem;
   position: fixed;
   width: 100%;
+  z-index: 999;
 
   .header__pfp {
     width: 3rem;
