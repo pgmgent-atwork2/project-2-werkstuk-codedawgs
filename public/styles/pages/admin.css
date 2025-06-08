@@ -21,6 +21,7 @@
   @media screen and (max-width: 700px) {
     flex-direction: row;
     padding: 1rem;
+    border-right: none;
   }
 }
 
