@@ -1,13 +1,39 @@
 .header {
     background: url("../../assets/svg/shells.svg") repeat;
     background-color: var(--primary-100);
-    nav {
-        padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+
+    .header__pfp {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 5rem;
+    }
+
+    .header__logo {
+        display: none;
+    }
+
+    .header__bell {
+        width: 3rem;
+        height: 3rem;
+        padding: 0.5rem;
+        background-color: white;
+        border-radius: 5rem;
+        border: 3px solid var(--bg-300);
+    }
+
+    .header__nav {
+        
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 5rem;
         font-size: 1.2rem;
+
         a {
             color: var(--bg-100);
             font-weight: 600;
@@ -15,5 +41,24 @@
                 color: var(--bg-200);
             }
         }
+    }
+}
+
+@media (width < 700px) {
+    .header {
+        justify-content: space-between;
+    }
+    .header__nav {
+        display: none !important;
+    }
+    .header__logo {
+        display: block !important;
+        width: 12rem;
+    }
+}
+
+@media (width < 325px) {
+    .header__logo {
+        display: none !important;;
     }
 }

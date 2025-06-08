@@ -1,5 +1,6 @@
 <header class="header">
-    <nav>
+    <img class="header__pfp" src="/assets/images/pfp<%= user.image_id %>.png">
+    <nav class="header__nav">
         <a href="/">Home</a>
         <% if (userRole === 'admin') {%>
             <a href="/admin">Admin</a>
@@ -8,4 +9,6 @@
             <button class="button" type="submit">Log out</button>
         </form>
     </nav>
+    <img class="header__logo" src="/assets/svg/logo.svg">
+    <img class="header__bell" src="/assets/svg/bell.svg">
 </header>
