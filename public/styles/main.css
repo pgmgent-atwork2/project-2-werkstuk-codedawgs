@@ -14,14 +14,14 @@
 
 :root {
   --primary-100: #273787;
-  --primary-200: #1F2D6B;
-  --bg-100: #F5F5F5;
-  --bg-200: #D9D9D9;
-  --bg-300: #C1C1C1;
+  --primary-200: #1f2d6b;
+  --bg-100: #f5f5f5;
+  --bg-200: #d9d9d9;
+  --bg-300: #c1c1c1;
   --bg-400: #959595;
-  --accent-100: #449BDA;
+  --accent-100: #449bda;
   --accent-200: #66ade1;
-  --text-100: #1A1A1A;
+  --text-100: #1a1a1a;
   --text-200: #434343;
 }
 
@@ -59,4 +59,8 @@ ol {
   path {
     fill: var(--bg-100);
   }
+}
+
+main {
+  padding-top: 5rem;
 }
