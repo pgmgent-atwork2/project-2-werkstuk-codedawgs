@@ -1,41 +1,41 @@
 <section>
-    <h2>Task Logs:</h2>
-    <table class="tasks-log">
-        <tr>
-            <th>Performed by</th>
-            <th>Task name</th>
-            <th>Task type</th>
-            <th>Type name</th>
-            <th>Status</th>
-            <th>Comment</th>
-            <th>Date</th>
+    <h2 class="task-logs__title">Task Logs:</h2>
+    <table class="task-logs">
+        <tr class="task-logs__row task-logs__row--header">
+            <th class="task-logs__cell task-logs__cell--header">Performed by</th>
+            <th class="task-logs__cell task-logs__cell--header">Task name</th>
+            <th class="task-logs__cell task-logs__cell--header">Task type</th>
+            <th class="task-logs__cell task-logs__cell--header">Type name</th>
+            <th class="task-logs__cell task-logs__cell--header">Status</th>
+            <th class="task-logs__cell task-logs__cell--header">Comment</th>
+            <th class="task-logs__cell task-logs__cell--header">Date</th>
         </tr>
 
         <% taskLogs.forEach(task=> { %>
-            <tr>
-                <td>
+            <tr class="task-logs__row">
+                <td class="task-logs__cell task-logs__cell--performed-by">
                     <%= users[task.user_id-1].first_name %>
-                    <%= users[task.user_id-1].last_name %>
+                        <%= users[task.user_id-1].last_name %>
                 </td>
-                <td>
+                <td class="task-logs__cell task-logs__cell--task-name">
                     <%= tasks[task.task_id-1].title %>
                 </td>
-                <td>
+                <td class="task-logs__cell task-logs__cell--task-type">
                     <%= tasks[task.task_id-1].object_type %>
                 </td>
-                <td>
+                <td class="task-logs__cell task-logs__cell--type-name">
                     department
                 </td>
-                <td>
+                <td class="task-logs__cell task-logs__cell--status">
                     <%= task.action %>
                 </td>
-                <td>
+                <td class="task-logs__cell task-logs__cell--comment">
                     <%= task.comment %>
                 </td>
-                <td>
+                <td class="task-logs__cell task-logs__cell--date">
                     date
                 </td>
             </tr>
-        <% }); %>
+            <% }); %>
     </table>
 </section>
