@@ -1,96 +1,61 @@
-  <h1>Tasks</h1>
+<%- include('../partials/header.ejs') %>
+  <div class="main">
+    <h1>Tasks</h1>
 
-  <% departments.forEach(function(department) { %>
-    <h3>
-      <%= department.title %>
-    </h3>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Task type</th>
-          <th>Completed</th>
-          <th>Edit</th>
-        </tr>
-      </thead>
-      <tbody>
+    <% departments.forEach(function(department) { %>
+      <h3>
+        <%= department.title %>
+      </h3>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Task type</th>
+            <th>Completed</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
 
-        <% tasks.forEach((task) => { %>
+          <% tasks.forEach((task)=> { %>
 
-          <% let titleToShow = null
+            <% let titleToShow=null if (task.object_type==="department" ) { for (const dept of departments) { if
+              (dept.id===task.object_id && dept.id===department.id) { titleToShow=dept.title; break; } } } else if
+              (task.object_type==="sub_department" ) { for (const sub of sub_departments) { if (sub.id===task.object_id
+              && sub.department_id===department.id) { titleToShow=sub.title; break; } } } else if
+              (task.object_type==="pump" ) { let pump=null; for (const p of pumps) { if (p.id===task.object_id) {
+              pump=p; break; } } if (pump) { for (const sub of sub_departments) { if (sub.id===pump.sub_department_id &&
+              sub.department_id===department.id) { titleToShow=pump.title; break; } } } } else if
+              (task.object_type==="filter" ) { let filter=null; for (const f of filters) { if (f.id===task.object_id) {
+              filter=f; break; } } if (filter) { for (const sub of sub_departments) { if
+              (sub.id===filter.sub_department_id && sub.department_id===department.id) { titleToShow=filter.title;
+              break; } } } } %>
 
-          if (task.object_type === "department") {
-            for (const dept of departments) {
-                if (dept.id === task.object_id && dept.id === department.id) {
-                    titleToShow = dept.title;
-                    break;
-                }
-            }
-          } else if (task.object_type === "sub_department") {
-            for (const sub of sub_departments) {
-                if (sub.id === task.object_id && sub.department_id === department.id) {
-                    titleToShow = sub.title;
-                    break;
-                }
-            }
-          } else if (task.object_type === "pump") {
-            let pump = null;
-            for (const p of pumps) {
-                if (p.id === task.object_id) {
-                    pump = p;
-                    break;
-                }
-            }
-            if (pump) {
-                for (const sub of sub_departments) {
-                    if (sub.id === pump.sub_department_id && sub.department_id === department.id) {
-                        titleToShow = pump.title;
-                        break;
-                    }
-                } 
-            }
-          } else if (task.object_type === "filter") {
-            let filter = null;
-            for (const f of filters) {
-                if (f.id === task.object_id) {
-                    filter = f;
-                    break;
-                }
-            }
-            if (filter) {
-                for (const sub of sub_departments) {
-                    if (sub.id === filter.sub_department_id && sub.department_id === department.id) {
-                        titleToShow = filter.title;
-                        break;
-                    }
-                }
-            }
-          } %>
-
-          <% if (titleToShow) { %>
-            <tr>
-                <td>
+              <% if (titleToShow) { %>
+                <tr>
+                  <td>
                     <%= task.title %>
-                </td>
-                <td>
+                  </td>
+                  <td>
                     <%= titleToShow %>
-                </td>
-                <td>
+                  </td>
+                  <td>
                     <%= task.completed? "Yes" : "No" %>
-                </td>
-                <td>
-                <form method="POST" action="/admin/tasks/<%= task.id %>">
-                    <input type="hidden" name="taskId" value="<%= task.id %>">
-                    <button type="button" class="edit-task-btn" data-task-id="<%= task.id %>">
+                  </td>
+                  <td>
+                    <form method="POST" action="/admin/tasks/<%= task.id %>">
+                      <input type="hidden" name="taskId" value="<%= task.id %>">
+                      <button type="button" class="edit-task-btn" data-task-id="<%= task.id %>">
                         Edit
-                    </button>
-                </form>
-                </td>
-            </tr>
-          <% } %>
-        <% }) %>
-      </tbody>
-    </table>
-    <% }) %>
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                <% } %>
+                  <% }) %>
+        </tbody>
+      </table>
+      <% }) %>
 
-  <%- include('../partials/navigation.ejs')%>
+        <%- include('../partials/navigation.ejs')%>
+  </div>

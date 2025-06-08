@@ -1,14 +1,16 @@
-<img class="header__pfp" src="/assets/images/pfp<%= user.image_id %>.png">
-<nav class="header__nav">
-    <a href="/">Home</a>
-    <% if (userRole==='admin' ) {%>
-        <a href="/admin">Admin</a>
-        <%}%>
-            <form action="/logout" method="post">
-                <button class="button" type="submit">Log out</button>
-            </form>
-</nav>
-<a class="header__logo" href="/">
-    <img src="/assets/svg/logo.svg">
-</a>
-<img class="header__bell" src="/assets/svg/bell.svg">
+<header class="header">
+    <img class="header__pfp" src="/assets/images/pfp<%= user.image_id %>.png">
+    <nav class="header__nav">
+        <a href="/">Home</a>
+        <% if (userRole==='admin' ) {%>
+            <a href="/admin">Admin</a>
+            <%}%>
+                <form action="/logout" method="post">
+                    <button class="button" type="submit">Log out</button>
+                </form>
+    </nav>
+    <a class="header__logo" href="/">
+        <img src="/assets/svg/logo.svg">
+    </a>
+    <img class="header__bell" src="/assets/svg/bell.svg">
+</header>
