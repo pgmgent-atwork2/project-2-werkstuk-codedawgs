@@ -20,7 +20,7 @@
                 
                 <% taskList.forEach(taskListItem => { %>
                     <li class="summary__li">
-                        <a href='/general/<%= taskListItem.split(" ")[0].toLowerCase() %>'><%= taskListItem %></a>
+                        <a class="summary__link" href='/general/<%= taskListItem.split(" ")[0].toLowerCase() %>'><%= taskListItem %></a>
                     </li>
                 <% }) %>
             </ul>
