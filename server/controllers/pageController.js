@@ -14,14 +14,14 @@ export const home = async (req, res) => {
 };
 
 export const admin = async (req, res) => {
-    const taskLogs = await knex("task_logs").select("*");
-    const tasks = await knex("tasks").select("*");
-    const users = await knex("users").select("*");
-    const departments = await knex("departments").select("*");    
-    const sub_departments = await knex("sub_departments").select("*");    
-    const filters = await knex("filters").select("*");
-    const pumps = await knex("pumps").select("*");
-    
+  const taskLogs = await knex("task_logs").select("*");
+  const tasks = await knex("tasks").select("*");
+  const users = await knex("users").select("*");
+  const departments = await knex("departments").select("*");
+  const sub_departments = await knex("sub_departments").select("*");
+  const filters = await knex("filters").select("*");
+  const pumps = await knex("pumps").select("*");
+
   res.render("./pages/admin", {
     title: "Admin",
     user: req.user,
@@ -32,7 +32,7 @@ export const admin = async (req, res) => {
     departments,
     sub_departments,
     filters,
-    pumps
+    pumps,
   });
 };
 
@@ -53,31 +53,30 @@ export const userPage = async (req, res) => {
 export const taskPageAdmin = async (req, res) => {
   let { departmentString } = req.params;
 
-  const intervalString = req.path.split('/')[1]; 
+  const intervalString = req.path.split("/")[1];
   try {
     const tasks = await knex("tasks").select("*");
     const departments = await knex("departments").select("*");
     const sub_departments = await knex("sub_departments").select("*");
     const filters = await knex("filters").select("*");
     const pumps = await knex("pumps").select("*");
-    
+
     res.render("pages/admin-tasks", {
       user: req.user,
       userRole: req.user.role,
-      tasks, 
-      intervalString, 
+      tasks,
+      intervalString,
       departmentString,
       departments,
       sub_departments,
       filters,
       pumps,
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).send("Error loading tasks");
   }
-}
+};
 
 export const taskPage = async (req, res) => {
   const { departmentString } = req.params;
@@ -107,7 +106,7 @@ export const taskPage = async (req, res) => {
 };
 
 export const generalTaskPage = async (req, res) => {
-  const { taskName } = req.params
+  const { taskName } = req.params;
   const tasks = await knex("tasks").select("*");
   const departments = await knex("departments").select("*");
   const sub_departments = await knex("sub_departments").select("*");
@@ -115,7 +114,6 @@ export const generalTaskPage = async (req, res) => {
   const pumps = await knex("pumps").select("*");
 
   try {
-    
     res.render("pages/general-taskpage", {
       user: req.user,
       userRole: req.user.role,
@@ -126,23 +124,22 @@ export const generalTaskPage = async (req, res) => {
       filters,
       pumps,
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).send("Error loading tasks");
   }
 };
 
-export const analysisPage = async (req, res) => {
+export const analysesPage = async (req, res) => {
   const departments = await knex("departments").select("*");
   const sub_departments = await knex("sub_departments").select("*");
   const measurement_definitions = await knex("measurement_definitions").select("*");
   const measurement_logs = await knex("measurement_logs").select("*");
   const users = await knex("users").select("*");
-  
+
   try {
-    res.render("pages/analysispage", {
-      user: req.user,
+    
+    res.render("pages/analysespage", { 
       userRole: req.user.role,
       departments,
       sub_departments,
@@ -154,5 +151,28 @@ export const analysisPage = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Error loading tasks");
+  }
+};
+
+export const waterAnalysisPage = async (req, res) => {
+  const departments = await knex("departments").select("*");
+  const sub_departments = await knex("sub_departments").select("*");
+  const filters = await knex("filters").select("*");
+  const pumps = await knex("pumps").select("*");
+  const measurements = await knex("measurement_definitions").select("*");
+
+  try {
+    res.render("pages/analysis", {
+      user: req.user,
+      userRole: req.user.role,
+      departments,
+      sub_departments,
+      filters,
+      pumps,
+      measurements,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error loading water analysis page");
   }
 };
