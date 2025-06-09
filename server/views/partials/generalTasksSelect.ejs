@@ -1,4 +1,4 @@
-<section class="summary__section">
+<section class="summary__section general-tasks">
     <details>
         <summary class="summary">
             <span>
@@ -20,10 +20,29 @@
                 
                 <% taskList.forEach(taskListItem => { %>
                     <li class="summary__li">
-                        <a href='/general/<%= taskListItem.split(" ")[0].toLowerCase() %>'><%= taskListItem %></a>
+                        <a class="summary__link" href='/general/<%= taskListItem.split(" ")[0].toLowerCase() %>'><%= taskListItem %></a>
                     </li>
                 <% }) %>
             </ul>
     </details>
 </section>
 
+    <script>
+        document.querySelectorAll('details').forEach(details => {
+            details.addEventListener('toggle', function (e) {
+                if (details.open) {
+                    const openDetails = Array.from(document.querySelectorAll('details')).find(d => d !== details && d.open);
+                    if (openDetails) {
+                        openDetails.removeAttribute('open');
+                        openDetails.classList.remove('is-open');
+                        details.removeAttribute('open');
+                        details.classList.remove('is-open');
+                        return;
+                    }
+                    details.classList.add('is-open');
+                } else {
+                    details.classList.remove('is-open');
+                }
+            });
+        });
+    </script>
