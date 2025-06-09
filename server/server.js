@@ -72,6 +72,8 @@ app.get('/daily/:departmentString', jwtAuth, pageController.taskPage);
 app.get('/weekly/:departmentString', jwtAuth, pageController.taskPage);
 app.get('/monthly/:departmentString', jwtAuth, pageController.taskPage);
 app.get('/general/:taskName', jwtAuth, pageController.generalTaskPage);
+app.get('/general/analysis', jwtAuth, pageController.analysisPage);
+
 
 // Task Routes
 app.post('/tasks/:id/completed', jwtAuth, taskController.taskComplete);
