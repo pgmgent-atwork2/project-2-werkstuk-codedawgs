@@ -55,7 +55,6 @@ app.post("/register/:token", authRegisterSecondStepValidation, authController.po
 // Homepage
 app.get("/", jwtAuth, pageController.home);
 
-
 // Admin pages
 app.get("/admin", jwtAuth, isAdmin, pageController.admin);
 
@@ -66,6 +65,8 @@ app.post("/admin/users", jwtAuth, isAdmin, userController.postUser);
 // Task management
 app.get("/admin/tasks", jwtAuth, isAdmin, pageController.taskPageAdmin);
 
+// Water analysis
+app.get("/admin/analysis", jwtAuth, isAdmin, pageController.waterAnalysisPage);
 
 // Task pages
 app.get('/daily/:departmentString', jwtAuth, pageController.taskPage);
@@ -76,6 +77,8 @@ app.get('/general/:taskName', jwtAuth, pageController.generalTaskPage);
 // Task Routes
 app.post('/tasks/:id/completed', jwtAuth, taskController.taskComplete);
 
+// Measurement Routes
+app.post('/admin/analysis/:id', jwtAuth, taskController.editMeasurement);
 
 // Error handling
 app.use((error, req, res, next) => {

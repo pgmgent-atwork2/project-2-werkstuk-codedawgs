@@ -26,3 +26,23 @@ export const taskComplete = async (req, res) => {
     res.status(500).send("Edit task failed");
   }
 };
+
+export const editMeasurement = async (req, res) => {
+  const { id } = req.params;
+  const min_value = parseFloat(req.body.min_value);
+  const max_value = parseFloat(req.body.max_value);
+
+  try {
+    await knex("measurement_definitions").where({ id }).update({
+      min_value,
+      max_value,
+    });
+
+    res.redirect("/admin/analysis");
+  } catch (error) {
+    console.error("Edit measurement error:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to update measurement" });
+  }
+};

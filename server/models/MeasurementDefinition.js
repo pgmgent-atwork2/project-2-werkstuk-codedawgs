@@ -5,7 +5,7 @@ Model.knex(knex);
 
 class MeasurementDefinition extends Model {
   static get tableName() {
-    return "measurement_logs";
+    return "measurement_definitions";
   }
 
   static get idColumn() {
