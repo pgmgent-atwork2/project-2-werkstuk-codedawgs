@@ -135,7 +135,7 @@ export const waterAnalysisPage = async (req, res) => {
   const sub_departments = await knex("sub_departments").select("*");
   const filters = await knex("filters").select("*");
   const pumps = await knex("pumps").select("*");
-  const measurements = await knex("measurement_logs").select("*");
+  const measurements = await knex("measurement_definitions").select("*");
 
   try {
     res.render("pages/analysis", {
