@@ -1,18 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.edit-task-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      const taskId = btn.getAttribute('data-task-id');
-      const form = document.getElementById('form-' + taskId);
+  document.querySelectorAll('.edit-task-btn').forEach(function (editBtn) {
+    editBtn.addEventListener('click', function () {
+      const form = editBtn.closest('form');
       const saveBtn = form.querySelector('.save-task-btn');
-      // Select all inputs/selects in this row with the correct form attribute
-      const row = form.closest('tr');
-      row.querySelectorAll('input[form], select[form]').forEach(function (input) {
-        if (input.getAttribute('form') === 'form-' + taskId) {
-          input.disabled = false;
-        }
+      const row = editBtn.closest('tr');
+      const inputs = row.querySelectorAll('input[form="' + form.id + '"], select[form="' + form.id + '"]');
+      inputs.forEach(function (input) {
+        input.disabled = false;
       });
-      btn.style.display = 'none';
+      editBtn.style.display = 'none';
       saveBtn.style.display = '';
+    });
+  });
+
+  document.querySelectorAll('form[id^="form-"]').forEach(function (form) {
+    form.addEventListener('submit', function () {
+      const row = form.closest('tr');
+      const inputs = row.querySelectorAll('input[form="' + form.id + '"], select[form="' + form.id + '"]');
+      inputs.forEach(function (input) {
+        input.disabled = false;
+      });
     });
   });
 });

@@ -2,6 +2,7 @@
   <div class="main">
     <h1>Tasks</h1>
     <h2>Add tasks</h2>
+    <!-- Only wrap the add-task fields in this form -->
     <form method="POST" action="/admin/tasks">
       <label for="title">Title:</label>
       <input type="text" name="title" id="title" required />
@@ -21,11 +22,13 @@
         <option value="monthly">Monthly</option>
       </select>
       <button type="submit">Add Task</button>
+    </form>
+
     <% departments.forEach(function(department) { %>
       <h3>
         <%= department.title %>
       </h3>
-      <table border="1">
+      <table class="tasks-table" border="1">
         <thead>
           <tr>
             <th>Title</th>
@@ -33,86 +36,46 @@
             <th>Department</th>
             <th>Interval</th>
             <th>Completed</th>
-            <th>Edit</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-
-          <% tasks.forEach((task)=> { %>
-
+          <% tasks.forEach(task=> { %>
             <% let titleToShow=null; if (task.object_type==="department" ) { for (const dept of departments) { if
-              (dept.id===task.object_id && dept.id===department.id) { titleToShow=dept.title; break; } } } else if
-              (task.object_type==="sub_department" ) { for (const sub of sub_departments) { if (sub.id===task.object_id
-              && sub.department_id===department.id) { titleToShow=sub.title; break; } } } else if
-              (task.object_type==="pump" ) { let pump=null; for (const p of pumps) { if (p.id===task.object_id) {
-              pump=p; break; } } if (pump) { for (const sub of sub_departments) { if (sub.id===pump.sub_department_id &&
-              sub.department_id===department.id) { titleToShow=pump.title; break; } } } } else if
-              (task.object_type==="filter" ) { let filter=null; for (const f of filters) { if (f.id===task.object_id) {
-              filter=f; break; } } if (filter) { for (const sub of sub_departments) { if
-              (sub.id===filter.sub_department_id && sub.department_id===department.id) { titleToShow=filter.title;
-              break; } } } } %>
-
+              (dept.id===task.object_id) { titleToShow=dept.title; break; } } } else if
+              (task.object_type==="sub_department" ) { for (const sub of sub_departments) { if (sub.id===task.object_id)
+              { titleToShow=sub.title; break; } } } else if (task.object_type==="pump" ) { for (const p of pumps) { if
+              (p.id===task.object_id) { titleToShow=p.title; break; } } } else if (task.object_type==="filter" ) { for
+              (const f of filters) { if (f.id===task.object_id) { titleToShow=f.title; break; } } } %>
               <% if (titleToShow) { %>
                 <tr>
                   <td>
-                    <input
-                      type="text"
-                      name="title"
-                      value="<%= task.title %>"
-                      class="task-input task-input--title"
-                      form="form-<%= task.id %>"
-                      disabled
-                    />
+                    <input type="text" name="title" value="<%= task.title %>" class="task-input task-input--title"
+                      form="form-<%= task.id %>" disabled />
                   </td>
                   <td>
-                    <input
-                      type="text"
-                      name="object_type"
-                      value="<%= task.object_type %>"
-                      class="task-input task-input--object-type"
-                      form="form-<%= task.id %>"
-                      disabled
-                    />
+                    <input type="text" name="object_type" value="<%= task.object_type %>"
+                      class="task-input task-input--object-type" form="form-<%= task.id %>" disabled />
                   </td>
                   <td>
-                    <input
-                      type="text"
-                      name="department"
-                      value="<%= titleToShow %>"
-                      class="task-input task-input--department"
-                      form="form-<%= task.id %>"
-                      disabled
-                    />
+                    <input type="text" name="department" value="<%= titleToShow %>"
+                      class="task-input task-input--department" form="form-<%= task.id %>" disabled />
                   </td>
                   <td>
-                    <input
-                      type="text"
-                      name="interval"
-                      value="<%= task.interval %>"
-                      class="task-input task-input--interval"
-                      form="form-<%= task.id %>"
-                      disabled
-                    />
+                    <input type="text" name="interval" value="<%= task.interval %>"
+                      class="task-input task-input--interval" form="form-<%= task.id %>" disabled />
                   </td>
                   <td>
-                    <select
-                      name="completed"
-                      class="task-input task-input--completed"
-                      form="form-<%= task.id %>"
-                      disabled
-                    >
-                      <option value="true" <%= task.completed ? "selected" : "" %>>Yes</option>
-                      <option value="false" <%= !task.completed ? "selected" : "" %>>No</option>
+                    <select name="completed" class="task-input task-input--completed" form="form-<%= task.id %>"
+                      disabled>
+                      <option value="true" <%=task.completed ? "selected" : "" %>>Yes</option>
+                      <option value="false" <%=!task.completed ? "selected" : "" %>>No</option>
                     </select>
                   </td>
                   <td>
-                    <form id="form-<%= task.id %>" method="POST" action="/admin/tasks/<%= task.id %>">
-                      <button class="edit-task-btn" type="button" data-task-id="<%= task.id %>">
-                        Edit
-                      </button>
-                      <button class="save-task-btn" type="submit" style="display:none;">
-                        Save
-                      </button>
+                    <form method="POST" action="/admin/tasks/<%= task.id %>" class="task-form" id="form-<%= task.id %>">
+                      <button class="edit-task-btn" type="button" data-task-id="<%= task.id %>">Edit</button>
+                      <button class="save-task-btn" type="submit" style="display:none;">Save</button>
                     </form>
                   </td>
                 </tr>
