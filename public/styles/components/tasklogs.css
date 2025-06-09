@@ -6,7 +6,7 @@
 
 .task-logs__title {
   margin-bottom: 1rem;
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
@@ -36,6 +36,10 @@
   .task-logs__row {
     display: block;
     width: 100%;
+  }
+
+  .task-logs__title {
+    border-bottom: 2px solid var(--bg-200);
   }
 
   .task-logs__row {
