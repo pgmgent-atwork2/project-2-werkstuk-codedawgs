@@ -1,49 +1,5 @@
 <%- include("../partials/header.ejs") %>
     <div class="main">
         <h1>Measurement Definitions</h1>
-
-        <table class="measurements-table" border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Unit</th>
-                    <th>Min Value</th>
-                    <th>Max Value</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% measurements.forEach(measurement=> { %>
-                    <tr>
-                        <td>
-                            <%= measurement.id %>
-                        </td>
-                        <td>
-                            <%= measurement.name %>
-                        </td>
-                        <td>
-                            <%= measurement.unit %>
-                        </td>
-                        <td>
-                            <input type="number" name="min_value" value="<%= measurement.min_value %>" disabled
-                                class="measurement-input measurement-input--min" form="form-<%= measurement.id %>" />
-                        </td>
-                        <td>
-                            <input type="number" name="max_value" value="<%= measurement.max_value %>" disabled
-                                class="measurement-input measurement-input--max" form="form-<%= measurement.id %>" />
-                        </td>
-                        <td>
-                            <form method="POST" action="/admin/analysis/<%= measurement.id %>" class="measurement-form"
-                                id="form-<%= measurement.id %>">
-                                <button class="measurement-action-btn" type="button">Edit</button>
-                                <button class="measurement-action-btn" type="submit" style="display:none;">Save</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <% }) %>
-            </tbody>
-        </table>
-
-        <script defer src="/scripts/analysis-edit.js"></script>
+        <%- include("../partials/analysisTable.ejs") %>
     </div>
