@@ -3,12 +3,14 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.addEventListener('click', function () {
       const taskId = btn.getAttribute('data-task-id');
       const form = document.getElementById('form-' + taskId);
-      const saveBtn = form.querySelector('button[type="submit"]');
-      const titleInput = document.querySelector('.task-input--title[form="form-' + taskId + '"]');
-      const completedInput = document.querySelector('.task-input--completed[form="form-' + taskId + '"]');
-
-      titleInput.disabled = false;
-      completedInput.disabled = false;
+      const saveBtn = form.querySelector('.save-task-btn');
+      // Select all inputs/selects in this row with the correct form attribute
+      const row = form.closest('tr');
+      row.querySelectorAll('input[form], select[form]').forEach(function (input) {
+        if (input.getAttribute('form') === 'form-' + taskId) {
+          input.disabled = false;
+        }
+      });
       btn.style.display = 'none';
       saveBtn.style.display = '';
     });
