@@ -14,6 +14,7 @@
 @import url("./components/btn.css");
 @import url("./components/summary.css");
 @import url("./components/tasklogs.css");
+@import url("./components/calendarBackwash.css");
 
 :root {
   --primary-100: #273787;

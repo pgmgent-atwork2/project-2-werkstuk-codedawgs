@@ -1,0 +1,105 @@
+.backwash__container {
+    display: flex;
+    flex-direction: column;
+
+    div {
+        margin: 0 auto;
+        width: 12rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0.5rem;
+        
+        select {
+            padding: 0.5rem;
+        }
+    }
+}
+
+.backwash__title {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#calendarBackwash {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+  }
+
+  .table__today {
+    background-color: var(--accent-200);
+  }
+
+  td:has(input[type="checkbox"]:enabled) {
+    background-color: var(--cell-100);
+  }
+
+  td {
+    input[type="checkbox"]:disabled {
+      pointer-events: none;
+      &:checked {
+        filter: brightness(90%) invert() sepia(100%) saturate(1800%)
+          hue-rotate(200deg);
+      }
+    }
+  }
+
+  th {
+    background-color: var(--cell-200);
+  }
+
+  table,
+  th,
+  td {
+    border-collapse: collapse;
+    border: 1px solid #383838;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+
+  td input[type="checkbox"] {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  td:not(:first-child) {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  td:not(:first-child) input[type="checkbox"] {
+    display: inline-block;
+    margin: 0 auto;
+    vertical-align: middle;
+    padding: 0;
+  }
+}
+
+@media (width > 800px) {
+  #calendarBackwash {
+    table {
+      width: 40rem;
+    }
+  }
+
+  .backwash__container {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    div {
+        width: auto;
+        margin: 2rem 0;
+        padding: 0 2rem ;
+        border-right: 2px solid var(--bg-300);
+        text-align: left;
+    }
+  }
+}
