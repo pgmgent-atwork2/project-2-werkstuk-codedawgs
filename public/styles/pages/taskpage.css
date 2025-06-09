@@ -37,3 +37,10 @@
         }
     }
 }
+
+@media (width > 700px) {
+    .taskpage {
+        width: fit-content;
+        margin: 0 auto;
+    }
+}
