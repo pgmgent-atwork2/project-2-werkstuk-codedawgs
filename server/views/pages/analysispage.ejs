@@ -42,7 +42,7 @@
         </tr>
 
         <% measurement_logs.forEach(measurement_log => { %>
-
+            <% if(measurement_log.time === 1) { %>
                 <% const measurements = JSON.parse(measurement_log.measurements) %>
                 <% const date = new Date(measurement_log.measured_date) %>
                 <% const options={ hour12: false, year: 'numeric' , month: '2-digit' , day: '2-digit' };%>
@@ -56,6 +56,54 @@
                     <td><%= users[measurement_log.user_id].first_name %></td>
                     <td><%= measurement_log.comment %></td>
                 </tr>
+            <% } %>
+        <% }); %>
+    </table>
+
+    <table border="1px">
+        <tr>
+            <th></th>
+            <th >Depolox</th>
+            <th colspan="3">Manual</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <% const allowedArr = [2, 4, 5, 6] %>
+        <tr>
+            <th>Date</th>
+            <% for(let i = 0; i < allowedArr.length; i++) { %>
+                <th><%= measurement_definitions[allowedArr[i]-1].short%></th>
+            <% } %>
+            <th>User</th>
+            <th>Comment</th>
+        </tr>
+        <tr>
+            <td></td>
+            <% for(let i = 0; i < allowedArr.length; i++) { %>
+                <th><%= measurement_definitions[allowedArr[i]-1].unit%></th>
+            <% } %>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <% measurement_logs.forEach(measurement_log => { %>
+            <% if(measurement_log.time === 2) { %>
+                <% const measurements = JSON.parse(measurement_log.measurements) %>
+                <% const date = new Date(measurement_log.measured_date) %>
+                <% const options={ hour12: false, year: 'numeric' , month: '2-digit' , day: '2-digit' };%>
+
+                <tr class="row" data-sub-department-id="<%= measurement_log.sub_department_id  %>">
+                    <td><%= date.toLocaleString('en-GB', options) %>
+                    </td>
+                    <% for (const measurement in measurements) { %>
+                        <% if(measurements[measurement]) { %>
+                            <td><%= measurements[measurement] %></td>
+                        <% } %>
+                    <% } %>
+                    <td><%= users[measurement_log.user_id].first_name %></td>
+                    <td><%= measurement_log.comment %></td>
+                </tr>
+            <% } %>
         <% }); %>
     </table>
 
