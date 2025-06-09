@@ -6,6 +6,7 @@
             <th>Unit</th>
             <th>Min Value</th>
             <th>Max Value</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -21,12 +22,17 @@
                     <%= measurement.unit %>
                 </td>
                 <td>
-                    <%= measurement.min_value %>
+                    <input type="number" value="<%= measurement.min_value %>" disabled class="measurement-input measurement-input--min" />
                 </td>
                 <td>
-                    <%= measurement.max_value %>
+                    <input type="number" value="<%= measurement.max_value %>" disabled class="measurement-input measurement-input--max" />
+                </td>
+                <td>
+                    <button class="measurement-action-btn" type="button">Edit</button>
                 </td>
             </tr>
-            <% }) %>
+        <% }) %>
     </tbody>
 </table>
+
+<script defer src="/scripts/analysis-edit.js"></script>
