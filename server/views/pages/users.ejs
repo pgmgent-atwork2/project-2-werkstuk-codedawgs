@@ -15,22 +15,23 @@
     <button class="users__button button" type="submit">Add user</button>
   </form>
   <h2 class="users__subtitle">Existing users</h2>
-  <table class="users__table">
-    <tr class="users__table-row">
-      <th class="users__table-header">User name</th>
-      <th class="users__table-header">User type</th>
-      <th class="users__table-header">Token</th>
-      <th class="users__table-header">Pincode</th>
-    </tr>
-    <% users.forEach(user=> { %>
+  <div class="users__table-container">
+    <table class="users__table">
       <tr class="users__table-row">
-        <td class="users__table-cell"><%= user.first_name %> <%= user.last_name %></td>
-        <td class="users__table-cell"><%= user.role %></td>
-        <td class="users__table-cell"><%= user.token %></td>
-        <td class="users__table-cell"><%= user.pincode %></td>
+        <th class="users__table-header">User name</th>
+        <th class="users__table-header">User type</th>
+        <th class="users__table-header">Token</th>
+        <th class="users__table-header">Pincode</th>
       </tr>
-    <% }) %>
-  </table>
-
+      <% users.forEach(user=> { %>
+        <tr class="users__table-row">
+          <td class="users__table-cell"><%= user.first_name %> <%= user.last_name %></td>
+          <td class="users__table-cell"><%= user.role %></td>
+          <td class="users__table-cell"><%= user.token %></td>
+          <td class="users__table-cell"><%= user.pincode %></td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
   <%- include('../partials/navigation.ejs')%>
 </div>
