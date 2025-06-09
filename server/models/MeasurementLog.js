@@ -23,6 +23,7 @@ class MeasurementLog extends Model {
         user_id: { type: "integer" },
         sub_department_id: { type: "integer" },
         measured_date: { type: "date" },
+        comment: {type: "string" },
         measurements: { type: "string" },
       },
     };

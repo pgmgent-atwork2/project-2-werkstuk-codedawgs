@@ -130,6 +130,30 @@ export const generalTaskPage = async (req, res) => {
   }
 };
 
+export const analysesPage = async (req, res) => {
+  const departments = await knex("departments").select("*");
+  const sub_departments = await knex("sub_departments").select("*");
+  const measurement_definitions = await knex("measurement_definitions").select("*");
+  const measurement_logs = await knex("measurement_logs").select("*");
+  const users = await knex("users").select("*");
+
+  try {
+    
+    res.render("pages/analysespage", { 
+      userRole: req.user.role,
+      departments,
+      sub_departments,
+      measurement_definitions,
+      measurement_logs,
+      users,
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error loading tasks");
+  }
+};
+
 export const waterAnalysisPage = async (req, res) => {
   const departments = await knex("departments").select("*");
   const sub_departments = await knex("sub_departments").select("*");

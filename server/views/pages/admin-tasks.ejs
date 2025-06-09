@@ -19,7 +19,7 @@
 
           <% tasks.forEach((task)=> { %>
 
-            <% let titleToShow=null if (task.object_type==="department" ) { for (const dept of departments) { if
+            <% let titleToShow=null; if (task.object_type==="department" ) { for (const dept of departments) { if
               (dept.id===task.object_id && dept.id===department.id) { titleToShow=dept.title; break; } } } else if
               (task.object_type==="sub_department" ) { for (const sub of sub_departments) { if (sub.id===task.object_id
               && sub.department_id===department.id) { titleToShow=sub.title; break; } } } else if
