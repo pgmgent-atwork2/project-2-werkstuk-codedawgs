@@ -139,10 +139,10 @@ export const analysisPage = async (req, res) => {
   const measurement_definitions = await knex("measurement_definitions").select("*");
   const measurement_logs = await knex("measurement_logs").select("*");
   const users = await knex("users").select("*");
-
+  
   try {
-    
-    res.render("pages/analysespage", { 
+    res.render("pages/analysispage", {
+      user: req.user,
       userRole: req.user.role,
       departments,
       sub_departments,

@@ -71,8 +71,8 @@ app.get("/admin/tasks", jwtAuth, isAdmin, pageController.taskPageAdmin);
 app.get('/daily/:departmentString', jwtAuth, pageController.taskPage);
 app.get('/weekly/:departmentString', jwtAuth, pageController.taskPage);
 app.get('/monthly/:departmentString', jwtAuth, pageController.taskPage);
-app.get('/general/:taskName', jwtAuth, pageController.generalTaskPage);
 app.get('/general/analysis', jwtAuth, pageController.analysisPage);
+app.get('/general/:taskName', jwtAuth, pageController.generalTaskPage);
 
 
 // Task Routes

@@ -1,1 +1,16 @@
 <%- include('../partials/header.ejs')%>
+
+<section class="main">
+    <h1>Select sub department:</h1>
+    <select class="subDepartmentSelect" name="subDepartmentSelect">
+        <option value="all">All</option>
+        <% sub_departments.forEach(sub_department => { %>
+            <option value=<%= sub_department.id %>>
+                <%= departments[sub_department.department_id-1].title %> |
+                <%= sub_department.title %>
+            </option>
+        <% }); %>
+    </select>
+</section>
+
+<%- include('../partials/navigation.ejs')%>
