@@ -27,6 +27,47 @@ export const taskComplete = async (req, res) => {
   }
 };
 
+export const addTask = async (req, res) => {
+const { title, object_type, object_id, interval } = req.body;
+  try {
+    await knex("tasks").insert({
+      title,
+      object_type,
+      object_id,
+      interval,
+      completed: false,
+      visible: true
+    });
+
+    res.redirect('/admin/tasks');
+  } catch (error) {
+    console.error("Add task error:", error);
+    res.status(500).send("Failed to add task");
+  }
+};
+
+export const editTask = async (req, res) => {
+  const { title, object_type, department, interval, completed } = req.body;
+  const id = req.params.id;
+  let completedValue = completed === "true" ? 1 : 0; 
+
+  try {
+    await knex("tasks")
+      .where({ id })
+      .update({
+        title,
+        object_type,
+        interval,
+        completed: completedValue,
+      });
+
+    res.redirect(req.get("referer"));
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Edit task failed");
+  }
+}
+
 export const editMeasurement = async (req, res) => {
   const { id } = req.params;
   const min_value = parseFloat(req.body.min_value);

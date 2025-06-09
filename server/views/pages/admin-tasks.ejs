@@ -1,53 +1,90 @@
 <%- include('../partials/header.ejs') %>
   <div class="main">
     <h1>Tasks</h1>
+    <h2>Add tasks</h2>
+    <form method="POST" action="/admin/tasks">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" required />
+      <label for="object_type">Object Type:</label>
+      <select name="object_type" id="object_type" required>
+        <option value="department">Department</option>
+        <option value="sub_department">Sub Department</option>
+        <option value="pump">Pump</option>
+        <option value="filter">Filter</option>
+      </select>
+      <label for="object_id">Object ID:</label>
+      <input type="number" name="object_id" id="object_id" required />
+      <label for="interval">Interval:</label>
+      <select name="interval" id="interval" required>
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+      </select>
+      <button type="submit">Add Task</button>
+    </form>
 
     <% departments.forEach(function(department) { %>
       <h3>
         <%= department.title %>
       </h3>
-      <table border="1">
+      <table class="tasks-table" border="1">
         <thead>
           <tr>
             <th>Title</th>
             <th>Task type</th>
+            <th>Department</th>
+            <th>Interval</th>
             <th>Completed</th>
-            <th>Edit</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-
-          <% tasks.forEach((task)=> { %>
-
+          <% tasks.forEach(task=> { %>
             <% let titleToShow=null; if (task.object_type==="department" ) { for (const dept of departments) { if
-              (dept.id===task.object_id && dept.id===department.id) { titleToShow=dept.title; break; } } } else if
-              (task.object_type==="sub_department" ) { for (const sub of sub_departments) { if (sub.id===task.object_id
-              && sub.department_id===department.id) { titleToShow=sub.title; break; } } } else if
-              (task.object_type==="pump" ) { let pump=null; for (const p of pumps) { if (p.id===task.object_id) {
-              pump=p; break; } } if (pump) { for (const sub of sub_departments) { if (sub.id===pump.sub_department_id &&
-              sub.department_id===department.id) { titleToShow=pump.title; break; } } } } else if
-              (task.object_type==="filter" ) { let filter=null; for (const f of filters) { if (f.id===task.object_id) {
-              filter=f; break; } } if (filter) { for (const sub of sub_departments) { if
-              (sub.id===filter.sub_department_id && sub.department_id===department.id) { titleToShow=filter.title;
-              break; } } } } %>
-
+              (dept.id===task.object_id) { titleToShow=dept.title; break; } } } else if
+              (task.object_type==="sub_department" ) { for (const sub of sub_departments) { if (sub.id===task.object_id)
+              { titleToShow=sub.title; break; } } } else if (task.object_type==="pump" ) { for (const p of pumps) { if
+              (p.id===task.object_id) { titleToShow=p.title; break; } } } else if (task.object_type==="filter" ) { for
+              (const f of filters) { if (f.id===task.object_id) { titleToShow=f.title; break; } } } %>
               <% if (titleToShow) { %>
                 <tr>
                   <td>
-                    <%= task.title %>
+                    <input type="text" name="title" value="<%= task.title %>" class="task-input task-input--title"
+                      form="form-<%= task.id %>" disabled />
                   </td>
                   <td>
-                    <%= titleToShow %>
+                    <select name="object_type" class="task-input task-input--object-type" form="form-<%= task.id %>"
+                      disabled>
+                      <option value="department" <%=task.object_type==="department" ? "selected" : "" %>>Department
+                      </option>
+                      <option value="sub_department" <%=task.object_type==="sub_department" ? "selected" : "" %>>Sub
+                        Department</option>
+                      <option value="pump" <%=task.object_type==="pump" ? "selected" : "" %>>Pump</option>
+                      <option value="filter" <%=task.object_type==="filter" ? "selected" : "" %>>Filter</option>
+                    </select>
                   </td>
                   <td>
-                    <%= task.completed? "Yes" : "No" %>
+                    <input type="text" name="department" value="<%= titleToShow %>"
+                      class="task-input task-input--department" form="form-<%= task.id %>" disabled />
                   </td>
                   <td>
-                    <form method="POST" action="/admin/tasks/<%= task.id %>">
-                      <input type="hidden" name="taskId" value="<%= task.id %>">
-                      <button type="button" class="edit-task-btn" data-task-id="<%= task.id %>">
-                        Edit
-                      </button>
+                    <select name="interval" class="task-input task-input--interval" form="form-<%= task.id %>" disabled>
+                      <option value="daily" <%=task.interval==="daily" ? "selected" : "" %>>Daily</option>
+                      <option value="weekly" <%=task.interval==="weekly" ? "selected" : "" %>>Weekly</option>
+                      <option value="monthly" <%=task.interval==="monthly" ? "selected" : "" %>>Monthly</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select name="completed" class="task-input task-input--completed" form="form-<%= task.id %>"
+                      disabled>
+                      <option value="true" <%=task.completed ? "selected" : "" %>>Yes</option>
+                      <option value="false" <%=!task.completed ? "selected" : "" %>>No</option>
+                    </select>
+                  </td>
+                  <td>
+                    <form method="POST" action="/admin/tasks/<%= task.id %>" class="task-form" id="form-<%= task.id %>">
+                      <button class="edit-task-btn" type="button" data-task-id="<%= task.id %>">Edit</button>
+                      <button class="save-task-btn" type="submit" style="display:none;">Save</button>
                     </form>
                   </td>
                 </tr>
@@ -59,3 +96,4 @@
 
         <%- include('../partials/navigation.ejs')%>
   </div>
+  <script defer src="/scripts/admin-tasks-edit.js"></script>
