@@ -22,13 +22,14 @@
     <% } %>
 
     <% if(taskName==="backwash" ) { %>
-        <h1>Backwash agenda</h1>
-        <div>
-            <p>Select department</p>
-            <select id="backwashSelect"></select>
+        <h1 class="backwash__title">Backwash agenda</h1>
+        <div class="backwash__container">
+            <div>
+                <label for="backwashSelect">Select department:</label>
+                <select id="backwashSelect"></select>
+            </div>
+            <section id="calendarBackwash"></section>
         </div>
-        <section id="calendarBackwash">
-        </section>
 
         <script src="/scripts/calendarBackwash.js" defer></script>
     <% } %>
