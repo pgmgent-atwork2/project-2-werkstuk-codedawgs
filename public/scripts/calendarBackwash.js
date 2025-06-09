@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const response = await fetch(`${url}/api/${slug}`);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
-      }
+      }      
       return await response.json();
     } catch (error) {
       console.error(error.message);
@@ -206,19 +206,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           const eventTaskId = event.id.split("-")[0];
           const eventDate = event.date;
-
-
+          
           const logsForTaskDate = generalTaskLogs.filter((log) => {
-            const logDate = new Date(log.task_date);
-            const localLogDate = new Date(
-              logDate.getFullYear(),
-              logDate.getMonth(),
-              logDate.getDate()
-            )
-              .toISOString()
-              .split("T")[0];
+            const logDate = new Date(log.task_date).toISOString().split("T")[0];
             return (
-              String(log.task_id) === eventTaskId && localLogDate === eventDate
+              String(log.task_id) === eventTaskId &&
+              logDate === eventDate
             );
           });
 
@@ -250,7 +243,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           checkbox.addEventListener("change", function () {
             const id = String(event.id).split("-")[0];
-            postData(URL, id, checkbox.checked);
+            postData(URL, id, checkbox.checked);            
           });
 
           cell.appendChild(checkbox);
