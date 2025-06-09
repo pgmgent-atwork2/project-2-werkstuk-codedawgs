@@ -1,36 +1,37 @@
 <%- include('../partials/header.ejs') %>
 
-  <div class="main">
-    <h1>Users</h1>
-    <form action="/admin/users" method="POST">
-      <label>First name: <input type="text" name="first_name" required></label>
-      <label>Last name: <input type="text" name="last_name" required></label>
-      <label>Role:
-        <select name="role" required>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-          <option value="aqua">Aquasplash</option>
-        </select>
-      </label>
-      <button type="submit">Add user</button>
-    </form>
-    <h2>Existing users</h2>
-  <table class="table">
-    <tr>
-      <th>User name</th>
-      <th>User type</th>
-      <th>Token</th>
-      <th>Pincode</th>
-    </tr>
+<div class="main users">
+  <h1 class="users__title">Users</h1>
+  <form class="users__form" action="/admin/users" method="POST">
+    <label class="users__label">First name: <input class="users__input" type="text" name="first_name" required></label>
+    <label class="users__label">Last name: <input class="users__input" type="text" name="last_name" required></label>
+    <label class="users__label">Role:
+      <select class="users__select" name="role" required>
+        <option class="users__option" value="user">User</option>
+        <option class="users__option" value="admin">Admin</option>
+        <option class="users__option" value="aqua">Aquasplash</option>
+      </select>
+    </label>
+    <button class="users__button button" type="submit">Add user</button>
+  </form>
+  <h2 class="users__subtitle">Existing users</h2>
+  <div class="users__table-container">
+    <table class="users__table">
+      <tr class="users__table-row">
+        <th class="users__table-header">User name</th>
+        <th class="users__table-header">User type</th>
+        <th class="users__table-header">Token</th>
+        <th class="users__table-header">Pincode</th>
+      </tr>
       <% users.forEach(user=> { %>
-        <tr>
-          <td><%= user.first_name %> <%= user.last_name %></td>
-          <td><%= user.role %></td>
-          <td><%= user.token %></td>
-          <td><%= user.pincode %></td>
+        <tr class="users__table-row">
+          <td class="users__table-cell"><%= user.first_name %> <%= user.last_name %></td>
+          <td class="users__table-cell"><%= user.role %></td>
+          <td class="users__table-cell"><%= user.token %></td>
+          <td class="users__table-cell"><%= user.pincode %></td>
         </tr>
       <% }) %>
-  </table>
-
-    <%- include('../partials/navigation.ejs')%>
+    </table>
   </div>
+  <%- include('../partials/navigation.ejs')%>
+</div>
