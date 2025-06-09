@@ -4,10 +4,11 @@
         <h1 class="admin__title">Admin Panel</h1>
         <section class="admin__container">
             <aside class="admin__sidebar">
-                <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/users'">Users</button>
-                <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/tasks'">Tasks</button>
-                <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/analysis'">Water
-                    analysis</button>
+                <div class="admin__sidebar-buttons">
+                    <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/users'">Users</button>
+                    <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/tasks'">Tasks</button>
+                    <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/analysis'">Analysis</button>
+                </div>
             </aside>
             <%- include('../partials/task-logs.ejs')%>
         </section>
