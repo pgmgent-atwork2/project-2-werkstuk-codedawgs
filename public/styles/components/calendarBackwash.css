@@ -1,3 +1,25 @@
 #calendarBackwash {
-  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+  }
+
+  table, th, td {
+    border-collapse: collapse;
+    border: 1px solid #383838;
+    text-align: left;
+    padding: 0.5rem 0;
+  }
+
+
+  td input[type="checkbox"] {
+    width: fit-content;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+
+  }
 }
