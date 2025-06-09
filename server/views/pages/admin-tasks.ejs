@@ -2,7 +2,6 @@
   <div class="main">
     <h1>Tasks</h1>
     <h2>Add tasks</h2>
-    <!-- Only wrap the add-task fields in this form -->
     <form method="POST" action="/admin/tasks">
       <label for="title">Title:</label>
       <input type="text" name="title" id="title" required />
@@ -54,16 +53,26 @@
                       form="form-<%= task.id %>" disabled />
                   </td>
                   <td>
-                    <input type="text" name="object_type" value="<%= task.object_type %>"
-                      class="task-input task-input--object-type" form="form-<%= task.id %>" disabled />
+                    <select name="object_type" class="task-input task-input--object-type" form="form-<%= task.id %>"
+                      disabled>
+                      <option value="department" <%=task.object_type==="department" ? "selected" : "" %>>Department
+                      </option>
+                      <option value="sub_department" <%=task.object_type==="sub_department" ? "selected" : "" %>>Sub
+                        Department</option>
+                      <option value="pump" <%=task.object_type==="pump" ? "selected" : "" %>>Pump</option>
+                      <option value="filter" <%=task.object_type==="filter" ? "selected" : "" %>>Filter</option>
+                    </select>
                   </td>
                   <td>
                     <input type="text" name="department" value="<%= titleToShow %>"
                       class="task-input task-input--department" form="form-<%= task.id %>" disabled />
                   </td>
                   <td>
-                    <input type="text" name="interval" value="<%= task.interval %>"
-                      class="task-input task-input--interval" form="form-<%= task.id %>" disabled />
+                    <select name="interval" class="task-input task-input--interval" form="form-<%= task.id %>" disabled>
+                      <option value="daily" <%=task.interval==="daily" ? "selected" : "" %>>Daily</option>
+                      <option value="weekly" <%=task.interval==="weekly" ? "selected" : "" %>>Weekly</option>
+                      <option value="monthly" <%=task.interval==="monthly" ? "selected" : "" %>>Monthly</option>
+                    </select>
                   </td>
                   <td>
                     <select name="completed" class="task-input task-input--completed" form="form-<%= task.id %>"

@@ -59,7 +59,6 @@ export const editTask = async (req, res) => {
         object_type,
         interval,
         completed: completedValue,
-        
       });
 
     res.redirect(req.get("referer"));
