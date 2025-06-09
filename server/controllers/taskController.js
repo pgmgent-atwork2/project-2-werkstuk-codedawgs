@@ -1,6 +1,6 @@
 import knex from "../lib/Knex.js";
 
-export const taskComplete = async (req, res) => {
+export const taskComplete = async (req, res) => { 
   const { id } = req.params;
   const completed = req.body.completed ? true : false;
   const task_date = Date.now();
