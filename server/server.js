@@ -66,6 +66,8 @@ app.post("/admin/users", jwtAuth, isAdmin, userController.postUser);
 // Task management
 app.get("/admin/tasks", jwtAuth, isAdmin, pageController.taskPageAdmin);
 
+// Water analysis
+app.get("/admin/analysis", jwtAuth, isAdmin, pageController.waterAnalysisPage);
 
 // Task pages
 app.get('/daily/:departmentString', jwtAuth, pageController.taskPage);

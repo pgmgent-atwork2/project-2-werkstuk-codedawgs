@@ -132,3 +132,24 @@ export const generalTaskPage = async (req, res) => {
     res.status(500).send("Error loading tasks");
   }
 };
+
+export const waterAnalysisPage = async (req, res) => {
+  const departments = await knex("departments").select("*");
+  const sub_departments = await knex("sub_departments").select("*");
+  const filters = await knex("filters").select("*");
+  const pumps = await knex("pumps").select("*");
+
+  try {
+    res.render("pages/analysis", {
+      user: req.user,
+      userRole: req.user.role,
+      departments,
+      sub_departments,
+      filters,
+      pumps,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error loading water analysis page");
+  }
+}
