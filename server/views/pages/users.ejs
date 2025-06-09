@@ -15,15 +15,22 @@
       <button type="submit">Add user</button>
     </form>
     <h2>Existing users</h2>
-    <ul>
+  <table class="table">
+    <tr>
+      <th>User name</th>
+      <th>User type</th>
+      <th>Token</th>
+      <th>Pincode</th>
+    </tr>
       <% users.forEach(user=> { %>
-        <li>
-          <%= user.first_name %>
-            <%= user.last_name %> - <%= user.role %> - image id: <%= user.image_id %> - Token: <%= user.token %> -
-                    Pincode: <%= user.pincode %>
-        </li>
-        <% }) %>
-    </ul>
+        <tr>
+          <td><%= user.first_name %> <%= user.last_name %></td>
+          <td><%= user.role %></td>
+          <td><%= user.token %></td>
+          <td><%= user.pincode %></td>
+        </tr>
+      <% }) %>
+  </table>
 
     <%- include('../partials/navigation.ejs')%>
   </div>

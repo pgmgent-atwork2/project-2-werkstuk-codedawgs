@@ -67,11 +67,13 @@ ol {
   padding-top: 5rem;
 }
 
-body, * {
+body,
+* {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-body::-webkit-scrollbar, *::-webkit-scrollbar {
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
   display: none;
 }
