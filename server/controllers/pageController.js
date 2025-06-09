@@ -7,7 +7,6 @@ export const home = async (req, res) => {
   res.render("pages/home", {
     title: "Home",
     user: req.user,
-    userRole: req.user.role,
     departments: departments,
     tasks,
   });
@@ -25,7 +24,6 @@ export const admin = async (req, res) => {
   res.render("./pages/admin", {
     title: "Admin",
     user: req.user,
-    userRole: req.user.role,
     taskLogs,
     tasks,
     users,
@@ -42,7 +40,6 @@ export const userPage = async (req, res) => {
     res.render("pages/users", {
       users,
       user: req.user,
-      userRole: req.user.role,
     });
   } catch (error) {
     console.error(error);
@@ -63,7 +60,6 @@ export const taskPageAdmin = async (req, res) => {
 
     res.render("pages/admin-tasks", {
       user: req.user,
-      userRole: req.user.role,
       tasks,
       intervalString,
       departmentString,
@@ -90,7 +86,6 @@ export const taskPage = async (req, res) => {
 
     res.render("pages/taskpage", {
       user: req.user,
-      userRole: req.user.role,
       tasks,
       intervalString,
       departmentString,
@@ -116,7 +111,6 @@ export const generalTaskPage = async (req, res) => {
   try {
     res.render("pages/general-taskpage", {
       user: req.user,
-      userRole: req.user.role,
       taskName,
       tasks,
       departments,
@@ -141,7 +135,6 @@ export const analysisPage = async (req, res) => {
     
     res.render("pages/analysispage", { 
       user: req.user,
-      userRole: req.user.role,
       departments,
       sub_departments,
       measurement_definitions,
@@ -165,7 +158,6 @@ export const waterAnalysisPage = async (req, res) => {
   try {
     res.render("pages/analysis", {
       user: req.user,
-      userRole: req.user.role,
       departments,
       sub_departments,
       filters,
