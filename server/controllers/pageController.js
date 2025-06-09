@@ -106,7 +106,7 @@ export const taskPage = async (req, res) => {
 };
 
 export const generalTaskPage = async (req, res) => {
-  const { taskName } = req.params;
+  const { taskName } = req.params;  
   const tasks = await knex("tasks").select("*");
   const departments = await knex("departments").select("*");
   const sub_departments = await knex("sub_departments").select("*");

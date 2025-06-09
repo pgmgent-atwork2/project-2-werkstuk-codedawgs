@@ -2,22 +2,25 @@
 
 <div class="main">
     <% if(taskName !=="backwash" ) { %>
-        <section>
-            <% tasks.forEach(task=> { %>
-                <% let titleToShow=null %>
-                <% if (task.title.toLowerCase().startsWith(taskName)) { %>
-                    <% if(task.object_type==="department" ) { %>
-                    <% titleToShow=departments[task.object_id-1].title %>
-                    <% } else if(task.object_type==="sub_department" ) { %>
-                        <% titleToShow=sub_departments[task.object_id-1].title %>
-                    <% } else if(task.object_type==="pump" ) { %>
-                        <% titleToShow=pumps[task.object_id-1].title %>
-                    <% } else if(task.object_type==="filter" ) { %>
-                        <% titleToShow=filters[task.object_id-1].title %>
+        <section class="taskpage">
+            <h1 class="taskpage__title"><%= taskName %></h1>
+            <div class="taskpage__list">
+                <% tasks.forEach(task=> { %>
+                    <% let titleToShow=null %>
+                    <% if (task.title.toLowerCase().startsWith(taskName)) { %>
+                        <% if(task.object_type==="department" ) { %>
+                        <% titleToShow=departments[task.object_id-1].title %>
+                        <% } else if(task.object_type==="sub_department" ) { %>
+                            <% titleToShow=sub_departments[task.object_id-1].title %>
+                        <% } else if(task.object_type==="pump" ) { %>
+                            <% titleToShow=pumps[task.object_id-1].title %>
+                        <% } else if(task.object_type==="filter" ) { %>
+                            <% titleToShow=filters[task.object_id-1].title %>
+                        <% } %>
+                        <%- include('../partials/task', { task: task, title: titleToShow }) %>
                     <% } %>
-                    <%- include('../partials/task', { task: task, title: titleToShow }) %>
-                <% } %>
-            <% }); %>
+                <% }); %>
+            </div>
         </section>
     <% } %>
 
