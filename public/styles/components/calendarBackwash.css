@@ -8,18 +8,35 @@
   table, th, td {
     border-collapse: collapse;
     border: 1px solid #383838;
-    text-align: left;
+    text-align: center;
     padding: 0.5rem 0;
   }
 
-
   td input[type="checkbox"] {
-    width: fit-content;
     cursor: pointer;
     margin: 0;
     padding: 0;
     width: 1.8rem;
     height: 1.8rem;
+    box-sizing: border-box;
+    display: block;
+  }
 
+    td:not(:first-child) {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+    td:not(:first-child) input[type="checkbox"] {
+    display: inline-block;
+    margin: 0 auto;
+    vertical-align: middle;
+    padding: 0;
+  }
+}
+
+@media (width < 700px) {
+th {
+    transform: rotate(45deg);
   }
 }
