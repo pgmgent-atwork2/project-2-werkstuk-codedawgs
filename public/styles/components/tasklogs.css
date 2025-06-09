@@ -29,7 +29,7 @@
   background: #e7e7e7;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
   .task-logs,
   .task-logs thead,
   .task-logs tbody,
