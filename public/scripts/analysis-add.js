@@ -11,8 +11,19 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     closeButton.addEventListener('click',() => {
         newForm.style.display = "none"
-            inputs.forEach(input => {
-        input.value = '';
-    });
+        inputs.forEach(input => {
+            input.value = '';
+        });
     })
+
+    const freeCl = document.getElementById('4');
+    const totalCl = document.getElementById('5');
+    const combCl = document.getElementById('6');
+
+    totalCl.addEventListener('input', () => {
+        console.log('input');
+        
+        combCl.value = totalCl.value - freeCl.value
+    })
+
 })
