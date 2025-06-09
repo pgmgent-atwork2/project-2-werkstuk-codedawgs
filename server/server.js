@@ -79,8 +79,12 @@ app.get('/general/:taskName', jwtAuth, pageController.generalTaskPage);
 app.post('/tasks/:id/completed', jwtAuth, taskController.taskComplete);
 app.post('/tasks/analysis', jwtAuth, taskController.postAnalysis);
 
+
 // Measurement Routes
-app.post('/admin/analysis/:id', jwtAuth, taskController.editMeasurement);
+app.post('/admin/analysis/:id', jwtAuth, isAdmin, taskController.editMeasurement);
+
+// Task Edit
+app.post('/admin/tasks/:id', jwtAuth, isAdmin, taskController.editTask);
 
 // Error handling
 app.use((error, req, res, next) => {

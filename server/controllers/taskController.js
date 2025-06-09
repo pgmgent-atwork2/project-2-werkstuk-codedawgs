@@ -27,6 +27,23 @@ export const taskComplete = async (req, res) => {
   }
 };
 
+export const editTask = async (req, res) => {
+  const { id } = req.params;
+  const { title, completed } = req.body;
+
+  try {
+    await knex("tasks").where({ id }).update({
+      title,
+      completed: completed ? true : false,
+    });
+
+    res.redirect("/admin/tasks");
+  } catch (error) {
+    console.error("Edit task error:", error);
+    res.status(500).json({ success: false, message: "Failed to update task" });
+  }
+}
+
 export const editMeasurement = async (req, res) => {
   const { id } = req.params;
   const min_value = parseFloat(req.body.min_value);

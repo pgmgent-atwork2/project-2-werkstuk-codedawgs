@@ -1,7 +1,20 @@
 <%- include('../partials/header.ejs') %>
   <div class="main">
     <h1>Tasks</h1>
-
+    <h2>Add tasks</h2>
+    <form method="POST" action="/admin/tasks">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" required />
+      <label for="object_type">Object Type:</label>
+      <select name="object_type" id="object_type" required>
+        <option value="department">Department</option>
+        <option value="sub_department">Sub Department</option>
+        <option value="pump">Pump</option>
+        <option value="filter">Filter</option>
+      </select>
+      <label for="object_id">Object ID:</label>
+      <input type="number" name="object_id" id="object_id" required />
+      <button type="submit">Add Task</button>
     <% departments.forEach(function(department) { %>
       <h3>
         <%= department.title %>
@@ -34,19 +47,36 @@
               <% if (titleToShow) { %>
                 <tr>
                   <td>
-                    <%= task.title %>
+                    <input
+                      type="text"
+                      name="title"
+                      value="<%= task.title %>"
+                      disabled
+                      class="task-input task-input--title"
+                      form="form-<%= task.id %>"
+                    />
                   </td>
                   <td>
                     <%= titleToShow %>
                   </td>
                   <td>
-                    <%= task.completed? "Yes" : "No" %>
+                    <select
+                      name="completed"
+                      disabled
+                      class="task-input task-input--completed"
+                      form="form-<%= task.id %>"
+                    >
+                      <option value="true" <%= task.completed ? "selected" : "" %>>Yes</option>
+                      <option value="false" <%= !task.completed ? "selected" : "" %>>No</option>
+                    </select>
                   </td>
                   <td>
-                    <form method="POST" action="/admin/tasks/<%= task.id %>">
-                      <input type="hidden" name="taskId" value="<%= task.id %>">
+                    <form id="form-<%= task.id %>" method="POST" action="/admin/tasks/<%= task.id %>">
                       <button type="button" class="edit-task-btn" data-task-id="<%= task.id %>">
                         Edit
+                      </button>
+                      <button class="measurement-action-btn" type="submit" style="display:none;">
+                        Save
                       </button>
                     </form>
                   </td>
@@ -59,3 +89,4 @@
 
         <%- include('../partials/navigation.ejs')%>
   </div>
+  <script defer src="/scripts/admin-tasks-edit.js"></script>
