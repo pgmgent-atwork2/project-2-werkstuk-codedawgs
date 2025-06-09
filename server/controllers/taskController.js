@@ -47,19 +47,25 @@ const { title, object_type, object_id, interval } = req.body;
 };
 
 export const editTask = async (req, res) => {
-  const { id } = req.params;
-  const { title, completed } = req.body;
+  const { title, object_type, department, interval, completed } = req.body;
+  const id = req.params.id;
+  let completedValue = completed === "true" ? 1 : 0; 
 
   try {
-    await knex("tasks").where({ id }).update({
-      title,
-      completed: completed ? true : false,
-    });
+    await knex("tasks")
+      .where({ id })
+      .update({
+        title,
+        object_type,
+        interval,
+        completed: completedValue,
+        
+      });
 
-    res.redirect("/admin/tasks");
+    res.redirect(req.get("referer"));
   } catch (error) {
-    console.error("Edit task error:", error);
-    res.status(500).json({ success: false, message: "Failed to update task" });
+    console.error(error);
+    res.status(500).send("Edit task failed");
   }
 }
 
