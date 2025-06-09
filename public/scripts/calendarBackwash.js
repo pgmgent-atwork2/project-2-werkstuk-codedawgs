@@ -38,14 +38,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       const response = await fetch(`${url}/api/${slug}`);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
-      }
+      }      
       return await response.json();
     } catch (error) {
       console.error(error.message);
     }
   }
 
-  async function postData(url, id, completed) {
+  async function postData(url, id, completed) {    
     try {
       const response = await fetch(`${url}/tasks/${id}/completed`, {
         method: "POST",
@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           checkbox.addEventListener("change", function () {
             const id = String(event.id).split("-")[0];
-            postData(URL, id, checkbox.checked);
+            postData(URL, id, checkbox.checked);            
           });
 
           cell.appendChild(checkbox);
