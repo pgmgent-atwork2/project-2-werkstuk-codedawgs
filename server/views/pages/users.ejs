@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-<div class="users">
+<div class="main users">
   <h1 class="users__title">Users</h1>
   <form class="users__form" action="/admin/users" method="POST">
     <label class="users__label">First name: <input class="users__input" type="text" name="first_name" required></label>
@@ -12,7 +12,7 @@
         <option class="users__option" value="aqua">Aquasplash</option>
       </select>
     </label>
-    <button class="users__button" type="submit">Add user</button>
+    <button class="users__button button" type="submit">Add user</button>
   </form>
   <h2 class="users__subtitle">Existing users</h2>
   <table class="users__table">

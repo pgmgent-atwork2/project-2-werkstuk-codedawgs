@@ -1,0 +1,80 @@
+.users {
+  padding: 1rem;
+}
+
+.users__title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 1.5rem 1.5rem;
+}
+
+.users__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.users__label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  gap: 0.3rem;
+}
+
+.users__input,
+.users__select {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--bg-300);
+  border-radius: 0.4rem;
+  font-size: 1rem;
+}
+
+.users__button {
+  align-self: flex-end;
+  font-size: 1rem;
+}
+
+.users__subtitle {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #444;
+}
+
+.users__table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--cell-300);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.113);
+}
+
+.users__table-header {
+  background: var(--cell-200);
+  font-weight: 600;
+  padding: 0.7rem;
+  text-align: left;
+}
+
+.users__table-row:nth-child(even) {
+  background: var(--cell-100);
+}
+
+.users__table-cell {
+  padding: 0.7rem;
+  border-bottom: 1px solid var(--cell-300);
+  font-size: 1rem;
+}
+
+@media (min-width: 600px) {
+  .users {
+    padding: 2rem;
+  }
+  .users__table,
+  .users__table-header,
+  .users__table-cell {
+    font-size: 0.95rem;
+  }
+}
