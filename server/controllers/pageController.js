@@ -130,7 +130,7 @@ export const generalTaskPage = async (req, res) => {
   }
 };
 
-export const analysesPage = async (req, res) => {
+export const analysisPage = async (req, res) => {
   const departments = await knex("departments").select("*");
   const sub_departments = await knex("sub_departments").select("*");
   const measurement_definitions = await knex("measurement_definitions").select("*");
@@ -139,7 +139,8 @@ export const analysesPage = async (req, res) => {
 
   try {
     
-    res.render("pages/analysespage", { 
+    res.render("pages/analysispage", { 
+      user: req.user,
       userRole: req.user.role,
       departments,
       sub_departments,

@@ -75,9 +75,9 @@ app.get('/monthly/:departmentString', jwtAuth, pageController.taskPage);
 app.get('/general/analysis', jwtAuth, pageController.analysisPage);
 app.get('/general/:taskName', jwtAuth, pageController.generalTaskPage);
 
-
 // Task Routes
 app.post('/tasks/:id/completed', jwtAuth, taskController.taskComplete);
+app.post('/tasks/analysis', jwtAuth, taskController.postAnalysis);
 
 // Measurement Routes
 app.post('/admin/analysis/:id', jwtAuth, taskController.editMeasurement);

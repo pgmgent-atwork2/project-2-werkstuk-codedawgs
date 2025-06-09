@@ -22,11 +22,11 @@
                     <%= measurement.unit %>
                 </td>
                 <td>
-                    <input type="number" name="min_value" value="<%= measurement.min_value %>" disabled
+                    <input type="number" step="0.01" name="min_value" value="<%= measurement.min_value %>" disabled
                         class="measurement-input measurement-input--min" form="form-<%= measurement.id %>" />
                 </td>
                 <td>
-                    <input type="number" name="max_value" value="<%= measurement.max_value %>" disabled
+                    <input type="number" step="0.01" name="max_value" value="<%= measurement.max_value %>" disabled
                         class="measurement-input measurement-input--max" form="form-<%= measurement.id %>" />
                 </td>
                 <td>
