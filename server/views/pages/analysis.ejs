@@ -1,1 +1,32 @@
-test
+<table class="measurements-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Unit</th>
+            <th>Min Value</th>
+            <th>Max Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% measurements.forEach(measurement=> { %>
+            <tr>
+                <td>
+                    <%= measurement.id %>
+                </td>
+                <td>
+                    <%= measurement.name %>
+                </td>
+                <td>
+                    <%= measurement.unit %>
+                </td>
+                <td>
+                    <%= measurement.min_value %>
+                </td>
+                <td>
+                    <%= measurement.max_value %>
+                </td>
+            </tr>
+            <% }) %>
+    </tbody>
+</table>
