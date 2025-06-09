@@ -55,7 +55,6 @@ app.post("/register/:token", authRegisterSecondStepValidation, authController.po
 // Homepage
 app.get("/", jwtAuth, pageController.home);
 
-
 // Admin pages
 app.get("/admin", jwtAuth, isAdmin, pageController.admin);
 
@@ -78,6 +77,8 @@ app.get('/general/:taskName', jwtAuth, pageController.generalTaskPage);
 // Task Routes
 app.post('/tasks/:id/completed', jwtAuth, taskController.taskComplete);
 
+// Measurement Routes
+app.post('/admin/analysis/:id', jwtAuth, taskController.editMeasurement);
 
 // Error handling
 app.use((error, req, res, next) => {
