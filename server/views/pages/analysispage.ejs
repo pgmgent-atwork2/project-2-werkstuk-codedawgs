@@ -11,8 +11,8 @@
             </option>
         <% }); %>
     </select>
-
-    <form action="/tasks/analysis" method="POST">
+    <button class="analysis__new">New analysis</button>
+    <form class="analysis__form" action="/tasks/analysis" method="POST">
         <h2>Add water analysis</h2>
         <select name="time" required>
             <option value="1">Morning</option>
@@ -43,6 +43,7 @@
             <label>Comment</label>
             <input name="comment" placeholder="Optional comment">
         </div>
+        <button type="button" class="analysis__close">Cancel</button>
         <button type="submit">Add analysis</button>
     </form>
 
@@ -142,7 +143,7 @@
     </table>
 
 </section>
-
 <script src="/scripts/measurementsLog.js"></script>
+<script src="/scripts/analysis-add.js"></script>
 
 <%- include('../partials/navigation.ejs')%>
