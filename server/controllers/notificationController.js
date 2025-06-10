@@ -28,3 +28,21 @@ export const getNotifications = async (req, res) => {
     res.status(500).json({ hasNew: false, count: 0 });
   }
 };
+
+export const getAllNotifications = async (req, res) => {
+  try {
+    const notifications = await knex("notifications").select("*").orderBy("id", "desc");
+    const measurementDef = await knex("measurement_definitions").select("*");
+    res.render("pages/notifications", {
+      user: req.user,
+      notifications,
+      measurementDef
+    });
+  } catch (error) {
+    console.error("Get all notifications error:", error);
+    res.status(500).render("pages/notifications", {
+      user: req.user,
+      notifications: []
+    });
+  }
+};

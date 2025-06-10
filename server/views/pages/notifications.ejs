@@ -1,0 +1,25 @@
+<%- include("../partials/header.ejs") %>
+
+<div class="main">
+ <h1>All Notifications (<%= notifications ? notifications.length : 0 %>)</h1>
+    <% if (notifications && notifications.length > 0) { %>
+        <ul>
+            <% notifications.forEach(n => { %>
+                <li>
+                  <% 
+                    const def = measurementDef.find(m => m.id === n.measurement_def_id);
+                  %>
+                  <% if (def && (n.message === "high" || n.message === "low")) { %>
+                    Value for <%= def.name %> is too "<%= n.message %>"
+                  <% } else { %>
+                    <%= n.message %>
+                  <% } %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No notifications.</p>
+    <% } %>
+</div>
+
+<%- include("../partials/navigation.ejs") %>
