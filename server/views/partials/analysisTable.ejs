@@ -1,44 +1,47 @@
-<table class="measurements-table" border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Unit</th>
-            <th>Min Value</th>
-            <th>Max Value</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% measurements.forEach(measurement=> { %>
-            <tr>
-                <td>
-                    <%= measurement.id %>
-                </td>
-                <td>
-                    <%= measurement.name %>
-                </td>
-                <td>
-                    <%= measurement.unit %>
-                </td>
-                <td>
-                    <input type="number" step="0.01" name="min_value" value="<%= measurement.min_value %>" disabled
-                        class="measurement-input measurement-input--min" form="form-<%= measurement.id %>" />
-                </td>
-                <td>
-                    <input type="number" step="0.01" name="max_value" value="<%= measurement.max_value %>" disabled
-                        class="measurement-input measurement-input--max" form="form-<%= measurement.id %>" />
-                </td>
-                <td>
-                    <form method="POST" action="/admin/analysis/<%= measurement.id %>" class="measurement-form"
-                        id="form-<%= measurement.id %>">
-                        <button class="measurement-action-btn" type="button">Edit</button>
-                        <button class="measurement-action-btn" type="submit" style="display:none;">Save</button>
-                    </form>
-                </td>
+<div class="analysis-table-container">
+    <table class="analysis-table">
+        <thead class="analysis-table__head">
+            <tr class="analysis-table__row">
+                <th class="analysis-table__header">ID</th>
+                <th class="analysis-table__header">Name</th>
+                <th class="analysis-table__header">Unit</th>
+                <th class="analysis-table__header">Min Value</th>
+                <th class="analysis-table__header">Max Value</th>
+                <th class="analysis-table__header">Action</th>
             </tr>
-            <% }) %>
-    </tbody>
-</table>
-
+        </thead>
+        <tbody class="analysis-table__body">
+            <% measurements.forEach(measurement=> { %>
+                <tr class="analysis-table__row">
+                    <td class="analysis-table__cell">
+                        <%= measurement.id %>
+                    </td>
+                    <td class="analysis-table__cell">
+                        <%= measurement.name %>
+                    </td>
+                    <td class="analysis-table__cell">
+                        <%= measurement.unit %>
+                    </td>
+                    <td class="analysis-table__cell">
+                        <input type="number" step="0.01" name="min_value" value="<%= measurement.min_value %>" disabled
+                            class="analysis-table__input analysis-table__input--min"
+                            form="form-<%= measurement.id %>" />
+                    </td>
+                    <td class="analysis-table__cell">
+                        <input type="number" step="0.01" name="max_value" value="<%= measurement.max_value %>" disabled
+                            class="analysis-table__input analysis-table__input--max"
+                            form="form-<%= measurement.id %>" />
+                    </td>
+                    <td class="analysis-table__cell">
+                        <form method="POST" action="/admin/analysis/<%= measurement.id %>" class="analysis-table__form"
+                            id="form-<%= measurement.id %>">
+                            <button class="analysis-table__btn" type="button">Edit</button>
+                            <button class="analysis-table__btn" type="submit" style="display:none;">Save</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</div>
 <script defer src="/scripts/analysis-edit.js"></script>
