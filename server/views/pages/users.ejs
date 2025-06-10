@@ -22,6 +22,7 @@
         <th class="users__table-header">User type</th>
         <th class="users__table-header">Token</th>
         <th class="users__table-header">Pincode</th>
+        <th class="users__table-header">Action</th>
       </tr>
       <% users.forEach(user=> { %>
         <tr class="users__table-row">
@@ -29,6 +30,11 @@
           <td class="users__table-cell"><%= user.role %></td>
           <td class="users__table-cell"><%= user.token %></td>
           <td class="users__table-cell"><%= user.pincode %></td>
+          <td class="users__table-cell">
+            <form action="/admin/users/<%= user.id %>" method="POST">
+              <button class="users__delete-button button" type="submit">Delete</button>
+            </form>
+          </td>
         </tr>
       <% }) %>
     </table>
