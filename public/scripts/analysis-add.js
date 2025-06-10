@@ -35,7 +35,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   const combCl = document.getElementById("6");
 
   totalCl.addEventListener("input", () => {
-    combCl.value = totalCl.value - freeCl.value;
+    const total = parseFloat(totalCl.value) || 0;
+    const free = parseFloat(freeCl.value) || 0;
+    const combined = total - free;
+    combCl.value = combined.toFixed(2);
   });
 
   //calc min and max
@@ -45,20 +48,27 @@ document.addEventListener("DOMContentLoaded", async function () {
     const definitions = await fetchData("/api/measurement-definitions");
     const errors = [];
     values.forEach((value, index) => {
+      const val = parseFloat(value.value);
       const min = definitions[index].min_value;
       const max = definitions[index].max_value;
-      const val = parseFloat(value.value);
-      if (val < min || val > max) {
-        const error = val < min ? "low" : "high";
-        errors.push({
-          error,
-          def_id: index + 1,
-        });
+
+      if (index === 5) {
+        const maxCl = parseFloat(values[4].value) * 0.2;
+        if (val > maxCl) {
+          errors.push({ error: "high", def_id: index + 1 });
+        } else {
+          errors.push({ error: "none", def_id: index + 1 });
+        }
       } else {
-        errors.push({
-          error: "none",
-          def_id: index + 1,
-        });
+        const isBelowMin = min !== null && val < min;
+        const isAboveMax = max !== null && val > max;
+
+        if (isBelowMin || isAboveMax) {
+          const error = isBelowMin ? "low" : "high";
+          errors.push({ error, def_id: index + 1 });
+        } else {
+          errors.push({ error: "none", def_id: index + 1 });
+        }
       }
     });
     return errors;
@@ -113,8 +123,12 @@ document.addEventListener("DOMContentLoaded", async function () {
   const measurementInputs = document.querySelectorAll(".measurement__input");
   const subDepartmentSelect = document.querySelector(".subDepartmentSelect");
 
-  timeSelect.addEventListener("change", () => {changeInputsDisplay()});
-  subDepartmentSelect.addEventListener("change", () => {changeInputsDisplay()});
+  timeSelect.addEventListener("change", () => {
+    changeInputsDisplay();
+  });
+  subDepartmentSelect.addEventListener("change", () => {
+    changeInputsDisplay();
+  });
 
   function changeInputsDisplay() {
     measurementInputs.forEach((input) => {
@@ -133,6 +147,5 @@ document.addEventListener("DOMContentLoaded", async function () {
         input.style.display = "block";
       }
     });
-
   }
 });
