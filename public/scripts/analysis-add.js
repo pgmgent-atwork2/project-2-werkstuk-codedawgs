@@ -41,16 +41,23 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   //calc min and max
+  const values = document.querySelectorAll(".value-input");
+
   const postAnalysis = document.querySelector(".analysis__add");
   postAnalysis.addEventListener("click", () => {
-    console.log('test');
     calcValues();
   });
 
   async function calcValues() {
     const data = await fetchData(URL, "measurement-definitions");
-    inputs.forEach((input, index) => {
-        console.log(input.value, data[index].max_value);
+    values.forEach((value, index) => {
+        const min = data[index].min_value;
+        const max = data[index].max_value;
+        const val = parseFloat(value.value)        
+        if(val < min || val > max) {
+            const error = val<min ? "low" : "high";
+            console.log(`${val}is too ${error}`);              
+        }
     });
-}
+  }
 });

@@ -32,7 +32,8 @@
                     <%= measurement_definition.name%>
                     (<%= measurement_definition.unit%>)
                 </label>
-                <input  
+                <input 
+                    class="value-input"
                     <%= [2, 4, 5, 6].includes(measurement_definition.id) ? "required" : "" %>
                     name="<%= measurement_definition.id %>" 
                     id="<%= measurement_definition.id %>" 
