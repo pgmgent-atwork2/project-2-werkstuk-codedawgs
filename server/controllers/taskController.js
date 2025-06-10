@@ -46,6 +46,34 @@ const { title, object_type, object_id, interval } = req.body;
   }
 };
 
+export const getObjectOptions = async (req, res) => {
+  const { type } = req.query;
+  let table = "";
+  switch (type) {
+    case "department":
+      table = "departments";
+      break;
+    case "sub_department":
+      table = "sub_departments";
+      break;
+    case "pump":
+      table = "pumps";
+      break;
+    case "filter":
+      table = "filters";
+      break;
+    default:
+      return res.json([]);
+  }
+  try {
+    const rows = await knex(table).select("id", "title");
+    res.json(rows);
+  } catch (error) {
+    console.error("Get object options error:", error);
+    res.status(500).json([]);
+  }
+};
+
 export const editTask = async (req, res) => {
   const { title, object_type, department, interval, completed } = req.body;
   const id = req.params.id;
