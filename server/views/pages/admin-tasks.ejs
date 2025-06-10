@@ -27,7 +27,7 @@
         <option value="monthly">Monthly</option>
       </select>
     </label>
-    <button class="admin-tasks__button" type="submit">Add Task</button>
+    <button class="admin-tasks__button button" type="submit">Add Task</button>
   </form>
 
   <% departments.forEach(function(department) { %>
@@ -117,8 +117,8 @@
               </td>
               <td class="admin-tasks__table-cell">
                 <form method="POST" action="/admin/tasks/<%= task.id %>" class="admin-tasks__task-form" id="form-<%= task.id %>">
-                  <button class="admin-tasks__edit-btn" type="button" data-task-id="<%= task.id %>">Edit</button>
-                  <button class="admin-tasks__save-btn" type="submit" style="display:none;">Save</button>
+                  <button class="admin-tasks__edit-btn button" type="button" data-task-id="<%= task.id %>">Edit</button>
+                  <button class="admin-tasks__save-btn button" type="submit" style="display:none;">Save</button>
                 </form>
               </td>
             </tr>
