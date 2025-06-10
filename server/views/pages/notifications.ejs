@@ -5,11 +5,21 @@
     <% if (notifications && notifications.length > 0) { %>
         <ul>
             <% notifications.forEach(n => { %>
-                <li><%= n.message %></li>
+                <li>
+                  <% 
+                    const def = measurementDef.find(m => m.id === n.measurement_def_id);
+                  %>
+                  <% if (def && (n.message === "high" || n.message === "low")) { %>
+                    Value for <%= def.name %> is too "<%= n.message %>"
+                  <% } else { %>
+                    <%= n.message %>
+                  <% } %>
+                </li>
             <% }) %>
         </ul>
     <% } else { %>
         <p>No notifications.</p>
-    <% } %></div>
+    <% } %>
+</div>
 
 <%- include("../partials/navigation.ejs") %>

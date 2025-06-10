@@ -31,12 +31,12 @@ export const getNotifications = async (req, res) => {
 
 export const getAllNotifications = async (req, res) => {
   try {
-    const notifications = await knex("notifications")
-      .orderBy("id", "desc")
-      .select("*");
+    const notifications = await knex("notifications").select("*").orderBy("id", "desc");
+    const measurementDef = await knex("measurement_definitions").select("*");
     res.render("pages/notifications", {
       user: req.user,
-      notifications
+      notifications,
+      measurementDef
     });
   } catch (error) {
     console.error("Get all notifications error:", error);
