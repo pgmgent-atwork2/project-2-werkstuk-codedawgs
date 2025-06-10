@@ -108,4 +108,20 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.error("error:", error.message);
       }
     });
+
+
+  const timeSelect = document.querySelector(".timeSelect");
+  const measurementInputs = document.querySelectorAll(".measurement__input");
+
+  timeSelect.addEventListener("change", () => {
+    measurementInputs.forEach((input) => {
+      if (timeSelect.value === "2") {
+        if (input.querySelector("[required]") === null) {
+          input.style.display = "none";
+        }
+      } else {
+        input.style.display = "block";
+      }
+    });
+  });
 });
