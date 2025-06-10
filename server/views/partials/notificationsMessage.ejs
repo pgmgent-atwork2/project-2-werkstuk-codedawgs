@@ -1,0 +1,9 @@
+<% if (notificationCount > 0) { %>
+  <div class="notification-box">
+    You have <%= notificationCount > 9 ? '9+' : notificationCount %> notifications.
+  </div>
+<% } else { %>
+  <div class="notification-box">
+    You have no notifications.
+  </div>
+<% } %>

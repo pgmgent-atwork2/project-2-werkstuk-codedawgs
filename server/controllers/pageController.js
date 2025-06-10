@@ -3,12 +3,15 @@ import knex from "../lib/Knex.js";
 export const home = async (req, res) => {
   const departments = await knex("departments").select("*");
   const tasks = await knex("tasks").select("*");
+  const countObj = await knex("notifications").count("id as count").first();
+  const notificationCount = Number(countObj.count) || 0;
 
   res.render("pages/home", {
     title: "Home",
     user: req.user,
     departments: departments,
     tasks,
+    notificationCount
   });
 };
 
