@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const error = val < min ? "low" : "high";
         errors.push({
           error,
-          def_id: index,
+          def_id: index + 1,
         });
       } else {
         errors.push({
@@ -118,19 +118,21 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   function changeInputsDisplay() {
     measurementInputs.forEach((input) => {
+      if (subDepartmentSelect.value === "8") {
+        measurementInputs[7].style.display = "none";
+      } else {
+        measurementInputs[7].style.display = "block";
+      }
+
       if (timeSelect.value === "2") {
         if (input.querySelector("[required]") === null) {
           input.style.display = "none";
+          measurementInputs[7].style.display = "none";
         }
       } else {
         input.style.display = "block";
       }
     });
 
-    if (subDepartmentSelect.value === "8") {
-      measurementInputs[7].style.display = "none";
-    } else {
-      measurementInputs[7].style.display = "block";
-    }
   }
 });
