@@ -18,12 +18,13 @@ export const postNotification = async (req, res) => {
 
 export const getNotifications = async (req, res) => {
   try {
-    const count = await knex("notifications")
+    const countObj = await knex("notifications")
       .count("id as count")
       .first();
-    res.json({ hasNew: count.count > 0 });
+    const count = Number(countObj.count) || 0;
+    res.json({ hasNew: count > 0, count });
   } catch (error) {
     console.error("Notification check error:", error);
-    res.status(500).json({ hasNew: false });
+    res.status(500).json({ hasNew: false, count: 0 });
   }
 };
