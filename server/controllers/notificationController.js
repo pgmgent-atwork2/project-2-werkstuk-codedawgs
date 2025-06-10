@@ -9,7 +9,6 @@ export const postNotification = async (req, res) => {
       measurement_def_id,
       message,
     });
-    
     res.redirect("/general/analysis");
   } catch (error) {
     console.error(error);

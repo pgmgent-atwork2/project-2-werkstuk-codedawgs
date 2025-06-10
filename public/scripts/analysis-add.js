@@ -44,14 +44,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const values = document.querySelectorAll(".value-input");
   const postAnalysis = document.querySelector(".analysis__add");
 
-  // postAnalysis.addEventListener("click", () => {
-  //   const analyseData = JSON.stringify({
-  //     test: "mijntest",
-  //   });
-  //   postData(URL, "/tasks/analysis", analyseData);
-
-  //   calcValues();
-  // });
 
   async function calcValues() {
     const definitions = await fetchData(URL, "api/measurement-definitions");
@@ -95,7 +87,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!response1.ok) {
           throw new Error(`error: ${response1.status}`);
         }
-
+        
+        const result = await response1.json();                
+        
         const calculations = await calcValues();
         const promises = calculations.map(async (calc) => {
           if (calc.error !== "none") {
@@ -103,7 +97,7 @@ document.addEventListener("DOMContentLoaded", async function () {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                measurement_log_id: 1,
+                measurement_log_id: result.id.id,
                 measurement_def_id: calc.def_id,
                 message: calc.error,
               }),
