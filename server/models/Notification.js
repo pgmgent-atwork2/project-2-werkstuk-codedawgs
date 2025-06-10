@@ -22,6 +22,7 @@ class Notification extends Model {
         id: { type: "integer" },
         measurement_log_id: { type: "integer" },
         measurement_def_id: { type: "integer" },
+        message: {type: "string" },
       },
     };
   }
