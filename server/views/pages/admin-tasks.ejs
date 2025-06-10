@@ -41,57 +41,87 @@
           </tr>
         </thead>
         <tbody>
-          <% tasks.forEach(task=> { %>
-            <% let titleToShow=null; if (task.object_type==="department" ) { for (const dept of departments) { if
-              (dept.id===task.object_id) { titleToShow=dept.title; break; } } } else if
-              (task.object_type==="sub_department" ) { for (const sub of sub_departments) { if (sub.id===task.object_id)
-              { titleToShow=sub.title; break; } } } else if (task.object_type==="pump" ) { for (const p of pumps) { if
-              (p.id===task.object_id) { titleToShow=p.title; break; } } } else if (task.object_type==="filter" ) { for
-              (const f of filters) { if (f.id===task.object_id) { titleToShow=f.title; break; } } } %>
-              <% if (titleToShow) { %>
-                <tr>
-                  <td>
-                    <input type="text" name="title" value="<%= task.title %>" class="task-input task-input--title"
-                      form="form-<%= task.id %>" disabled />
-                  </td>
-                  <td>
-                    <select name="object_type" class="task-input task-input--object-type" form="form-<%= task.id %>"
-                      disabled>
-                      <option value="department" <%=task.object_type==="department" ? "selected" : "" %>>Department
-                      </option>
-                      <option value="sub_department" <%=task.object_type==="sub_department" ? "selected" : "" %>>Sub
-                        Department</option>
-                      <option value="pump" <%=task.object_type==="pump" ? "selected" : "" %>>Pump</option>
-                      <option value="filter" <%=task.object_type==="filter" ? "selected" : "" %>>Filter</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input type="text" name="department" value="<%= titleToShow %>"
-                      class="task-input task-input--department" form="form-<%= task.id %>" disabled />
-                  </td>
-                  <td>
-                    <select name="interval" class="task-input task-input--interval" form="form-<%= task.id %>" disabled>
-                      <option value="daily" <%=task.interval==="daily" ? "selected" : "" %>>Daily</option>
-                      <option value="weekly" <%=task.interval==="weekly" ? "selected" : "" %>>Weekly</option>
-                      <option value="monthly" <%=task.interval==="monthly" ? "selected" : "" %>>Monthly</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select name="completed" class="task-input task-input--completed" form="form-<%= task.id %>"
-                      disabled>
-                      <option value="true" <%=task.completed ? "selected" : "" %>>Yes</option>
-                      <option value="false" <%=!task.completed ? "selected" : "" %>>No</option>
-                    </select>
-                  </td>
-                  <td>
-                    <form method="POST" action="/admin/tasks/<%= task.id %>" class="task-form" id="form-<%= task.id %>">
-                      <button class="edit-task-btn" type="button" data-task-id="<%= task.id %>">Edit</button>
-                      <button class="save-task-btn" type="submit" style="display:none;">Save</button>
-                    </form>
-                  </td>
-                </tr>
-                <% } %>
-                  <% }) %>
+          <% tasks.filter(task=> {
+            if (task.object_type === "department") {
+              return task.object_id === department.id;
+            }
+            if (task.object_type === "sub_department") {
+              const sub = sub_departments.find(s => s.id === task.object_id);
+              return sub && sub.department_id === department.id;
+            }
+            if (task.object_type === "pump") {
+              const pump = pumps.find(p => p.id === task.object_id);
+              if (pump && pump.department_id) {
+                return pump.department_id === department.id;
+              }
+              if (pump && pump.sub_department_id) {
+                const sub = sub_departments.find(s => s.id === pump.sub_department_id);
+                return sub && sub.department_id === department.id;
+              }
+              return false;
+            }
+
+            if (task.object_type === "filter") {
+              const filter = filters.find(f => f.id === task.object_id);
+              if (filter && filter.department_id) {
+                return filter.department_id === department.id;
+              }
+              if (filter && filter.sub_department_id) {
+                const sub = sub_departments.find(s => s.id === filter.sub_department_id);
+                return sub && sub.department_id === department.id;
+              }
+              return false;
+            }
+            return false;
+            }).forEach(task => { %>
+            <tr>
+              <td>
+                <input type="text" name="title" value="<%= task.title %>" class="task-input task-input--title"
+                  form="form-<%= task.id %>" disabled />
+              </td>
+              <td>
+                <select name="object_type" class="task-input task-input--object-type" form="form-<%= task.id %>"
+                  disabled>
+                  <option value="department" <%=task.object_type==="department" ? "selected" : "" %>>Department
+                  </option>
+                  <option value="sub_department" <%=task.object_type==="sub_department" ? "selected" : "" %>>Sub
+                    Department</option>
+                  <option value="pump" <%=task.object_type==="pump" ? "selected" : "" %>>Pump</option>
+                  <option value="filter" <%=task.object_type==="filter" ? "selected" : "" %>>Filter</option>
+                </select>
+              </td>
+              <td>
+                <% if (task.object_type==="department" ) { %>
+                  <%= department.title %>
+                    <% } else if (task.object_type==="sub_department" ) { %>
+                      <%= sub_departments.find(s=> s.id === task.object_id).title %>
+                        <% } else if (task.object_type==="pump" ) { %>
+                          <%= pumps.find(p=> p.id === task.object_id).title %>
+                            <% } else if (task.object_type==="filter" ) { %>
+                              <%= filters.find(f=> f.id === task.object_id).title %>
+                                <% } %>
+              </td>
+              <td>
+                <select name="interval" class="task-input task-input--interval" form="form-<%= task.id %>" disabled>
+                  <option value="daily" <%=task.interval==="daily" ? "selected" : "" %>>Daily</option>
+                  <option value="weekly" <%=task.interval==="weekly" ? "selected" : "" %>>Weekly</option>
+                  <option value="monthly" <%=task.interval==="monthly" ? "selected" : "" %>>Monthly</option>
+                </select>
+              </td>
+              <td>
+                <select name="completed" class="task-input task-input--completed" form="form-<%= task.id %>" disabled>
+                  <option value="true" <%=task.completed ? "selected" : "" %>>Yes</option>
+                  <option value="false" <%=!task.completed ? "selected" : "" %>>No</option>
+                </select>
+              </td>
+              <td>
+                <form method="POST" action="/admin/tasks/<%= task.id %>" class="task-form" id="form-<%= task.id %>">
+                  <button class="edit-task-btn" type="button" data-task-id="<%= task.id %>">Edit</button>
+                  <button class="save-task-btn" type="submit" style="display:none;">Save</button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
         </tbody>
       </table>
       <% }) %>
