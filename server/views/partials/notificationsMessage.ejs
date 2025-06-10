@@ -1,6 +1,7 @@
 <% if (notificationCount > 0) { %>
   <div class="notification-box">
-    You have <%= notificationCount > 9 ? '9+' : notificationCount %> notifications.
+    <p>You have <%= notificationCount > 9 ? '9+' : notificationCount %> notifications.</p>
+    <button onclick="window.location.href='/notifications'">See all</button>
   </div>
 <% } else { %>
   <div class="notification-box">
