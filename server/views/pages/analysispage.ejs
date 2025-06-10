@@ -12,7 +12,7 @@
         <% }); %>
     </select>
     <button class="analysis__new">New analysis</button>
-    <form class="analysis__form" action="/tasks/analysis" method="POST">
+    <form class="analysis__form" id="analysisForm" action="/tasks/analysis" method="POST">
         <h2>Add water analysis</h2>
         <select name="time" required>
             <option value="1">Morning</option>
@@ -45,7 +45,7 @@
             <input name="comment" placeholder="Optional comment">
         </div>
         <button type="button" class="analysis__close">Cancel</button>
-        <button type="button" class="analysis__add">Add analysis</button>
+        <button type="submit" class="analysis__add">Add analysis</button>
     </form>
 
     <table border="1px">

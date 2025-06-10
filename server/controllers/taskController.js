@@ -89,8 +89,7 @@ export const editMeasurement = async (req, res) => {
 };
 
 export const postAnalysis = async (req, res) => {
-  const date = Date.now();
-    
+  const date = Date.now(); 
   try {
     await knex("measurement_logs").insert({
       user_id: req.user.id-1,
