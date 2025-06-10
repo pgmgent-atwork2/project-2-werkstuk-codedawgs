@@ -71,6 +71,7 @@
 }
 
 .header__notifs {
+  font-family: sans-serif;
   display: none;
   align-items: center;
   justify-content: center;
@@ -89,8 +90,4 @@
   text-align: center;
   user-select: none;
   pointer-events: none;
-}
-
-.header__notifs_number {
-  margin-bottom: .2rem;
 }
