@@ -2,24 +2,20 @@ document.addEventListener('DOMContentLoaded', function () {
   const objectTypeSelect = document.getElementById('object_type');
   const objectIdSelect = document.getElementById('object_id');
 
-  function updateObjectIdOptions() {
+  async function updateObjectIdOptions() {
     const type = objectTypeSelect.value;
-    let options = [];
-    if (type === 'department') {
-      options = window.departments.map(d => ({ value: d.id, label: d.title }));
-    } else if (type === 'sub_department') {
-      options = window.sub_departments.map(d => ({ value: d.id, label: d.title }));
-    } else if (type === 'pumps') {
-      options = window.pumps.map(d => ({ value: d.id, label: d.title }));
-    } else if (type === 'filters') {
-      options = window.filters.map(d => ({ value: d.id, label: d.title }));
+    objectIdSelect.innerHTML = '<option>Loading...</option>';
+    try {
+      const res = await fetch(`/admin/tasks/object-options?type=${encodeURIComponent(type)}`);
+      const options = await res.json();
+      objectIdSelect.innerHTML = options.map(opt =>
+        `<option value="${opt.id}">${opt.title}</option>`
+      ).join('');
+    } catch {
+      objectIdSelect.innerHTML = '<option>Error loading options</option>';
     }
-    objectIdSelect.innerHTML = options.map(opt =>
-      `<option value="${opt.value}">${opt.label}</option>`
-    ).join('');
   }
 
   objectTypeSelect.addEventListener('change', updateObjectIdOptions);
-
   updateObjectIdOptions();
 });

@@ -79,6 +79,7 @@ app.get('/general/:taskName', jwtAuth, pageController.generalTaskPage);
 app.post('/tasks/:id/completed', jwtAuth, taskController.taskComplete);
 app.post('/tasks/analysis', jwtAuth, taskController.postAnalysis);
 app.post('/admin/tasks', jwtAuth, isAdmin, taskController.addTask);
+app.get("/admin/tasks/object-options", jwtAuth, isAdmin, taskController.getObjectOptions);
 
 // Measurement Routes
 app.post('/admin/analysis/:id', jwtAuth, isAdmin, taskController.editMeasurement);
