@@ -109,11 +109,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     });
 
-
   const timeSelect = document.querySelector(".timeSelect");
   const measurementInputs = document.querySelectorAll(".measurement__input");
+  const subDepartmentSelect = document.querySelector(".subDepartmentSelect");
 
-  timeSelect.addEventListener("change", () => {
+  timeSelect.addEventListener("change", () => {changeInputsDisplay()});
+  subDepartmentSelect.addEventListener("change", () => {changeInputsDisplay()});
+
+  function changeInputsDisplay() {
     measurementInputs.forEach((input) => {
       if (timeSelect.value === "2") {
         if (input.querySelector("[required]") === null) {
@@ -123,5 +126,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         input.style.display = "block";
       }
     });
-  });
+
+    if (subDepartmentSelect.value === "8") {
+      measurementInputs[7].style.display = "none";
+    } else {
+      measurementInputs[7].style.display = "block";
+    }
+  }
 });
