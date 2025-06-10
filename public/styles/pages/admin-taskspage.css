@@ -1,0 +1,115 @@
+.admin-tasks {
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-100);
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.admin-tasks__title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 1.5rem 0;
+  color: var(--text-100);
+}
+
+.admin-tasks__subtitle {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-200);
+}
+
+.admin-tasks__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+.admin-tasks__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-weight: 600;
+  color: var(--text-200);
+}
+
+.admin-tasks__input,
+.admin-tasks__select {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--bg-300);
+  border-radius: 0.4rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background: var(--cell-100);
+  color: var(--text-100);
+}
+
+.admin-tasks__button {
+    width: 100%;
+  font-size: 1rem;
+  align-self: flex-end;
+}
+
+.admin-tasks__department-title {
+  margin-top: 2.5rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.1rem;
+  color: var(--accent-200);
+}
+
+.admin-tasks__table-container {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-color: var(--bg-400) var(--bg-100);
+  scrollbar-width: thin;
+}
+
+.admin-tasks__table {
+  min-width: 31.25rem;
+  border-collapse: collapse;
+  background: var(--cell-300);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.113);
+}
+
+.admin-tasks__table-header {
+  background: var(--cell-200);
+  padding: 0.7rem;
+  text-align: left;
+  color: var(--text-100);
+  font-weight: 600;
+}
+
+.admin-tasks__table-row:nth-child(even) {
+  background: var(--cell-100);
+}
+
+.admin-tasks__table-cell {
+  padding: 0.7rem;
+  border-bottom: 1px solid var(--cell-300);
+  font-size: 1rem;
+  color: var(--text-200);
+}
+
+@media (min-width: 500px) {
+  .admin-tasks {
+    padding: 2rem;
+    margin: 2rem auto;
+  }
+  .admin-tasks__button {
+    width: fit-content;
+}
+  .admin-tasks__table {
+    width: 100%;
+  }
+  .admin-tasks__table,
+  .admin-tasks__table-header,
+  .admin-tasks__table-cell {
+    font-size: 0.95rem;
+  }
+}
