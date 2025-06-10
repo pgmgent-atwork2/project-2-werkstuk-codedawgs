@@ -1,4 +1,5 @@
 .admin-tasks {
+  padding: 1rem;
   width: 100%;
   box-sizing: border-box;
   background: var(--bg-100);
@@ -57,14 +58,6 @@
   scrollbar-color: var(--bg-400) var(--bg-100);
   scrollbar-width: thin;
 }
-.admin-tasks__table-container::-webkit-scrollbar {
-  height: 8px;
-  background: var(--bg-100);
-}
-.admin-tasks__table-container::-webkit-scrollbar-thumb {
-  background: var(--bg-400);
-  border-radius: 4px;
-}
 
 .admin-tasks__table {
   min-width: 20rem;
@@ -93,20 +86,6 @@
   border-bottom: 1px solid var(--cell-300);
   font-size: 1rem;
   color: var(--text-200);
-}
-
-.admin-tasks__edit-btn,
-.admin-tasks__save-btn {
-  background: var(--accent-200);
-  color: var(--text-100);
-  border: none;
-  border-radius: 0.4rem;
-  padding: 0.4rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-right: 0.3rem;
-  margin-bottom: 0.2rem;
-  transition: background 0.2s;
 }
 
 @media (min-width: 500px) {
