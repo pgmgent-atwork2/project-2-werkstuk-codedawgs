@@ -2,7 +2,7 @@
     <img class="header__pfp" src="/assets/images/pfp<%= user.image_id %>.png">
     <nav class="header__nav">
         <a href="/">Home</a>
-        <% if (user.role ==='admin' ) {%>
+        <% if (user.role==='admin' ) {%>
             <a href="/admin">Admin</a>
             <%}%>
                 <form action="/logout" method="post">
@@ -12,7 +12,10 @@
     <a class="header__logo" href="/">
         <img src="/assets/svg/logo.svg">
     </a>
-    <img class="header__bell" src="/assets/svg/bell.svg">
+    <div class="header__notifications">
+        <img class="header__bell" src="/assets/svg/bell.svg">
+        <span class="header__notifs"></span>
+    </div>
 </header>
 
 <script defer src="/scripts/notifications.js"></script>
