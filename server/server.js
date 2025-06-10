@@ -61,6 +61,7 @@ app.get("/admin", jwtAuth, isAdmin, pageController.admin);
 // User management
 app.get("/admin/users", jwtAuth, isAdmin, pageController.userPage);
 app.post("/admin/users", jwtAuth, isAdmin, userController.postUser);
+app.post("/admin/users/:id", jwtAuth, isAdmin, userController.deleteUser);
 
 // Task management
 app.get("/admin/tasks", jwtAuth, isAdmin, pageController.taskPageAdmin);
