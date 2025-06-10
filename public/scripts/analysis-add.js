@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const error = val < min ? "low" : "high";
         errors.push({
           error,
-          measurement_def_id: index,
+          def_id: index,
         });
       } else {
         errors.push({
