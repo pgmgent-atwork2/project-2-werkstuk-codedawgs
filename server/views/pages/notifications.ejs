@@ -1,7 +1,15 @@
 <%- include("../partials/header.ejs") %>
 
 <div class="main">
-    test
-</div>
+ <h1>All Notifications (<%= notifications ? notifications.length : 0 %>)</h1>
+    <% if (notifications && notifications.length > 0) { %>
+        <ul>
+            <% notifications.forEach(n => { %>
+                <li><%= n.message %></li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No notifications.</p>
+    <% } %></div>
 
 <%- include("../partials/navigation.ejs") %>
