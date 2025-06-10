@@ -17,3 +17,14 @@ export const postUser = async (req, res) => {
     res.status(500).send("Error while trying to add a user.");
   }
 };
+
+export const deleteUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await knex("users").where("id", id).del();
+    res.redirect("/admin/users");
+  } catch (error) {
+    console.error("Delete user error:", error);
+    res.status(500).send("Failed to delete user");
+  }
+};
