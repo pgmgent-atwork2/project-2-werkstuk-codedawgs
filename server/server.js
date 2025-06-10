@@ -92,6 +92,9 @@ app.post('/admin/analysis/:id', jwtAuth, isAdmin, taskController.editMeasurement
 // Task Edit
 app.post('/admin/tasks/:id', jwtAuth, isAdmin, taskController.editTask);
 
+// Notification Routes
+app.get('/notifications', jwtAuth, notificationController.getNotifications);
+
 // Error handling
 app.use((error, req, res, next) => {
   console.error(error);
