@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  const URL = "http://localhost:3005";
-
-  async function fetchData(url, slug) {
+  async function fetchData(slug) {
     try {
-      const response = await fetch(`${url}/${slug}`);
+      const response = await fetch(`${slug}`);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
@@ -42,11 +40,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   //calc min and max
   const values = document.querySelectorAll(".value-input");
-  const postAnalysis = document.querySelector(".analysis__add");
-
 
   async function calcValues() {
-    const definitions = await fetchData(URL, "api/measurement-definitions");
+    const definitions = await fetchData("/api/measurement-definitions");
     const errors = [];
     values.forEach((value, index) => {
       const min = definitions[index].min_value;
@@ -61,16 +57,18 @@ document.addEventListener("DOMContentLoaded", async function () {
       } else {
         errors.push({
           error: "none",
-          def_id: index+1,
+          def_id: index + 1,
         });
       }
-    });    
+    });
     return errors;
   }
 
-  document.getElementById("analysisForm").addEventListener("submit", async function (event) {
-    event.preventDefault();
-    
+  document
+    .getElementById("analysisForm")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
+
       const formData = new FormData(event.target);
       const data = {};
 
@@ -87,9 +85,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!response1.ok) {
           throw new Error(`error: ${response1.status}`);
         }
-        
-        const result = await response1.json();                
-        
+
+        const result = await response1.json();
+
         const calculations = await calcValues();
         const promises = calculations.map(async (calc) => {
           if (calc.error !== "none") {
@@ -105,8 +103,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             return data;
           }
         });
-        
-
+        window.location.reload();
       } catch (error) {
         console.error("error:", error.message);
       }
