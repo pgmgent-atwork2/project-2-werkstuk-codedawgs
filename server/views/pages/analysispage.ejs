@@ -2,7 +2,7 @@
 
 <section class="main">
     <h1>Select sub department:</h1>
-    <select class="subDepartmentSelect">
+    <select>
         <option value="all">All</option>
         <% sub_departments.forEach(sub_department => { %>
             <option value=<%= sub_department.id %>>
@@ -14,7 +14,7 @@
     <button class="analysis__new">New analysis</button>
     <form class="analysis__form" id="analysisForm" action="/tasks/analysis" method="POST">
         <h2>Add water analysis</h2>
-        <select name="time" required>
+        <select class="timeSelect" name="time">
             <option value="1">Morning</option>
             <option value="2">Afternoon</option>
         </select>
@@ -27,7 +27,7 @@
             <% }); %>
         </select>
         <% measurement_definitions.forEach(measurement_definition => { %>
-            <div>
+            <div class="measurement__input">
                 <label>
                     <%= measurement_definition.name%>
                     (<%= measurement_definition.unit%>)
