@@ -19,6 +19,7 @@
                 <td class="task-logs__cell task-logs__cell--performed-by">
                     <%= users[task.user_id-1].first_name %>
                         <%= users[task.user_id-1].last_name %>
+                        <%= task.task_id %>
                 </td>
                 <td class="task-logs__cell task-logs__cell--task-name">
                     <%= tasks[task.task_id-1].title %>
@@ -28,9 +29,9 @@
                 </td>
                 <td class="task-logs__cell task-logs__cell--type-name">
                     <% if(tasks[task.task_id-1].object_type === "department") { %>
-                        <%= departments[tasks[task.task_id].object_id].title %>
+                        <%= departments[tasks[task.task_id-1].object_id-1].title %>
                     <% } else if(tasks[task.task_id-1].object_type === "sub_department") { %>
-                        <%= sub_departments[tasks[task.task_id].object_id].title %>
+                        <%= sub_departments[tasks[task.task_id-1].object_id-1].title %>
                     <% } else if(tasks[task.task_id-1].object_type === "pump") { %>
                         <%= pumps[tasks[task.task_id-1].object_id-1].title %>
                     <% } else if(tasks[task.task_id-1].object_type === "filter") { %>
