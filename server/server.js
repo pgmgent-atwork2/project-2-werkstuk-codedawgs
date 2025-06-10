@@ -8,6 +8,7 @@ import * as pageController from "./controllers/pageController.js";
 import * as authController from "./controllers/authController.js";
 import * as userController from "./controllers/userController.js";
 import * as taskController from "./controllers/taskController.js";
+import * as notificationController from "./controllers/notificationController.js";
 
 import * as API_TaskController from "./controllers/api/taskController.js";
 import * as API_FilterController from "./controllers/api/filterController.js";
@@ -69,6 +70,7 @@ app.get("/admin/tasks", jwtAuth, isAdmin, pageController.taskPageAdmin);
 
 // Water analysis
 app.get("/admin/analysis", jwtAuth, isAdmin, pageController.waterAnalysisPage);
+app.post("/analysis/notification", jwtAuth, isAdmin, notificationController.postNotification);
 
 // Task pages
 app.get('/daily/:departmentString', jwtAuth, pageController.taskPage);

@@ -13,6 +13,26 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
+    async function postData(url, slug) {
+    try {
+      const response = await fetch(`${url}/${slug}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          test: "test",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`error: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("error:", error.message);
+    }
+  }
+
   // open and close form
   const newButton = document.querySelector(".analysis__new");
   const closeButton = document.querySelector(".analysis__close");
@@ -56,7 +76,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         const val = parseFloat(value.value)        
         if(val < min || val > max) {
             const error = val<min ? "low" : "high";
-            console.log(`${val}is too ${error}`);              
+            console.log(`${val}is too ${error}`);   
+            postData(URL, "analysis/notification")           
         }
     });
   }
