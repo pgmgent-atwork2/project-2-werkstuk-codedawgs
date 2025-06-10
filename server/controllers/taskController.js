@@ -117,10 +117,9 @@ export const editMeasurement = async (req, res) => {
 };
 
 export const postAnalysis = async (req, res) => {
-  const date = Date.now();
-    
+  const date = Date.now(); 
   try {
-    await knex("measurement_logs").insert({
+    const [id] = await knex("measurement_logs").insert({
       user_id: req.user.id-1,
       sub_department_id: req.body.sub_department,
       measured_date: date,
@@ -138,9 +137,10 @@ export const postAnalysis = async (req, res) => {
         tot_col: req.body[9],
         e_coli: req.body[10],
       }),
-    });
+    }, ["id"]);
 
-    res.redirect(req.get("referer"));
+    res.json({ id })
+    // res.redirect(req.get("referer"));
   } catch (error) {
     console.error(error);
     res.status(500).send("Post task failed");

@@ -2,6 +2,7 @@ import knex from "../lib/Knex.js";
 import { Model } from "objection";
 import User from "./User.js";
 import SubDepartment from "./SubDepartment.js";
+import Notification from "./Notification.js";
 
 Model.knex(knex);
 
@@ -45,6 +46,14 @@ class MeasurementLog extends Model {
         join: {
           from: "measurement_logs.sub_department_id",
           to: "sub_departments.id",
+        },
+      },
+      notifications: {
+        relation: Model.HasManyRelation,
+        modelClass: Notification,
+        join: {
+          from: "measurement_logs.id",
+          to: "notifications.measurement_log_id",
         },
       },
     };
