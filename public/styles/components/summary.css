@@ -12,6 +12,9 @@ details {
   details::details-content {
     border-left: 5px solid #bdd28c;
   }
+  .summary__link {
+    background-color: #bdd28c;
+  }
 }
 
 details:nth-child(2) {
@@ -19,6 +22,9 @@ details:nth-child(2) {
 
   details::details-content {
     border-left: 5px solid #7792c3;
+  }
+  .summary__link {
+    background-color: #7792c3;
   }
 }
 
@@ -28,6 +34,9 @@ details:nth-child(3) {
   details::details-content {
     border-left: 5px solid #d9a1a2;
   }
+  .summary__link {
+    background-color: #d9a1a2;
+  }
 }
 
 details:only-child {
@@ -35,6 +44,9 @@ details:only-child {
 
   details::details-content {
     border-left: 5px solid #d9d38e;
+  }
+  .summary__link {
+    background-color: none;
   }
 }
 
@@ -111,7 +123,6 @@ details.is-open summary .chevron {
 
   top: 0;
   height: 100%;
-  background-color: #7792c3;
   white-space: nowrap;
 }
 
@@ -120,9 +131,10 @@ details .summary__ul {
   transform: translateY(-10px);
   pointer-events: none;
   transition:
-    opacity 0.3s,
-    transform 0.3s;
+  opacity 0.3s,
+  transform 0.3s;
 }
+
 
 details.is-open .summary__ul {
   opacity: 1;
@@ -132,4 +144,14 @@ details.is-open .summary__ul {
 
 .general-tasks {
   border-top: 2px solid var(--bg-200);
+}
+
+.summary__task-complete {
+  color: var(--text-200);
+  font-size: 1.2rem;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.5rem;
 }
