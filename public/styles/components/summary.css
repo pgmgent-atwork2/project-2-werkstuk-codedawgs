@@ -76,16 +76,17 @@ details.is-open summary .chevron {
 }
 
 .summary__ul {
-  background-color: #e7e7e7;
+  background-color: #ebebeb;
   padding-left: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
+  border-radius: 0 0 5px 5px;
 }
 
 .summary__li {
-  background-color: #d9d9d9;
+  background-color: var(--bg-200);
   border-radius: 0.7rem;
   position: relative;
   padding: 0;

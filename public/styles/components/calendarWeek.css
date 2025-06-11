@@ -4,10 +4,36 @@
     margin-top: 2rem;
   }
 }
-
+.fc-button-group {
+  gap: 0.25rem;
+}
 .fc .fc-daygrid-day.fc-day-today {
   background-color: #88c3ed70 !important;
 }
+
+.fc .fc-button-primary {
+  background-color: var(--accent-200);
+  border: none;
+  text-transform: capitalize;
+  &:hover {
+    background-color: var(--accent-100);
+  }
+  &:active {
+    background-color: var(--accent-100) !important;
+  }
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.fc-popover-body {
+  background-color: var(--bg-200) !important;
+}
+
+.fc .fc-button-primary:disabled {
+  background-color: var(--accent-300);
+}
+
 .calendar-page {
   #calendarWeek {
     height: 62rem;
