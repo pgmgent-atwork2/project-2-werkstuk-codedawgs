@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     details.addEventListener("toggle", function () {
       if (details.open) {
         document.querySelectorAll("details").forEach((element) => {
-          if (element !== details && d.open) {
+          if (element !== details && element.open) {
             element.open = false;
             element.classList.remove("is-open");
           }
