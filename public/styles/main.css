@@ -79,6 +79,9 @@ ol {
 .main {
   padding-top: 5rem;
   padding-bottom: 7rem;
+  @media (width < 700px) {
+    padding-bottom: 12rem;
+  }
 }
 
 body,
