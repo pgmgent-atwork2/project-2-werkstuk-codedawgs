@@ -31,8 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const users = await fetchData("users");
 
     taskLogs.forEach((task) => {
-      console.log(users[task.user_id - 1]);
-
       const date = new Date(task.task_date);
       const startDate = new Date(date.getTime());
       startDate.setMinutes(startDate.getMinutes() - 1);

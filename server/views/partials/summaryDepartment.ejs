@@ -1,0 +1,37 @@
+<% const filteredTasks = []; %>
+<% tasks.forEach(task => { %>
+    <% if(task.interval !== "none") { %>
+        <% if(task.interval === interval) { %>
+            <% if(task.object_type === 'department') { %>
+                <% if(task.object_id === department.id) { %>
+                    <% filteredTasks.push(task) %>
+                <% } %>
+            <% } else if(task.object_type === 'sub_department') { %>
+                <% if(sub_departments[task.object_id-1].department_id === department.id) { %>
+                    <% filteredTasks.push(task) %>
+                <% } %>
+            <% } else if(task.object_type === 'pump') { %>
+                <% if(sub_departments[pumps[task.object_id-1].sub_department_id-1].department_id === department.id) { %>
+                    <% filteredTasks.push(task) %>
+                <% } %>
+            <% } else if(task.object_type === 'filter') { %>
+                <% if(sub_departments[filters[task.object_id-1].sub_department_id-1].department_id === department.id) { %>
+                    <% filteredTasks.push(task) %>
+                <% } %>
+            <% } %>
+        <% } %>
+    <% } %>
+<% }); %>
+
+<% const totalTasks = filteredTasks.length %>
+
+<% const completedTasks = filteredTasks.filter((task) => task.completed === 1) %>
+<% const totalCompletedTasks = completedTasks.length %>
+<% const percentage = totalTasks === 0 ? 0 : Math.floor((totalCompletedTasks / totalTasks) * 100);  %>
+
+<li class="summary__li">
+    <p class="summary__task-complete"><%= totalCompletedTasks %> / <%= totalTasks %> </p>
+    <a style='width: <%= percentage %>%' class="summary__link" href='<%= interval %>/<%= url %>'>
+        <%= department.title %>
+    </a>
+</li>
