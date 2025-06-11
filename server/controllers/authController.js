@@ -16,11 +16,11 @@ export const login = async (req, res) => {
   const flash = req.flash || {};
 
   res.render("pages/login", {
+    title: "Login",
     layout: "layouts/authentication",
     users,
     input,
     flash,
-    title: "Login",
   });
 };
 
@@ -93,10 +93,10 @@ export const registerFirstStep = async (req, res) => {
   const flash = req.flash || {};
 
   res.render("pages/register-first-step", {
+    title: "Enter Token | Register",
     layout: "layouts/authentication",
     input,
     flash,
-    title: "Enter Token",
   });
 };
 
@@ -165,11 +165,11 @@ export const registerSecondStep = async (req, res) => {
   const flash = req.flash || {};
 
   res.render("pages/register-second-step", {
+    title: "Register",
     layout: "layouts/authentication",
     inputs,
     imageInput,
     flash,
-    title: "Register",
   });
 };
 

@@ -41,6 +41,7 @@ export const userPage = async (req, res) => {
   try {
     const users = await knex("users").select("*");
     res.render("pages/users", {
+      title: "Users | Admin",
       users,
       user: req.user,
     });
@@ -62,6 +63,7 @@ export const taskPageAdmin = async (req, res) => {
     const pumps = await knex("pumps").select("*");
 
     res.render("pages/admin-tasks", {
+      title: "Tasks",
       user: req.user,
       tasks,
       intervalString,
@@ -88,6 +90,7 @@ export const taskPage = async (req, res) => {
     const pumps = await knex("pumps").select("*");
 
     res.render("pages/taskpage", {
+      title: "Tasks",
       user: req.user,
       tasks,
       intervalString,
@@ -113,6 +116,7 @@ export const generalTaskPage = async (req, res) => {
 
   try {
     res.render("pages/general-taskpage", {
+      title: "General Tasks",
       user: req.user,
       taskName,
       tasks,
@@ -137,6 +141,7 @@ export const analysisPage = async (req, res) => {
   try {
     
     res.render("pages/analysispage", { 
+      title: "Water Analysis",
       user: req.user,
       departments,
       sub_departments,
@@ -160,6 +165,7 @@ export const waterAnalysisPage = async (req, res) => {
 
   try {
     res.render("pages/analysis", {
+      title: "Analysis",
       user: req.user,
       departments,
       sub_departments,

@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     back.style.display = "none";
     register.style.display = "block";
     pinAmount = 0;
+    document.querySelector(".login__error-msg").innerHTML = "";
     pincodeDisplay.forEach((display) => {
       display.classList.remove("pincode-display__circle--filled");
     });
