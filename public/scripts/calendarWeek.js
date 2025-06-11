@@ -44,4 +44,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     generateCalenderWeek();
   }
+
+  function generateCalenderWeek() {
+    const calendarEl = document.getElementById("calendarWeek");
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      timeZone: "local",
+      initialView: "timeGridWeek",
+      firstDay: 1,
+      slotMinTime: "06:00:00",
+      slotMaxTime: "22:00:00",
+      slotLabelFormat: {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      },
+      events: events,
+    });
+    calendar.render();
+  }
 });
