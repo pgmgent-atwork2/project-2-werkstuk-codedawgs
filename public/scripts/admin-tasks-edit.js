@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.edit-task-btn').forEach(function (editBtn) {
+  document.querySelectorAll('.admin-tasks__edit-btn').forEach(function (editBtn) {
     editBtn.addEventListener('click', function () {
       const form = editBtn.closest('form');
-      const saveBtn = form.querySelector('.save-task-btn');
+      const saveBtn = form.querySelector('.admin-tasks__save-btn');
       const row = editBtn.closest('tr');
       const inputs = row.querySelectorAll('input[form="' + form.id + '"], select[form="' + form.id + '"]');
       inputs.forEach(function (input) {
