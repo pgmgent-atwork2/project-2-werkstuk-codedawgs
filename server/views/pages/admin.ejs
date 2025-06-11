@@ -11,6 +11,7 @@
                 </div>
                 <div class="admin__sidebar-filter">
                     <form id="logFilterForm" method="GET" action="/admin">
+                        <button type="button" onclick="window.location.href='/admin'">Clear filter</button>
                         <select name="startMonth" required>
                         <% for(let m=1; m<=12; m++) { %>
                             <option value="<%= m %>"><%= m %></option>
