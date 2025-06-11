@@ -16,7 +16,8 @@
                 <% if(user.role ==="aqua" ) { %>
                     <% const url=departments[3].title.replace(/\s/g, '' ).toLowerCase(); %>
                         <ul class="summary__ul">
-                            <li class="summary__li"><a class="summary__link" href='<%= interval %>/<%= url %>'>
+                            <li class="summary__li">
+                                <a style="width: 81%;" class="summary__link" href='<%= interval %>/<%= url %>'>
                                     <%= departments[3].title %>
                                 </a></li>
                         </ul>
@@ -24,11 +25,7 @@
                             <ul class="summary__ul">
                                 <% departments.forEach(department=> { %>
                                     <% const url=department.title.replace(/\s/g, '' ).toLowerCase(); %>
-                                        <li class="summary__li">
-                                            <a class="summary__link" href='<%= interval %>/<%= url %>'>
-                                                <%= department.title %>
-                                            </a>
-                                        </li>
+                                        <%- include('./summaryDepartment', {interval: interval, url: url, department: department, tasks: tasks }) %>
                                         <% }); }%>
                             </ul>
 

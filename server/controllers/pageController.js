@@ -4,6 +4,7 @@ import { DateTime } from "luxon";
 export const home = async (req, res) => {
   const departments = await knex("departments").select("*");
   const tasks = await knex("tasks").select("*");
+  const taskLogs = await knex("task_logs").select("*");
   const countObj = await knex("notifications").count("id as count").first();
   const notificationCount = Number(countObj.count) || 0;
 
@@ -12,6 +13,7 @@ export const home = async (req, res) => {
     user: req.user,
     departments: departments,
     tasks,
+    taskLogs,
     notificationCount
   });
 };

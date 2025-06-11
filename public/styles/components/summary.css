@@ -90,6 +90,7 @@ details.is-open summary .chevron {
   border-radius: 0.7rem;
   position: relative;
   padding: 0;
+  z-index: 4;
 }
 
 .summary span {
@@ -98,6 +99,7 @@ details.is-open summary .chevron {
 }
 
 .summary__link {
+  z-index: 5;
   display: block;
   width: 100%;
   height: 100%;
@@ -106,6 +108,11 @@ details.is-open summary .chevron {
   background-color: inherit;
   color: inherit;
   text-decoration: none;
+
+  top: 0;
+  height: 100%;
+  background-color: #7792c3;
+  white-space: nowrap;
 }
 
 details .summary__ul {
