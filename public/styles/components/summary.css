@@ -46,7 +46,7 @@ details:only-child {
     border-left: 5px solid #d9d38e;
   }
   .summary__link {
-    background-color: none;
+    background-color: transparent;
   }
 }
 
