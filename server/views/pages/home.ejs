@@ -3,10 +3,14 @@
 <div class="main homepage">
     <%- include("../partials/notificationsMessage.ejs") %>
 
-    <%- include('../partials/intervalSelect.ejs') %>
-    <%- include('../partials/generalTasksSelect.ejs') %>
+    <section class="homepage__content">
+        <div>
+            <%- include('../partials/intervalSelect.ejs') %>
+            <%- include('../partials/generalTasksSelect.ejs') %>
+        </div>
+        <%- include('../partials/calendarWeek.ejs')%> 
+    </section>
 
-    <%- include('../partials/calendarWeek.ejs')%> 
 
     <%- include('../partials/navigation.ejs')%> 
 </div>

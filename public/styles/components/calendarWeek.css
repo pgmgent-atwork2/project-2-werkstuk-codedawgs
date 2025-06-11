@@ -1,0 +1,17 @@
+#calendarWeek {
+  display: none;
+}
+
+@media (width > 800px) {
+  #calendarWeek {
+    display: block;
+    width: 50%;
+
+    .fc-toolbar-title {
+        font-size: 1.2rem;
+    }
+    .fc-col-header-cell-cushion {
+        font-size: 1rem !important;
+    }
+  }
+}

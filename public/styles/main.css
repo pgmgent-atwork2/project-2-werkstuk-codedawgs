@@ -21,6 +21,7 @@
 @import url("./components/summary.css");
 @import url("./components/tasklogs.css");
 @import url("./components/calendarBackwash.css");
+@import url("./components/calendarWeek.css");
 
 :root {
   --primary-100: #273787;
@@ -91,7 +92,7 @@ body::-webkit-scrollbar,
   display: none;
 }
 
-@media (width > 700px) {
+@media (width > 800px) {
   .main {
     padding-bottom: 0;
   }

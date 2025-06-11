@@ -1,0 +1,13 @@
+.homepage__content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (width > 800px) {
+  .homepage__content {
+    flex-direction: row;
+    justify-content: center;
+    gap: 6rem;
+    margin: 0 auto;
+  }
+}
