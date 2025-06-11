@@ -9,9 +9,39 @@
                     <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/tasks'">Tasks</button>
                     <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/analysis'">Analysis</button>
                 </div>
+                <div class="admin__sidebar-filter">
+                    <form id="logFilterForm" method="GET" action="/admin">
+                        <button type="button" onclick="window.location.href='/admin'">Clear filter</button>
+                        <select name="startMonth" required>
+                        <% for(let m=1; m<=12; m++) { %>
+                            <option value="<%= m %>"><%= m %></option>
+                        <% } %>
+                        </select>
+                        <select name="startYear" required>
+                            <% const currentYear = new Date().getFullYear(); %>
+                            <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
+                                <option value="<%= y %>"><%= y %></option>
+                            <% } %>
+                        </select>
+                        <select name="endMonth" required>
+                            <% for(let m=1; m<=12; m++) { %>
+                            <option value="<%= m %>"><%= m %></option>
+                            <% } %>
+                        </select>
+                        <select name="endYear" required>
+                            <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
+                            <option value="<%= y %>"><%= y %></option>
+                            <% } %>
+                        </select>
+                        <button type="submit">Filter</button>
+                        <span id="dateRangeError"></span>
+                    </form>
+</div>
             </aside>
             <%- include('../partials/task-logs.ejs')%>
         </section>
 
         <%- include('../partials/navigation.ejs')%>
     </div>
+
+<script defer src="/scripts/validate-date-range.js"></script>

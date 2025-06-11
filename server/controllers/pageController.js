@@ -17,7 +17,22 @@ export const home = async (req, res) => {
 };
 
 export const admin = async (req, res) => {
-  const taskLogs = await knex("task_logs").select("*");
+  const { startMonth, startYear, endMonth, endYear } = req.query;
+  let taskLogsQuery = knex("task_logs").select("*");
+
+  if (startMonth && startYear && endMonth && endYear) {
+    const startDate = new Date(`${startYear}-${startMonth.padStart(2, '0')}-01T00:00:00Z`);
+    const endDate = new Date(`${endYear}-${endMonth.padStart(2, '0')}-01T00:00:00Z`);
+
+    endDate.setMonth(endDate.getMonth() + 1);
+    endDate.setDate(0);
+    endDate.setHours(23, 59, 59, 999);
+
+    taskLogsQuery = taskLogsQuery
+      .whereBetween("task_date", [startDate.getTime(), endDate.getTime()]);
+  }
+
+  const taskLogs = await taskLogsQuery;
   const tasks = await knex("tasks").select("*");
   const users = await knex("users").select("*");
   const departments = await knex("departments").select("*");
