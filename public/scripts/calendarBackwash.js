@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  const URL = `http://localhost:3005`;
   let events = [];
   let resources = [];
 
@@ -9,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   let generalTaskLogs = [];
 
   async function generateSelect() {
-    const departments = await fetchData(URL, "departments");
+    const departments = await fetchData("departments");
     departments.forEach((department) => {
       backwashSelect.innerHTML += `
       <option value=${department.id}>
@@ -33,9 +32,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   generateSelect();
   generateTableWeek();
 
-  async function fetchData(url, slug) {
+  async function fetchData(slug) {
     try {
-      const response = await fetch(`${url}/api/${slug}`);
+      const response = await fetch(`/api/${slug}`);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }      
@@ -45,9 +44,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-  async function postData(url, id, completed) {
+  async function postData(id, completed) {
     try {
-      const response = await fetch(`${url}/tasks/${id}/completed`, {
+      const response = await fetch(`/tasks/${id}/completed`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,11 +67,11 @@ document.addEventListener("DOMContentLoaded", async function () {
   async function generateEvents() {
     events = [];
 
-    const tasks = await fetchData(URL, "tasks");
-    const filters = await fetchData(URL, "filters");
-    const taskLogs = await fetchData(URL, "tasklogs");
-    const subDepartments = await fetchData(URL, "subdepartments");
-    const departments = await fetchData(URL, "departments");
+    const tasks = await fetchData("tasks");
+    const filters = await fetchData("filters");
+    const taskLogs = await fetchData("tasklogs");
+    const subDepartments = await fetchData("subdepartments");
+    const departments = await fetchData("departments");
 
     const generalTasks = tasks.filter((task) => task.title === "Backwash");
     const generalTaskIds = new Set(generalTasks.map((task) => task.id));
@@ -117,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   async function generateResources() {
     resources = [];
-    const filters = await fetchData(URL, "filters");
+    const filters = await fetchData("filters");
     filters.forEach((filter) => {
       resources.push({
         id: filter.title.toLowerCase(),
@@ -243,7 +242,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           checkbox.addEventListener("change", function () {
             const id = String(event.id).split("-")[0];
-            postData(URL, id, checkbox.checked);            
+            postData(id, checkbox.checked);            
           });
 
           cell.appendChild(checkbox);
