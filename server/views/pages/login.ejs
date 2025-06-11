@@ -8,8 +8,8 @@
             <% users.forEach(user => { %>
                 <% if(user.pincode) {%>
                     <div class="login__user">
-                        <input type="radio" name="first_name" id="<%= user.first_name %>" value="<%= user.first_name %>">
-                        <label for="<%= user.first_name %>" class="login__label">
+                        <input type="radio" name="first_name" id="<%= user.id %>" value="<%= user.first_name %>">
+                        <label for="<%= user.id %>" class="login__label">
                             <img class="login__profile-picture" src='../assets/images/pfp<%= user.image_id %>.png'>
                             <span class="login__name"><%= user.first_name %> <%= user.last_name.charAt(0)%>.</span>
                         </label>

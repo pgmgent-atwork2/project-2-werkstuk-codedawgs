@@ -2,7 +2,6 @@
     <table class="analysis-table">
         <thead class="analysis-table__head">
             <tr class="analysis-table__row">
-                <th class="analysis-table__header">ID</th>
                 <th class="analysis-table__header">Name</th>
                 <th class="analysis-table__header">Unit</th>
                 <th class="analysis-table__header">Min Value</th>
@@ -13,9 +12,6 @@
         <tbody class="analysis-table__body">
             <% measurements.forEach(measurement=> { %>
                 <tr class="analysis-table__row">
-                    <td class="analysis-table__cell">
-                        <%= measurement.id %>
-                    </td>
                     <td class="analysis-table__cell">
                         <%= measurement.name %>
                     </td>

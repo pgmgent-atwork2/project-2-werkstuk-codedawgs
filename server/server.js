@@ -105,7 +105,7 @@ app.use((error, req, res, next) => {
 
 // 404
 app.use((req, res) => {
-  res.render("errors/404")
+  res.render("errors/404", {title: 404,})
 });
 
 app.listen(PORT, () => {

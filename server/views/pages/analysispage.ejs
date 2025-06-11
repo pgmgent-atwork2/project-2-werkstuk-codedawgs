@@ -61,6 +61,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
                 <tr>
                     <th>Date</th>
@@ -118,12 +119,13 @@
                     <th>Comment</th>
                 </tr>
                 <tr>
-                    <td></td>
+                    <th></th>
                     <% for(let i = 0; i < allowedArr.length; i++) { %>
                         <th><%= measurement_definitions[allowedArr[i]-1].unit%></th>
                     <% } %>
-                    <td></td>
-                    <td></td>
+                    <th></th>
+                    <th></th>
+                    
                 </tr>
 
                 <% measurement_logs.forEach(measurement_log => { %>

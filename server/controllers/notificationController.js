@@ -34,6 +34,7 @@ export const getAllNotifications = async (req, res) => {
     const notifications = await knex("notifications").select("*").orderBy("id", "desc");
     const measurementDef = await knex("measurement_definitions").select("*");
     res.render("pages/notifications", {
+      title: "Notifications",
       user: req.user,
       notifications,
       measurementDef

@@ -35,22 +35,3 @@
             </details>
             <% }); %>
     </section>
-    <script>
-        document.querySelectorAll('details').forEach(details => {
-            details.addEventListener('toggle', function (e) {
-                if (details.open) {
-                    const openDetails = Array.from(document.querySelectorAll('details')).find(d => d !== details && d.open);
-                    if (openDetails) {
-                        openDetails.removeAttribute('open');
-                        openDetails.classList.remove('is-open');
-                        details.removeAttribute('open');
-                        details.classList.remove('is-open');
-                        return;
-                    }
-                    details.classList.add('is-open');
-                } else {
-                    details.classList.remove('is-open');
-                }
-            });
-        });
-    </script>
