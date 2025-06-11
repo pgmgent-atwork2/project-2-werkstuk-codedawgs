@@ -1,17 +1,34 @@
-#calendarWeek {
-  display: none;
+.homepage__content {
+  #calendarWeek {
+    display: none;
+  }
 }
 
-@media (width > 800px) {
+.calendar-page {
   #calendarWeek {
-    display: block;
-    width: 50%;
+    height: 62rem;
+  }
+}
+@media (width > 800px) {
+  .homepage__content {
+    #calendarWeek {
+      display: block;
+      width: 50%;
 
-    .fc-toolbar-title {
+      .fc-toolbar-title {
         font-size: 1.2rem;
-    }
-    .fc-col-header-cell-cushion {
+      }
+      .fc-col-header-cell-cushion {
         font-size: 1rem !important;
+      }
+    }
+  }
+
+  .calendar-page {
+    display: flex;
+    justify-content: center;
+    #calendarWeek {
+      width: 80%;
     }
   }
 }
