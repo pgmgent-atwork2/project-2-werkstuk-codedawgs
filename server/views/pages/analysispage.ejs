@@ -1,8 +1,8 @@
 <%- include('../partials/header.ejs')%>
 
-<section class="main">
-    <h1>Select sub department:</h1>
-    <select>
+<section class="main analysis-page">
+    <h1 class="analysis-page__title">Select sub department:</h1>
+    <select class="analysis-page__subdepartment-select">
         <option value="all">All</option>
         <% sub_departments.forEach(sub_department => { %>
             <option value=<%= sub_department.id %>>
@@ -11,14 +11,14 @@
             </option>
         <% }); %>
     </select>
-    <button class="analysis__new">New analysis</button>
-    <form class="analysis__form" id="analysisForm" action="/tasks/analysis" method="POST">
-        <h2>Add water analysis</h2>
-        <select class="timeSelect" name="time">
+    <button class="analysis__new analysis-page__new-btn button">New analysis</button>
+    <form class="analysis__form analysis-page__form" id="analysisForm" action="/tasks/analysis" method="POST">
+        <h2 class="analysis-page__form-title">Add water analysis</h2>
+        <select class="timeSelect analysis-page__time-select" name="time">
             <option value="1">Morning</option>
             <option value="2">Afternoon</option>
         </select>
-        <select class="subDepartmentSelect" name="sub_department">
+        <select class="subDepartmentSelect analysis-page__subdepartment-select" name="sub_department">
             <% sub_departments.forEach(sub_department => { %>
                 <option value=<%= sub_department.id %>>
                     <%= departments[sub_department.department_id-1].title %> |
@@ -27,122 +27,127 @@
             <% }); %>
         </select>
         <% measurement_definitions.forEach(measurement_definition => { %>
-            <div class="measurement__input">
-                <label>
+            <div class="measurement__input analysis-page__measurement-input">
+                <label class="analysis-page__measurement-label">
                     <%= measurement_definition.name%>
                     (<%= measurement_definition.unit%>)
                 </label>
                 <input 
-                    class="value-input"
+                    class="value-input analysis-page__value-input"
                     <%= [2, 4, 5, 6].includes(measurement_definition.id) ? "required" : "" %>
                     name="<%= measurement_definition.id %>" 
                     id="<%= measurement_definition.id %>" 
                     type="number" step="0.01">
             </div>
         <% }); %>
-        <div>
-            <label>Comment</label>
-            <input name="comment" placeholder="Optional comment">
+        <div class="analysis-page__comment">
+            <label class="analysis-page__comment-label">Comment</label>
+            <input class="analysis-page__comment-input" name="comment" placeholder="Optional comment">
         </div>
-        <button type="button" class="analysis__close">Cancel</button>
-        <button type="submit" class="analysis__add">Add analysis</button>
+        <button type="button" class="analysis__close analysis-page__close-btn">Cancel</button>
+        <button type="submit" class="analysis__add analysis-page__add-btn">Add analysis</button>
     </form>
 
-    <table border="1px">
-        <tr>
-            <th></th>
-            <th></th>
-            <th colspan="2">Depolox</th>
-            <th colspan="3">Manual</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th>Date</th>
-            <% measurement_definitions.forEach(measurement_definition => { %>
-                <th><%= measurement_definition.short%></th>
-            <% }); %>
-            <th>User</th>
-            <th>Comment</th>
-        </tr>
-        <tr>
-            <td></td>
-            <% measurement_definitions.forEach(measurement_definition => { %>
-                <td><%= measurement_definition.unit%></td>
-            <% }); %>
-            <td></td>
-            <td></td>
-        </tr>
-
-        <% measurement_logs.forEach(measurement_log => { %>
-            <% if(measurement_log.time === 1) { %>
-                <% const measurements = JSON.parse(measurement_log.measurements) %>
-                <% const date = new Date(measurement_log.measured_date) %>
-                <% const options={ hour12: false, year: 'numeric' , month: '2-digit' , day: '2-digit' };%>
-
-                <tr class="row" data-sub-department-id="<%= measurement_log.sub_department_id  %>">
-                    <td><%= date.toLocaleString('en-GB', options) %>
-                    </td>
-                    <% for (const measurement in measurements) { %>
-                        <td><%= measurements[measurement] %></td>
-                    <% } %>
-                    <td><%= users[measurement_log.user_id].first_name %></td>
-                    <td><%= measurement_log.comment %></td>
+    <div class="analysis-page__tables">
+        <div class="analysis-page__table-container">
+            <table class="analysis-page__table" border="1px">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2">Depolox</th>
+                    <th colspan="3">Manual</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
-            <% } %>
-        <% }); %>
-    </table>
-
-    <table border="1px">
-        <tr>
-            <th></th>
-            <th >Depolox</th>
-            <th colspan="3">Manual</th>
-            <th></th>
-            <th></th>
-        </tr>
-        <% const allowedArr = [2, 4, 5, 6] %>
-        <tr>
-            <th>Date</th>
-            <% for(let i = 0; i < allowedArr.length; i++) { %>
-                <th><%= measurement_definitions[allowedArr[i]-1].short%></th>
-            <% } %>
-            <th>User</th>
-            <th>Comment</th>
-        </tr>
-        <tr>
-            <td></td>
-            <% for(let i = 0; i < allowedArr.length; i++) { %>
-                <th><%= measurement_definitions[allowedArr[i]-1].unit%></th>
-            <% } %>
-            <td></td>
-            <td></td>
-        </tr>
-
-        <% measurement_logs.forEach(measurement_log => { %>
-            <% if(measurement_log.time === 2) { %>
-                <% const measurements = JSON.parse(measurement_log.measurements) %>
-                <% const date = new Date(measurement_log.measured_date) %>
-                <% const options={ hour12: false, year: 'numeric' , month: '2-digit' , day: '2-digit' };%>
-
-                <tr class="row" data-sub-department-id="<%= measurement_log.sub_department_id  %>">
-                    <td><%= date.toLocaleString('en-GB', options) %>
-                    </td>
-                    <% for (const measurement in measurements) { %>
-                        <% if(measurements[measurement]) { %>
-                            <td><%= measurements[measurement] %></td>
-                        <% } %>
-                    <% } %>
-                    <td><%= users[measurement_log.user_id].first_name %></td>
-                    <td><%= measurement_log.comment %></td>
+                <tr>
+                    <th>Date</th>
+                    <% measurement_definitions.forEach(measurement_definition => { %>
+                        <th><%= measurement_definition.short%></th>
+                    <% }); %>
+                    <th>User</th>
+                    <th>Comment</th>
                 </tr>
-            <% } %>
-        <% }); %>
-    </table>
+                <tr>
+                    <td></td>
+                    <% measurement_definitions.forEach(measurement_definition => { %>
+                        <td><%= measurement_definition.unit%></td>
+                    <% }); %>
+                    <td></td>
+                    <td></td>
+                </tr>
 
+                <% measurement_logs.forEach(measurement_log => { %>
+                    <% if(measurement_log.time === 1) { %>
+                        <% const measurements = JSON.parse(measurement_log.measurements) %>
+                        <% const date = new Date(measurement_log.measured_date) %>
+                        <% const options={ hour12: false, year: 'numeric' , month: '2-digit' , day: '2-digit' };%>
+
+                        <tr class="row analysis-page__row" data-sub-department-id="<%= measurement_log.sub_department_id  %>">
+                            <td><%= date.toLocaleString('en-GB', options) %>
+                            </td>
+                            <% for (const measurement in measurements) { %>
+                                <td><%= measurements[measurement] %></td>
+                            <% } %>
+                            <td><%= users[measurement_log.user_id].first_name %></td>
+                            <td><%= measurement_log.comment %></td>
+                        </tr>
+                    <% } %>
+                <% }); %>
+            </table>
+        </div>
+
+        <div class="analysis-page__table-container">
+            <table class="analysis-page__table" border="1px">
+                <tr>
+                    <th></th>
+                    <th >Depolox</th>
+                    <th colspan="3">Manual</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <% const allowedArr = [2, 4, 5, 6] %>
+                <tr>
+                    <th>Date</th>
+                    <% for(let i = 0; i < allowedArr.length; i++) { %>
+                        <th><%= measurement_definitions[allowedArr[i]-1].short%></th>
+                    <% } %>
+                    <th>User</th>
+                    <th>Comment</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <% for(let i = 0; i < allowedArr.length; i++) { %>
+                        <th><%= measurement_definitions[allowedArr[i]-1].unit%></th>
+                    <% } %>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <% measurement_logs.forEach(measurement_log => { %>
+                    <% if(measurement_log.time === 2) { %>
+                        <% const measurements = JSON.parse(measurement_log.measurements) %>
+                        <% const date = new Date(measurement_log.measured_date) %>
+                        <% const options={ hour12: false, year: 'numeric' , month: '2-digit' , day: '2-digit' };%>
+
+                        <tr class="row analysis-page__row" data-sub-department-id="<%= measurement_log.sub_department_id  %>">
+                            <td><%= date.toLocaleString('en-GB', options) %>
+                            </td>
+                            <% for (const measurement in measurements) { %>
+                                <% if(measurements[measurement]) { %>
+                                    <td><%= measurements[measurement] %></td>
+                                <% } %>
+                            <% } %>
+                            <td><%= users[measurement_log.user_id].first_name %></td>
+                            <td><%= measurement_log.comment %></td>
+                        </tr>
+                    <% } %>
+                <% }); %>
+            </table>
+        </div>
+    </div>
 </section>
 <script src="/scripts/measurementsLog.js"></script>
 <script src="/scripts/analysis-add.js"></script>
