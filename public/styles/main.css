@@ -90,9 +90,9 @@ body,
   -ms-overflow-style: none;
 }
 
-body::-webkit-scrollbar,
-*::-webkit-scrollbar {
-  display: none;
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 @media (width > 800px) {
