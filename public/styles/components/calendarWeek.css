@@ -1,6 +1,7 @@
 .homepage__content {
   #calendarWeek {
     display: none;
+    margin-top: 2rem;
   }
 }
 
@@ -20,6 +21,7 @@
 
       .fc-toolbar-title {
         font-size: 1.2rem;
+        font-weight: 400;
       }
       .fc-col-header-cell-cushion {
         font-size: 1rem !important;

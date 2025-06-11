@@ -1,6 +1,6 @@
 details {
   border-left: 5px solid #bdd28c;
-  background-color: #d9d9d9;
+  background-color: var(--bg-200);
   margin: 0;
   width: 20rem;
   padding: 1.5rem 0 0 0;
