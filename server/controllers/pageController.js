@@ -1,4 +1,5 @@
 import knex from "../lib/Knex.js";
+import { DateTime } from "luxon";
 
 export const home = async (req, res) => {
   const departments = await knex("departments").select("*");
@@ -82,17 +83,56 @@ export const taskPageAdmin = async (req, res) => {
 export const taskPage = async (req, res) => {
   const { departmentString } = req.params;
   const intervalString = req.path.split("/")[1];
+
+  const now = DateTime.now().setZone("Europe/Brussels");
+  let periodStart, periodEnd;
+
+  if (intervalString === "daily") {
+    periodStart = now.startOf("day");
+    periodEnd = now.endOf("day");
+  } else if (intervalString === "weekly") {
+    periodStart = now.startOf("week");
+    periodEnd = now.endOf("week");
+  } else if (intervalString === "monthly") {
+    periodStart = now.startOf("month");
+    periodEnd = now.endOf("month");
+  } else {
+    periodStart = now.startOf("day");
+    periodEnd = now.endOf("day");
+  }
+
   try {
-    const tasks = await knex("tasks").select("*");
+    const tasks = await knex("tasks").select("*").where("interval", intervalString);
     const departments = await knex("departments").select("*");
     const sub_departments = await knex("sub_departments").select("*");
     const filters = await knex("filters").select("*");
     const pumps = await knex("pumps").select("*");
 
+    const logs = await knex("task_logs")
+      .whereIn("task_id", tasks.map(t => t.id))
+      .andWhere("user_id", req.user.id)
+      .andWhereBetween("task_date", [
+        periodStart.toMillis(),
+        periodEnd.toMillis()
+      ])
+      .orderBy("task_date", "desc");
+
+    const latestLogMap = {};
+    logs.forEach(log => {
+      if (!latestLogMap[log.task_id]) {
+        latestLogMap[log.task_id] = log.action; 
+      }
+    });
+
+    const tasksWithStatus = tasks.map(task => ({
+      ...task,
+      completed: latestLogMap[task.id] === "completed"
+    }));
+
     res.render("pages/taskpage", {
       title: "Tasks",
       user: req.user,
-      tasks,
+      tasks: tasksWithStatus,
       intervalString,
       departmentString,
       departments,
@@ -176,5 +216,34 @@ export const waterAnalysisPage = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Error loading water analysis page");
+  }
+};
+
+export const completeTask = async (req, res) => {
+  const { id } = req.params;
+  const completed = req.body.completed === "true";
+  const task_date = DateTime.now().setZone("Europe/Brussels").toMillis();
+
+  try {
+    const task = await knex("tasks").where("id", id).first();
+
+    if (!task) {
+      return res.status(404).send("Task not found");
+    }
+
+    await knex("task_logs").insert({
+      task_id: id,
+      user_id: req.user.id,
+      object_type: task.object_type,
+      object_id: task.object_id,
+      comment: "",
+      action: completed ? "completed" : "uncompleted",
+      task_date,
+    });
+
+    res.status(200).send("Task updated successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error updating task");
   }
 };

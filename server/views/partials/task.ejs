@@ -1,13 +1,13 @@
 <li class="task">
     <form action="/tasks/<%= task.id %>/completed" method="POST">
         <input 
-        name="completed"
-        class="task__check" 
-        data-id="<%= task.id %>" 
-        type="checkbox"
-        <%= task.completed? "checked" : "" %>
-        onchange="this.form.submit()"
-    >
+          name="completed"
+          class="task__check" 
+          data-id="<%= task.id %>" 
+          type="checkbox"
+          <%= task.completed ? "checked" : "" %>
+          onchange="this.form.submit()"
+        />
     </form>
     <p class="task__title">
         <%= task.title %> | <span class="task__type"><%= title %></span>
