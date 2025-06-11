@@ -8,7 +8,7 @@
       <input class="admin-tasks__input" type="text" name="title" id="title" required />
     </label>
     <label class="admin-tasks__label" for="object_type">Object Type:
-      <select class="admin-tasks__select" name="object_type" id="object_type" required>
+      <select class="admin-tasks__select select" name="object_type" id="object_type" required>
         <option value="department">Department</option>
         <option value="sub_department">Sub Department</option>
         <option value="pump">Pump</option>
@@ -16,12 +16,12 @@
       </select>
     </label>
     <label class="admin-tasks__label" for="object_id">Object ID:
-      <select class="admin-tasks__select" name="object_id" id="object_id" required>
+      <select class="admin-tasks__select select" name="object_id" id="object_id" required>
         <!-- Options will be filled by JS -->
       </select>
     </label>
     <label class="admin-tasks__label" for="interval">Interval:
-      <select class="admin-tasks__select" name="interval" id="interval" required>
+      <select class="admin-tasks__select select" name="interval" id="interval" required>
         <option value="daily">Daily</option>
         <option value="weekly">Weekly</option>
         <option value="monthly">Monthly</option>
@@ -83,7 +83,7 @@
                   form="form-<%= task.id %>" disabled />
               </td>
               <td class="admin-tasks__table-cell">
-                <select name="object_type" class="admin-tasks__select admin-tasks__select--object-type" form="form-<%= task.id %>"
+                <select name="object_type" class="admin-tasks__select admin-tasks__select--object-type select" form="form-<%= task.id %>"
                   disabled>
                   <option value="department" <%=task.object_type==="department" ? "selected" : "" %>>Department</option>
                   <option value="sub_department" <%=task.object_type==="sub_department" ? "selected" : "" %>>Sub Department</option>
@@ -103,14 +103,14 @@
                 <% } %>
               </td>
               <td class="admin-tasks__table-cell">
-                <select name="interval" class="admin-tasks__select admin-tasks__select--interval" form="form-<%= task.id %>" disabled>
+                <select name="interval" class="admin-tasks__select admin-tasks__select--interval select" form="form-<%= task.id %>" disabled>
                   <option value="daily" <%=task.interval==="daily" ? "selected" : "" %>>Daily</option>
                   <option value="weekly" <%=task.interval==="weekly" ? "selected" : "" %>>Weekly</option>
                   <option value="monthly" <%=task.interval==="monthly" ? "selected" : "" %>>Monthly</option>
                 </select>
               </td>
               <td class="admin-tasks__table-cell">
-                <select name="completed" class="admin-tasks__select admin-tasks__select--completed" form="form-<%= task.id %>" disabled>
+                <select name="completed" class="admin-tasks__select admin-tasks__select--completed select" form="form-<%= task.id %>" disabled>
                   <option value="true" <%=task.completed ? "selected" : "" %>>Yes</option>
                   <option value="false" <%=!task.completed ? "selected" : "" %>>No</option>
                 </select>
