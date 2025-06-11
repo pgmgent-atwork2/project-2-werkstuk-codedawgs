@@ -1,0 +1,19 @@
+.select {
+    background-color: var(--cell-100);
+    color: var(--text-100);
+    border: 1px solid var(--bg-300);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    height: 2.5rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.select:focus,
+.select:hover {
+    border-color: var(--accent-100);
+    box-shadow: 0 0 0 2px var(--accent-200, #66ade1);
+}

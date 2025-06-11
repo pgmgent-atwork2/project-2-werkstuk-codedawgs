@@ -2,7 +2,7 @@
 
 <section class="main analysis-page">
     <h1 class="analysis-page__title">Select sub department:</h1>
-    <select class="analysis-page__subdepartment-select">
+    <select class="analysis-page__subdepartment-select select">
         <option value="all">All</option>
         <% sub_departments.forEach(sub_department => { %>
             <option value=<%= sub_department.id %>>
@@ -14,11 +14,11 @@
     <button class="analysis__new analysis-page__new-btn button">New analysis</button>
     <form class="analysis__form analysis-page__form" id="analysisForm" action="/tasks/analysis" method="POST">
         <h2 class="analysis-page__form-title">Add water analysis</h2>
-        <select class="timeSelect analysis-page__time-select" name="time">
+        <select class="timeSelect analysis-page__time-select select" name="time">
             <option value="1">Morning</option>
             <option value="2">Afternoon</option>
         </select>
-        <select class="subDepartmentSelect analysis-page__subdepartment-select" name="sub_department">
+        <select class="subDepartmentSelect analysis-page__subdepartment-select select" name="sub_department">
             <% sub_departments.forEach(sub_department => { %>
                 <option value=<%= sub_department.id %>>
                     <%= departments[sub_department.department_id-1].title %> |
@@ -44,8 +44,8 @@
             <label class="analysis-page__comment-label">Comment</label>
             <input class="analysis-page__comment-input" name="comment" placeholder="Optional comment">
         </div>
-        <button type="button" class="analysis__close analysis-page__close-btn">Cancel</button>
-        <button type="submit" class="analysis__add analysis-page__add-btn">Add analysis</button>
+        <button type="button" class="analysis__close analysis-page__close-btn button">Cancel</button>
+        <button type="submit" class="analysis__add analysis-page__add-btn button">Add analysis</button>
     </form>
 
     <div class="analysis-page__tables">
