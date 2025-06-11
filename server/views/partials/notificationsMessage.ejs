@@ -1,10 +1,12 @@
 <% if (notificationCount > 0) { %>
-  <div class="notification-box">
-    <p>You have <%= notificationCount > 9 ? '9+' : notificationCount %> notifications.</p>
-    <button onclick="window.location.href='/notifications/all'">See all</button>
+  <div class="notification-box notifications-message">
+    <p class="notifications-message__text">
+      You have <%= notificationCount > 9 ? '9+' : notificationCount %> notifications.
+    </p>
+    <button class="notifications-message__btn" onclick="window.location.href='/notifications/all'">See all</button>
   </div>
 <% } else { %>
-  <div class="notification-box">
-    You have no notifications.
+  <div class="notification-box notifications-message">
+    <span class="notifications-message__text">You have no notifications.</span>
   </div>
 <% } %>
