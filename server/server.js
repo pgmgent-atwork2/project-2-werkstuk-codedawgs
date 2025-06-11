@@ -95,6 +95,7 @@ app.post('/admin/tasks/:id', jwtAuth, isAdmin, taskController.editTask);
 // Notification Routes
 app.get('/notifications', jwtAuth, notificationController.getNotifications);
 app.get('/notifications/all', jwtAuth, notificationController.getAllNotifications);
+app.post('/notifications/:id', jwtAuth, notificationController.resolveNotification);
 
 // Error handling
 app.use((error, req, res, next) => {
