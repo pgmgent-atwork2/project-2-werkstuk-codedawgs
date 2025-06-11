@@ -1,3 +1,23 @@
+.notification-box {
+background: var(--cell-100);
+border-radius: 0.5rem;
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.196);
+padding: 1rem 1.5rem;
+margin: 1rem auto;
+max-width: 350px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 1rem;
+font-size: 1rem;
+font-weight: 600;
+}
+
+.notification-box p {
+margin: 0;
+flex: 1;
+}
+
 .notifications-page {
 margin: 1rem auto;
 padding: 1rem;
