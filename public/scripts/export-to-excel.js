@@ -1,0 +1,37 @@
+function formatDateCell(text) {
+    const match = text.match(/(\d{1,2})\/(\d{1,2})\/(\d{4}),?\s+(\d{1,2}):(\d{2})(?::(\d{2}))?/);
+    if (match) {
+        return `${match[1].padStart(2, '0')}/${match[2].padStart(2, '0')}/${match[3]}, ${match[4].padStart(2, '0')}:${match[5]}`;
+    }
+    return text;
+}
+
+function cleanTableDates(tableClass) {
+    const table = document.querySelector(`table.${tableClass}`);
+    if (!table) return;
+    table.querySelectorAll('td').forEach(td => {
+        td.textContent = formatDateCell(td.textContent.trim());
+    });
+}
+
+function downloadTableAsExcel(tableClass, filename = "export.xlsx") {
+    cleanTableDates(tableClass);
+    const table = document.querySelector(`table.${tableClass}`);
+    if (!table) {
+        alert("Table not found!");
+        return;
+    }
+    const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+    XLSX.writeFile(wb, filename);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".admin__sidebar-btn");
+    buttons.forEach(btn => {
+        if (btn.textContent.trim() === "Export to Excel") {
+            btn.addEventListener("click", function () {
+                downloadTableAsExcel("task-logs");
+            });
+        }
+    });
+});
