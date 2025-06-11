@@ -24,10 +24,13 @@
   .header__bell {
     width: 3rem;
     height: 3rem;
-    padding: 0.5rem;
-    background-color: white;
+    padding: 0.6rem;
+    background-color: var(--accent-100);
     border-radius: 5rem;
-    border: 3px solid var(--bg-300);
+    border: 2px solid var(--bg-100);
+    &:hover {
+      background-color: var(--accent-200);
+    }
   }
 
   .header__nav {
@@ -77,16 +80,16 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 0;
-  right: -.5rem;
+  top: -.2rem;
+  right: -.7rem;
   width: 1.5rem;
   height: 1.5rem;
   background: red;
-  color: white;
+  color: var(--bg-100);
   font-size: .8rem;
   font-weight: bold;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 2px solid var(--bg-100);
   z-index: 10;
   text-align: center;
   user-select: none;
