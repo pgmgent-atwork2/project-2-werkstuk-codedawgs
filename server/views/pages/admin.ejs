@@ -5,43 +5,79 @@
         <section class="admin__container">
             <aside class="admin__sidebar">
                 <div class="admin__sidebar-buttons">
-                    <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/users'">Users</button>
-                    <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/tasks'">Tasks</button>
-                    <button class="button admin__sidebar-btn" onclick="window.location.href='/admin/analysis'">Analysis</button>
+                    <button class="button admin__sidebar-btn"
+                        onclick="window.location.href='/admin/users'">Users</button>
+                    <button class="button admin__sidebar-btn"
+                        onclick="window.location.href='/admin/tasks'">Tasks</button>
+                    <button class="button admin__sidebar-btn"
+                        onclick="window.location.href='/admin/analysis'">Analysis</button>
                 </div>
                 <div class="admin__sidebar-filter">
                     <form id="logFilterForm" method="GET" action="/admin">
-                        <button type="button" onclick="window.location.href='/admin'">Clear filter</button>
-                        <select name="startMonth" required>
-                        <% for(let m=1; m<=12; m++) { %>
-                            <option value="<%= m %>"><%= m %></option>
-                        <% } %>
-                        </select>
-                        <select name="startYear" required>
-                            <% const currentYear = new Date().getFullYear(); %>
-                            <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
-                                <option value="<%= y %>"><%= y %></option>
-                            <% } %>
-                        </select>
-                        <select name="endMonth" required>
+                        <button type="button" onclick="window.location.href='/admin'">Clear filters</button>
+
+                        <select name="startMonth" id="startMonth">
+                            <option value="">All</option>
                             <% for(let m=1; m<=12; m++) { %>
-                            <option value="<%= m %>"><%= m %></option>
-                            <% } %>
+                                <option value="<%= m %>" <%=typeof startMonth !=='undefined' && startMonth==m
+                                    ? 'selected' : '' %>><%= m %>
+                                </option>
+                                <% } %>
                         </select>
-                        <select name="endYear" required>
+                        <select name="startYear" id="startYear">
+                            <option value="">All</option>
+                            <% const currentYear=new Date().getFullYear(); %>
+                                <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
+                                    <option value="<%= y %>" <%=typeof startYear !=='undefined' && startYear==y
+                                        ? 'selected' : '' %>><%= y %>
+                                    </option>
+                                    <% } %>
+                        </select>
+                        <select name="endMonth" id="endMonth">
+                            <option value="">All</option>
+                            <% for(let m=1; m<=12; m++) { %>
+                                <option value="<%= m %>" <%=typeof endMonth !=='undefined' && endMonth==m ? 'selected'
+                                    : '' %>><%= m %>
+                                </option>
+                                <% } %>
+                        </select>
+                        <select name="endYear" id="endYear">
+                            <option value="">All</option>
                             <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
-                            <option value="<%= y %>"><%= y %></option>
-                            <% } %>
+                                <option value="<%= y %>" <%=typeof endYear !=='undefined' && endYear==y ? 'selected'
+                                    : '' %>><%= y %>
+                                </option>
+                                <% } %>
                         </select>
-                        <button type="submit">Filter</button>
-                        <span id="dateRangeError"></span>
+
+                        <select name="userId" id="userFilter">
+                            <option value="">All users</option>
+                            <% users.forEach(u=> { %>
+                                <option value="<%= u.id %>" <%=typeof userId !=='undefined' && userId==u.id ? 'selected'
+                                    : '' %>>
+                                    <%= u.first_name %>
+                                        <%= u.last_name %>
+                                </option>
+                                <% }) %>
+                        </select>
+
+                        <select name="objectType" id="objectType">
+                            <option value="">All types</option>
+                                <% allObjectTypes.forEach(type => { %>
+                                <option value="<%= type %>" <%= typeof objectType !== 'undefined' && objectType === type ? 'selected' : '' %>><%= type %></option>
+                                <% }); %>
+                        </select>
+
+                        <button type="submit">Apply filter</button>
+                        <br>
+                        <span id="dateRangeError" style="color: red; display: none;"></span>
                     </form>
-</div>
+                </div>
             </aside>
-            <%- include('../partials/task-logs.ejs')%>
+            <%- include('../partials/task-logs.ejs') %>
         </section>
 
-        <%- include('../partials/navigation.ejs')%>
+        <%- include('../partials/navigation.ejs') %>
     </div>
 
-<script defer src="/scripts/validate-date-range.js"></script>
+    <script defer src="/scripts/validate-date-range.js"></script>

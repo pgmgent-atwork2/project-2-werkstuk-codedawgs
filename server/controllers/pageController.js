@@ -17,13 +17,12 @@ export const home = async (req, res) => {
 };
 
 export const admin = async (req, res) => {
-  const { startMonth, startYear, endMonth, endYear } = req.query;
+  const { startMonth, startYear, endMonth, endYear, userId, objectType } = req.query;
   let taskLogsQuery = knex("task_logs").select("*");
 
   if (startMonth && startYear && endMonth && endYear) {
     const startDate = new Date(`${startYear}-${startMonth.padStart(2, '0')}-01T00:00:00Z`);
     const endDate = new Date(`${endYear}-${endMonth.padStart(2, '0')}-01T00:00:00Z`);
-
     endDate.setMonth(endDate.getMonth() + 1);
     endDate.setDate(0);
     endDate.setHours(23, 59, 59, 999);
@@ -31,6 +30,17 @@ export const admin = async (req, res) => {
     taskLogsQuery = taskLogsQuery
       .whereBetween("task_date", [startDate.getTime(), endDate.getTime()]);
   }
+
+  if (userId && userId !== "") {
+    taskLogsQuery = taskLogsQuery.where("user_id", Number(userId));
+  }
+
+  if (objectType && objectType !== "") {
+    taskLogsQuery = taskLogsQuery.where("object_type", objectType);
+  }
+
+  const allObjectTypesRows = await knex("tasks").distinct("object_type as type");
+  const allObjectTypes = allObjectTypesRows.map(row => row.type).filter(Boolean);
 
   const taskLogs = await taskLogsQuery;
   const tasks = await knex("tasks").select("*");
@@ -50,6 +60,13 @@ export const admin = async (req, res) => {
     sub_departments,
     filters,
     pumps,
+    userId,
+    startMonth,
+    startYear,
+    endMonth,
+    endYear,
+    objectType,
+    allObjectTypes
   });
 };
 
