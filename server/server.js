@@ -58,6 +58,9 @@ app.post("/register/:token", authRegisterSecondStepValidation, authController.po
 // Homepage
 app.get("/", jwtAuth, pageController.home);
 
+//Calendar
+app.get("/calendar", jwtAuth, pageController.calendar);
+
 // Admin pages
 app.get("/admin", jwtAuth, isAdmin, pageController.admin);
 
