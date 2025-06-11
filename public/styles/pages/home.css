@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.homepage__title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding-left: 1rem;
+}
+
 @media (width > 800px) {
   .homepage__content {
     flex-direction: row;

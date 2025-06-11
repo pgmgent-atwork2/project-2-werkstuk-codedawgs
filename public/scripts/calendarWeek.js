@@ -79,8 +79,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return {
           html: `
-          <div style="overflow-x: hidden;" class="calendar-event">
-            ${time} 
+          <div class="calendar-event">
+            <span></span>
+            ${time}
             <strong>${title}</strong> 
             ${user}
           </div>`,

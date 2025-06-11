@@ -1,7 +1,6 @@
 .homepage__content {
   #calendarWeek {
     display: none;
-    margin-top: 2rem;
   }
 }
 .fc-button-group {
@@ -10,7 +9,18 @@
 .fc .fc-daygrid-day.fc-day-today {
   background-color: #88c3ed70 !important;
 }
-
+.calendar-event {
+  overflow-x: hidden;
+  display: inline-block;
+  span {
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-100);
+    margin: 0 2px;
+  }
+}
 .fc .fc-button-primary {
   background-color: var(--accent-200);
   border: none;
@@ -36,6 +46,7 @@
 
 .calendar-page {
   #calendarWeek {
+    margin: 2rem 1rem;
     height: 62rem;
   }
 }
@@ -46,8 +57,8 @@
       width: 50%;
 
       .fc-toolbar-title {
-        font-size: 1.2rem;
-        font-weight: 400;
+        font-size: 1.8rem;
+        font-weight: 500;
       }
       .fc-col-header-cell-cushion {
         font-size: 1rem !important;
