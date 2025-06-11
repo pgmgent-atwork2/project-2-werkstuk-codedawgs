@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const minInput = form.closest('tr').querySelector('.measurement-input--min');
     const maxInput = form.closest('tr').querySelector('.measurement-input--max');
 
-    editBtn.addEventListener('click', function () {
+    editBtn.addEventListener('click', function () {     
       minInput.disabled = false;
       maxInput.disabled = false;
       editBtn.style.display = 'none';
