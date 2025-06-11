@@ -46,3 +46,15 @@ export const getAllNotifications = async (req, res) => {
     });
   }
 };
+
+export const resolveNotification = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await knex("notifications").where({ id }).del();
+    res.redirect("/notifications/all");
+  } catch (error) {
+    console.error("Resolve notification error:", error);
+    res.status(500).send("Error while trying to resolve the notification.");
+  }
+};
