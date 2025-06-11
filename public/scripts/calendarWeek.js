@@ -3,14 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   generateEvents();
 
-  async function fetchTaskLogs() {
+  async function fetchData(slug) {
     try {
-      const response = await fetch(`api/tasklogs`);
+      const response = await fetch(`api/${slug}`);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
-      const tasks = await response.json();
-      return tasks;
+      const data = await response.json();
+      return data;
     } catch (error) {
       console.error(error.message);
     }
@@ -26,18 +26,23 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function generateEvents() {
-    const tasks = await fetchTaskLogs();
-    tasks.forEach((task) => {
+    const taskLogs = await fetchData("tasklogs");
+    const tasks = await fetchData("tasks");
+    console.log(tasks);
+
+    taskLogs.forEach((task) => {
+      console.log(tasks[task.task_id -1]);
+      
       const date = new Date(task.task_date);
       const startDate = new Date(date.getTime());
-      startDate.setMinutes(startDate.getMinutes() - 5);
+      startDate.setMinutes(startDate.getMinutes() - 30);
 
       const localISOString = toLocalISOString(date);
       const startDateISO = toLocalISOString(startDate);
 
       events.push({
         id: task.id,
-        title: "my event",
+        title: tasks[task.task_id -1].title,
         start: startDateISO,
         end: localISOString,
       });
@@ -49,16 +54,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const calendarEl = document.getElementById("calendarWeek");
     const calendar = new FullCalendar.Calendar(calendarEl, {
       timeZone: "local",
-      initialView: "timeGridWeek",
+      initialView: "dayGridMonth",
       firstDay: 1,
       slotMinTime: "06:00:00",
-      slotMaxTime: "22:00:00",
+      slotMaxTime: "20:00:00",
       slotLabelFormat: {
         hour: "2-digit",
         minute: "2-digit",
         hour12: false,
       },
       events: events,
+      dayMaxEvents: 2,
     });
     calendar.render();
   }

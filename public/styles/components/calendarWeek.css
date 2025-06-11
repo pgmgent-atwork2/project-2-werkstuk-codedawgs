@@ -4,6 +4,9 @@
   }
 }
 
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: #88c3ed70 !important;
+}
 .calendar-page {
   #calendarWeek {
     height: 62rem;
