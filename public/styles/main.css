@@ -79,6 +79,9 @@ ol {
 .main {
   padding-top: 5rem;
   padding-bottom: 7rem;
+  @media (width < 700px) {
+    padding-bottom: 12rem;
+  }
 }
 
 body,
@@ -87,9 +90,9 @@ body,
   -ms-overflow-style: none;
 }
 
-body::-webkit-scrollbar,
-*::-webkit-scrollbar {
-  display: none;
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 @media (width > 800px) {
