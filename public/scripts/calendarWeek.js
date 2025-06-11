@@ -31,18 +31,18 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(tasks);
 
     taskLogs.forEach((task) => {
-      console.log(tasks[task.task_id -1]);
-      
+      console.log(tasks[task.task_id - 1]);
+
       const date = new Date(task.task_date);
       const startDate = new Date(date.getTime());
-      startDate.setMinutes(startDate.getMinutes() - 30);
+      startDate.setMinutes(startDate.getMinutes() - 1);
 
       const localISOString = toLocalISOString(date);
       const startDateISO = toLocalISOString(startDate);
 
       events.push({
         id: task.id,
-        title: tasks[task.task_id -1].title,
+        title: tasks[task.task_id - 1].title,
         start: startDateISO,
         end: localISOString,
       });
@@ -59,6 +59,11 @@ document.addEventListener("DOMContentLoaded", function () {
       slotMinTime: "06:00:00",
       slotMaxTime: "20:00:00",
       slotLabelFormat: {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      },
+      eventTimeFormat: {
         hour: "2-digit",
         minute: "2-digit",
         hour12: false,
