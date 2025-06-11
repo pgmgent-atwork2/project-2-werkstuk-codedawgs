@@ -3,17 +3,21 @@ import { DateTime } from "luxon";
 
 export const home = async (req, res) => {
   const departments = await knex("departments").select("*");
+  const sub_departments = await knex("sub_departments").select("*");
   const tasks = await knex("tasks").select("*");
-  const taskLogs = await knex("task_logs").select("*");
   const countObj = await knex("notifications").count("id as count").first();
   const notificationCount = Number(countObj.count) || 0;
+  const filters = await knex("filters").select("*");
+  const pumps = await knex("pumps").select("*");
 
   res.render("pages/home", {
     title: "Home",
     user: req.user,
-    departments: departments,
+    departments,
+    sub_departments,
+    pumps,
+    filters,
     tasks,
-    taskLogs,
     notificationCount
   });
 };
