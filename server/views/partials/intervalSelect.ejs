@@ -25,8 +25,9 @@
                             <ul class="summary__ul">
                                 <% departments.forEach(department=> { %>
                                     <% const url=department.title.replace(/\s/g, '' ).toLowerCase(); %>
-                                        <%- include('./summaryDepartment', {interval: interval, url: url, department: department, tasks: tasks }) %>
-                                        <% }); }%>
+                                        <%- include('./summaryDepartment.ejs', {interval: interval, url: url, department: department, tasks: tasks, pumps: pumps, filters: filters})%>
+                                    <% }); %>
+                                <% } %>
                             </ul>
 
             </details>
