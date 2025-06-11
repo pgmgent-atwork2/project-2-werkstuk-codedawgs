@@ -142,7 +142,6 @@ export const taskPage = async (req, res) => {
 
     const logs = await knex("task_logs")
       .whereIn("task_id", tasks.map(t => t.id))
-      .andWhere("user_id", req.user.id)
       .andWhereBetween("task_date", [
         periodStart.toMillis(),
         periodEnd.toMillis()
