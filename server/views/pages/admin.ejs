@@ -34,6 +34,7 @@
                             <% } %>
                         </select>
                         <button type="submit">Filter</button>
+                            <span id="dateRangeError"></span>
                     </form>
 </div>
             </aside>
@@ -42,3 +43,5 @@
 
         <%- include('../partials/navigation.ejs')%>
     </div>
+
+<script defer src="/scripts/validate-date-range.js"></script>
