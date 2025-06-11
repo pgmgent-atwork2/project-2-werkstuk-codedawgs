@@ -18,8 +18,7 @@
             <tr class="task-logs__row">
                 <td class="task-logs__cell task-logs__cell--performed-by">
                     <%= users[task.user_id-1].first_name %>
-                        <%= users[task.user_id-1].last_name %>
-                        <%= task.task_id %>
+                    <%= users[task.user_id-1].last_name %>
                 </td>
                 <td class="task-logs__cell task-logs__cell--task-name">
                     <%= tasks[task.task_id-1].title %>
