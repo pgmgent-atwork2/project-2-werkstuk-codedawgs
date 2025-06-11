@@ -28,10 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
   async function generateEvents() {
     const taskLogs = await fetchData("tasklogs");
     const tasks = await fetchData("tasks");
-    console.log(tasks);
+    const users = await fetchData("users");
 
     taskLogs.forEach((task) => {
-      console.log(tasks[task.task_id - 1]);
+      console.log(users[task.user_id - 1]);
 
       const date = new Date(task.task_date);
       const startDate = new Date(date.getTime());
@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
       events.push({
         id: task.id,
         title: tasks[task.task_id - 1].title,
+        user: users[task.user_id - 1].first_name,
         start: startDateISO,
         end: localISOString,
       });
@@ -70,6 +71,21 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       events: events,
       dayMaxEvents: 2,
+
+      eventContent: function (arg) {
+        const time = arg.event.start.toLocaleTimeString('en-US', { hour: "2-digit", minute: "2-digit", hour12: false });
+        const title = arg.event.title;
+        const user = arg.event.extendedProps.user;
+
+        return {
+          html: `
+          <div style="overflow-x: hidden;" class="calendar-event">
+            ${time} 
+            <strong>${title}</strong> 
+            ${user}
+          </div>`,
+        };
+      },
     });
     calendar.render();
   }
