@@ -10,6 +10,7 @@ import * as userController from "./controllers/userController.js";
 import * as taskController from "./controllers/taskController.js";
 import * as notificationController from "./controllers/notificationController.js";
 
+import * as API_UserController from "./controllers/api/userController.js";
 import * as API_TaskController from "./controllers/api/taskController.js";
 import * as API_FilterController from "./controllers/api/filterController.js";
 import * as API_DepartmentController from "./controllers/api/departmentController.js";
@@ -37,6 +38,7 @@ app.set("layout", "layouts/main");
 app.set("views", path.resolve("server", "views"));
 
 //API
+app.get("/api/users", API_UserController.users);
 app.get("/api/tasks", API_TaskController.tasks);
 app.get("/api/tasklogs", API_TaskController.taskLogs);
 app.get("/api/filters", API_FilterController.filters);
@@ -57,6 +59,9 @@ app.post("/register/:token", authRegisterSecondStepValidation, authController.po
 
 // Homepage
 app.get("/", jwtAuth, pageController.home);
+
+//Calendar
+app.get("/calendar", jwtAuth, pageController.calendar);
 
 // Admin pages
 app.get("/admin", jwtAuth, isAdmin, pageController.admin);

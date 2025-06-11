@@ -9,7 +9,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 10000;
 
   .header__pfp {
     width: 3rem;
@@ -47,7 +47,7 @@
   }
 }
 
-@media (width < 700px) {
+@media (width < 800px) {
   .header {
     justify-content: space-between;
   }

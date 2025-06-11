@@ -278,3 +278,15 @@ export const completeTask = async (req, res) => {
     res.status(500).send("Error updating task");
   }
 };
+
+export const calendar = async (req, res) => {
+  const departments = await knex("departments").select("*");
+  const tasks = await knex("tasks").select("*");
+  const countObj = await knex("notifications").count("id as count").first();
+  const notificationCount = Number(countObj.count) || 0;
+
+  res.render("pages/calendar", {
+    title: "Calendar",
+    user: req.user,
+  });
+};
