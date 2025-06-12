@@ -137,10 +137,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       inputs.forEach((input) => {
       input.value = "";
     });
-
     changeInputsDisplay();
   });
+
   subDepartmentSelect.addEventListener("change", () => {
+    inputs.forEach((input) => {
+      input.value = "";
+    });
     changeInputsDisplay();
   });
 
