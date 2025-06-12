@@ -30,10 +30,34 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.addEventListener("click", function () {
             const tableClass = btn.getAttribute("data-table");
             const table = document.querySelector(`table.${tableClass}`);
-            let filename = "export.xlsx";
-            if (table && table.getAttribute("name")) {
-                filename = table.getAttribute("name") + ".xlsx";
+            
+            const startMonth = document.getElementById("startMonth")?.value || "";
+            const startYear = document.getElementById("startYear")?.value || "";
+            const endMonth = document.getElementById("endMonth")?.value || "";
+            const endYear = document.getElementById("endYear")?.value || "";
+
+            const subDeptSelect = document.getElementById("filter_sub_department");
+            let subDeptText = "";
+            if (subDeptSelect) {
+                const selectedOption = subDeptSelect.options[subDeptSelect.selectedIndex];
+                if (selectedOption) {
+                    const parts = selectedOption.text.split("|");
+                    subDeptText = parts.length > 1 ? parts[1].trim().replace(/\s+/g, "_") : parts[0].trim().replace(/\s+/g, "_");
+                }
             }
+
+            let tableName = "";
+            if (table && table.getAttribute("name")) {
+                tableName = table.getAttribute("name").replace(/\s+/g, "_");
+            }
+
+            let filename = "data";
+            if (startMonth && startYear) filename += `_${startMonth.padStart(2, "0")}-${startYear}`;
+            if (endMonth && endYear) filename += `_${endMonth.padStart(2, "0")}-${endYear}`;
+            if (subDeptText) filename += `_${subDeptText}`;
+            if (tableName) filename += `_${tableName}`;
+            filename += ".xlsx";
+
             downloadTableAsExcel(tableClass, filename);
         });
     });
