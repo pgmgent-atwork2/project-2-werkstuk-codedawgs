@@ -145,6 +145,7 @@ export const taskPageAdmin = async (req, res) => {
   }
 };
 
+
 export const taskPage = async (req, res) => {  
   const { departmentString } = req.params;
   const intervalString = req.path.split("/")[1];
