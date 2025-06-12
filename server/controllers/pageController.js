@@ -174,14 +174,39 @@ export const generalTaskPage = async (req, res) => {
 };
 
 export const analysisPage = async (req, res) => {
+  const { filter_sub_department, startMonth, startYear, endMonth, endYear } = req.query;
+
   const departments = await knex("departments").select("*");
   const sub_departments = await knex("sub_departments").select("*");
   const measurement_definitions = await knex("measurement_definitions").select("*");
-  const measurement_logs = await knex("measurement_logs").select("*");
   const users = await knex("users").select("*");
 
+  let measurementLogsQuery = knex("measurement_logs").select("*");
+
+  if (filter_sub_department && filter_sub_department !== "all") {
+    measurementLogsQuery = measurementLogsQuery.where(
+      "sub_department_id",
+      Number(filter_sub_department)
+    );
+  }
+
+  if (startMonth && startYear && endMonth && endYear) {
+    const startDate = new Date(`${startYear}-${startMonth.padStart(2, '0')}-01T00:00:00Z`);
+    const endDate = new Date(`${endYear}-${endMonth.padStart(2, '0')}-01T00:00:00Z`);
+    endDate.setMonth(endDate.getMonth() + 1);
+    endDate.setDate(0);
+    endDate.setHours(23, 59, 59, 999);
+
+    // Use getTime() if measured_date is a timestamp
+    measurementLogsQuery = measurementLogsQuery.whereBetween(
+      "measured_date",
+      [startDate.getTime(), endDate.getTime()]
+    );
+  }
+
+  const measurement_logs = await measurementLogsQuery;
+
   try {
-    
     res.render("pages/analysispage", { 
       title: "Water Analysis",
       user: req.user,
@@ -190,8 +215,12 @@ export const analysisPage = async (req, res) => {
       measurement_definitions,
       measurement_logs,
       users,
+      filter_sub_department, // pass to EJS for select persistence
+      startMonth,
+      startYear,
+      endMonth,
+      endYear,
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).send("Error loading tasks");
