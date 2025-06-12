@@ -32,12 +32,17 @@ export const getNotifications = async (req, res) => {
 export const getAllNotifications = async (req, res) => {
   try {
     const notifications = await knex("notifications").select("*").orderBy("id", "desc");
-    const measurementDef = await knex("measurement_definitions").select("*");
+    const measurement_definitions = await knex("measurement_definitions").select("*");
+    const measurement_logs = await knex("measurement_logs").select("*");
+    const sub_departments = await knex("sub_departments").select("*");
+
     res.render("pages/notifications", {
       title: "Notifications",
       user: req.user,
       notifications,
-      measurementDef
+      measurement_definitions,
+      measurement_logs,
+      sub_departments,
     });
   } catch (error) {
     console.error("Get all notifications error:", error);
