@@ -2,33 +2,36 @@
 
 <div class="main admin-tasks">
   <h1 class="admin-tasks__title">Tasks</h1>
-  <h2 class="admin-tasks__subtitle">Add tasks</h2>
-  <form class="admin-tasks__form" method="POST" action="/admin/tasks">
-    <label class="admin-tasks__label" for="title">Title:
-      <input class="admin-tasks__input" type="text" name="title" id="title" required />
-    </label>
-    <label class="admin-tasks__label" for="object_type">Object Type:
-      <select class="admin-tasks__select select" name="object_type" id="object_type" required>
-        <option value="department">Department</option>
-        <option value="sub_department">Sub Department</option>
-        <option value="pump">Pump</option>
-        <option value="filter">Filter</option>
-      </select>
-    </label>
-    <label class="admin-tasks__label" for="object_id">Object ID:
-      <select class="admin-tasks__select select" name="object_id" id="object_id" required>
-      </select>
-    </label>
-    <label class="admin-tasks__label" for="interval">Interval:
-      <select class="admin-tasks__select select" name="interval" id="interval" required>
-        <option value="daily">Daily</option>
-        <option value="weekly">Weekly</option>
-        <option value="monthly">Monthly</option>
-      </select>
-    </label>
-    <button class="admin-tasks__button button" type="submit">Add Task</button>
-  </form>
-
+  <section class="admin-tasks__content">
+    <div class="admin-tasks__container">
+      <h2 class="admin-tasks__subtitle">Add tasks</h2>
+      <form class="admin-tasks__form" method="POST" action="/admin/tasks">
+        <label class="admin-tasks__label" for="title">Title:
+          <input class="admin-tasks__input" type="text" name="title" id="title" required />
+        </label>
+        <label class="admin-tasks__label" for="object_type">Task Type:
+          <select class="admin-tasks__select select" name="object_type" id="object_type" required>
+            <option value="department">Department</option>
+            <option value="sub_department">Sub Department</option>
+            <option value="pump">Pump</option>
+            <option value="filter">Filter</option>
+          </select>
+        </label>
+        <label class="admin-tasks__label" for="object_id">Task Type Name:
+          <select class="admin-tasks__select select" name="object_id" id="object_id" required>
+          </select>
+        </label>
+        <label class="admin-tasks__label" for="interval">Interval:
+          <select class="admin-tasks__select select" name="interval" id="interval" required>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </label>
+        <button class="admin-tasks__button button" type="submit">Add Task</button>
+      </form>
+    </div>
+    <div class="admin-tasks__container">
   <% departments.forEach(function(department) { %>
     <h3 class="admin-tasks__department-title"><%= department.title %></h3>
     <div class="admin-tasks__table-container">
@@ -135,11 +138,14 @@
                 </form>
               </td>
             </tr>
-            <% }) %>
+          <% }) %>
         </tbody>
       </table>
     </div>
   <% }) %>
+    </div>
+  </section>
+
 
   <%- include('../partials/navigation.ejs')%>
 </div>
