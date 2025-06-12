@@ -29,7 +29,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".export-excel-btn").forEach(btn => {
         btn.addEventListener("click", function () {
             const tableClass = btn.getAttribute("data-table");
-            downloadTableAsExcel(tableClass);
+            const table = document.querySelector(`table.${tableClass}`);
+            let filename = "export.xlsx";
+            if (table && table.getAttribute("name")) {
+                filename = table.getAttribute("name") + ".xlsx";
+            }
+            downloadTableAsExcel(tableClass, filename);
         });
     });
 });
