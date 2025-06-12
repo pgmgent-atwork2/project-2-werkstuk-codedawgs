@@ -26,12 +26,10 @@ function downloadTableAsExcel(tableClass, filename = "export.xlsx") {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const buttons = document.querySelectorAll(".admin__sidebar-btn");
-    buttons.forEach(btn => {
-        if (btn.textContent.trim() === "Export to Excel") {
-            btn.addEventListener("click", function () {
-                downloadTableAsExcel("task-logs");
-            });
-        }
+    document.querySelectorAll(".export-excel-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+            const tableClass = btn.getAttribute("data-table");
+            downloadTableAsExcel(tableClass);
+        });
     });
 });
