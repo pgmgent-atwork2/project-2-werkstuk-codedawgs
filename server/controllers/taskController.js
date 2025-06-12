@@ -75,7 +75,8 @@ export const getObjectOptions = async (req, res) => {
 };
 
 export const editTask = async (req, res) => {
-  const { title, object_type, department, interval } = req.body;
+  const { title, object_type, object_id, interval, visible } = req.body;
+  console.log(req.body.object_id);
   const id = req.params.id;
 
   try {
@@ -84,7 +85,9 @@ export const editTask = async (req, res) => {
       .update({
         title,
         object_type,
+        object_id,
         interval,
+        visible,
       });
 
     res.redirect(req.get("referer"));
