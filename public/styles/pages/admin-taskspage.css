@@ -86,6 +86,14 @@
   font-weight: 600;
 }
 
+.admin-tasks__table-header:first-child {
+  width: 5rem;
+}
+
+.admin-tasks__container:first-child {
+    width: 20rem;
+  }
+
 .admin-tasks__table-row:nth-child(even) {
   background: var(--cell-100);
 }
@@ -96,12 +104,6 @@
   border-bottom: 1px solid var(--cell-300);
   font-size: 1rem;
   color: var(--text-200);
-}
-
-.admin-tasks__table-cell:first-child {
-  input {
-    width: 100%;
-  }
 }
 
 @media (min-width: 800px) {
@@ -131,7 +133,7 @@
     gap: 1.5rem;
   }
 
-  
+
   .admin-tasks__subtitle {
     width: fit-content;
   }
