@@ -6,12 +6,10 @@
     <ul class="notifications-page__list">
       <% notifications.forEach(n => { %>
         <li class="notifications-page__item">
-          <% 
-            const def = measurementDef.find(m => m.id === n.measurement_def_id);
-          %>
+          <% const def = measurementDef.find(m => m.id === n.measurement_def_id) %>
           <span class="notifications-page__message">
             <% if (def && (n.message === "high" || n.message === "low")) { %>
-              Value for <%= def.name %> is too "<%= n.message %>"
+              Value for <%= def.name %> is too <strong><%= n.message %></strong>
             <% } else { %>
               <%= n.message %>
             <% } %>
