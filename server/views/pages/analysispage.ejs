@@ -97,8 +97,9 @@
                         <button type="submit" class="analysis__add analysis-page__add-btn button">Add analysis</button>
             </form>
             <div class="analysis-page__tables">
+                <button type="button" class="export-excel-btn" data-table="analysis-page__table-morning">Export to Excel</button>
                 <div class="analysis-page__table-container">
-                    <table class="analysis-page__table" border="1px">
+                    <table class="analysis-page__table analysis-page__table-morning" border="1px">
                         <tr>
                             <th></th>
                             <th></th>
@@ -160,9 +161,9 @@
                                                 <% }); %>
                     </table>
                 </div>
-
+                <button type="button" class="export-excel-btn" data-table="analysis-page__table-afternoon">Export to Excel</button>
                 <div class="analysis-page__table-container">
-                    <table class="analysis-page__table" border="1px">
+                    <table class="analysis-page__table analysis-page__table-afternoon" border="1px">
                         <tr>
                             <th></th>
                             <th>Depolox</th>
@@ -227,5 +228,6 @@
         </section>
         <script defer src="/scripts/validate-date-range.js"></script>
         <script defer src="/scripts/analysis-add.js"></script>
+        <script defer src="/scripts/export-to-excel.js"></script>
 
         <%- include('../partials/navigation.ejs')%>
