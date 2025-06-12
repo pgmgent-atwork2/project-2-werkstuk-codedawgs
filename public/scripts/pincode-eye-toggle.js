@@ -7,6 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
       input.type = "text";
       icon.src = "/assets/svg/eye.svg";
     }
+    
+    if (!input || !input.value) {
+      icon.style.display = "none";
+      return;
+    }
 
     function hidePincode() {
       input.type = "password";
