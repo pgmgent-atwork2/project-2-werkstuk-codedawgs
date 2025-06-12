@@ -15,7 +15,10 @@
 
 .notification-box p {
   margin: 0;
-  flex: 1;
+}
+
+.notifications-message__text {
+  width: fit-content;
 }
 
 .notifications-page {
@@ -69,7 +72,7 @@
 
 @media (min-width: 800px) {
   .notification-box {
-    padding: 0.7rem 0.5rem;
+    padding: 0.7rem 1rem;
     font-size: 0.95rem;
   }
   .notifications-page {
