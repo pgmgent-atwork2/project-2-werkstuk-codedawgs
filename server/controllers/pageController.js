@@ -1,3 +1,4 @@
+import cron from "node-cron";
 import knex from "../lib/Knex.js";
 import { DateTime } from "luxon";
 
@@ -118,58 +119,22 @@ export const taskPageAdmin = async (req, res) => {
   }
 };
 
-export const taskPage = async (req, res) => {
+export const taskPage = async (req, res) => {  
   const { departmentString } = req.params;
   const intervalString = req.path.split("/")[1];
 
-  const now = DateTime.now().setZone("Europe/Brussels");
-  let periodStart, periodEnd;
-
-  if (intervalString === "daily") {
-    periodStart = now.startOf("day");
-    periodEnd = now.endOf("day");
-  } else if (intervalString === "weekly") {
-    periodStart = now.startOf("week");
-    periodEnd = now.endOf("week");
-  } else if (intervalString === "monthly") {
-    periodStart = now.startOf("month");
-    periodEnd = now.endOf("month");
-  } else {
-    periodStart = now.startOf("day");
-    periodEnd = now.endOf("day");
-  }
-
   try {
     const tasks = await knex("tasks").select("*").where("interval", intervalString);
+    
     const departments = await knex("departments").select("*");
     const sub_departments = await knex("sub_departments").select("*");
     const filters = await knex("filters").select("*");
     const pumps = await knex("pumps").select("*");
-
-    const logs = await knex("task_logs")
-      .whereIn("task_id", tasks.map(t => t.id))
-      .andWhereBetween("task_date", [
-        periodStart.toMillis(),
-        periodEnd.toMillis()
-      ])
-      .orderBy("task_date", "desc");
-
-    const latestLogMap = {};
-    logs.forEach(log => {
-      if (!latestLogMap[log.task_id]) {
-        latestLogMap[log.task_id] = log.action; 
-      }
-    });
-
-    const tasksWithStatus = tasks.map(task => ({
-      ...task,
-      completed: latestLogMap[task.id] === "completed"
-    }));
-
+    
     res.render("pages/taskpage", {
       title: "Tasks",
       user: req.user,
-      tasks: tasksWithStatus,
+      tasks,
       intervalString,
       departmentString,
       departments,

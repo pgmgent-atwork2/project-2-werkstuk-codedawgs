@@ -3,6 +3,7 @@ import expressLayouts from "express-ejs-layouts";
 import { PORT, VIEWS_PATH } from "./consts.js";
 import path from "path";
 import cookieParser from "cookie-parser";
+import "./cron/intervalCron.js";
 
 import * as pageController from "./controllers/pageController.js";
 import * as authController from "./controllers/authController.js";
