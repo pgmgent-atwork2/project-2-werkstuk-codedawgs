@@ -11,9 +11,15 @@
           <% const values = JSON.parse(measurement_logs[notification.measurement_log_id-1].measurements) %>
           <% const keys = Object.keys(values) %>
           <% const value = values[keys[def.id-1]] %>
+          <% let diff = 0 %>
           <span class="notifications-page__message">
             <% if (def && (notification.message === "high" || notification.message === "low")) { %>
-              <strong><%= sub.title %></strong>: <%= value %> <%= def.unit %> for <%= def.name %> is too <strong><%= notification.message %></strong> 
+              <% if (notification.message === "high"){ %>
+                <% diff = value - def.max_value %>
+              <% } else if (notification.message === "low") { %>
+                <% diff = def.min_value - value %>
+              <% } %>
+              <strong><%= sub.title %></strong>: <%= value %><%= def.unit %> for <%= def.name %> is <%= diff %><%= def.unit %> too <strong><%= notification.message %></strong> 
             <% } else { %>
               <%= notification.message %>
             <% } %>
