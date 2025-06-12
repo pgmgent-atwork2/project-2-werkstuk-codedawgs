@@ -1,22 +1,25 @@
 <%- include("../partials/header.ejs") %>
 
 <div class="main notifications-page">
-  <h1 class="notifications-page__title">All Notifications (<%= notifications ? notifications.length : 0 %>)</h1>
+  <h1 class="notifications-page__title">You've got <%= notifications.length %> <%= notifications.length === 1 ? "Notification" : "Notifications" %></h1>
   <% if (notifications && notifications.length > 0) { %>
-    <ul class="notifications-page__list">
-      <% notifications.forEach(n => { %>
+    <ul class="notifications-page__list">N
+      <% notifications.forEach(notification => { %>
         <li class="notifications-page__item">
-          <% 
-            const def = measurementDef.find(m => m.id === n.measurement_def_id);
-          %>
+          <% const def = measurement_definitions[notification.measurement_def_id-1] %>
+          <% const sub = sub_departments[measurement_logs[notification.measurement_log_id-1].sub_department_id-1] %>
+          <% const values = JSON.parse(measurement_logs[notification.measurement_log_id-1].measurements) %>
+          <% const keys = Object.keys(values) %>
+          <% const value = values[keys[def.id-1]] %>
           <span class="notifications-page__message">
-            <% if (def && (n.message === "high" || n.message === "low")) { %>
-              Value for <%= def.name %> is too "<%= n.message %>"
+            <% if (def && (notification.message === "high" || notification.message === "low")) { %>
+              <strong><%= sub.title %></strong>: <%= value %> <%= def.unit %> for <%= def.name %> is too <strong><%= notification.message %></strong> 
             <% } else { %>
-              <%= n.message %>
+              <%= notification.message %>
             <% } %>
           </span>
-          <form action="/notifications/<%= n.id %>" method="POST" class="notifications-page__form">
+
+          <form action="/notifications/<%= notification.id %>" method="POST" class="notifications-page__form">
             <button type="submit" class="button notifications-page__resolve-btn">Resolve</button>
           </form>
         </li>

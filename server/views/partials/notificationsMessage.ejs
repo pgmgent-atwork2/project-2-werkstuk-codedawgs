@@ -1,7 +1,7 @@
 <% if (notificationCount > 0) { %>
   <div class="notification-box notifications-message">
     <p class="notifications-message__text">
-      You have <%= notificationCount > 9 ? '9+' : notificationCount %> notifications.
+      You have <%= notificationCount > 9 ? '9+' : notificationCount %> <%= notificationCount === 1 ? 'notification' : 'notifications' %>
     </p>
     <button class="notifications-message__btn button" onclick="window.location.href='/notifications/all'">See all</button>
   </div>
