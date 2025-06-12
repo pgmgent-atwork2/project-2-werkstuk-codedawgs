@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   checkboxes.forEach((checkbox, index) => {
     checkbox.addEventListener("click", () => {
-      if (lastOpenCheckbox === index && inputs[index].style.display === "block") {
+      if (lastOpenCheckbox === index && inputs[index].style.display === "flex") {
         inputs[index].style.display = "none";
         checkbox.checked = false;
         lastOpenCheckbox = null;
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         inputs[lastOpenCheckbox].style.display = "none";
         checkboxes[lastOpenCheckbox].checked = false;
       }
-      inputs[index].style.display = "block";
+      inputs[index].style.display = "flex";
       lastOpenCheckbox = index;
     });
   });
