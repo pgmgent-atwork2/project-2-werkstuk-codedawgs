@@ -1,157 +1,217 @@
 <%- include('../partials/header.ejs')%>
 
-<section class="main analysis-page">
-    <h1 class="analysis-page__title">Select sub department:</h1>
-    <select class="analysis-page__subdepartment-select select">
-        <option value="all">All</option>
-        <% sub_departments.forEach(sub_department => { %>
-            <option value=<%= sub_department.id %>>
-                <%= departments[sub_department.department_id-1].title %> |
-                <%= sub_department.title %>
-            </option>
-        <% }); %>
-    </select>
-    <button class="analysis__new analysis-page__new-btn button">New analysis</button>
-    <form class="analysis__form analysis-page__form" id="analysisForm" action="/tasks/analysis" method="POST">
-        <h2 class="analysis-page__form-title">Add water analysis</h2>
-        <select class="timeSelect analysis-page__time-select select" name="time">
-            <option value="1">Morning</option>
-            <option value="2">Afternoon</option>
-        </select>
-        <select class="subDepartmentSelect analysis-page__subdepartment-select select" name="sub_department">
-            <% sub_departments.forEach(sub_department => { %>
-                <option value=<%= sub_department.id %>>
-                    <%= departments[sub_department.department_id-1].title %> |
-                    <%= sub_department.title %>
-                </option>
-            <% }); %>
-        </select>
-        <% measurement_definitions.forEach(measurement_definition => { %>
-            <div class="measurement__input analysis-page__measurement-input">
-                <label class="analysis-page__measurement-label">
-                    <%= measurement_definition.name%>
-                    (<%= measurement_definition.unit%>)
-                </label>
-                <input 
-                    class="value-input analysis-page__value-input"
-                    <%= [2, 4, 5, 6].includes(measurement_definition.id) ? "required" : "" %>
-                    name="<%= measurement_definition.id %>" 
-                    id="<%= measurement_definition.id %>" 
-                    type="number" step="0.01">
+    <section class="main analysis-page">
+        <h1 class="analysis-page__title">Select sub department:</h1>
+        <form id="analysisFilterForm" method="GET" action="/analysis">
+            <select class="analysis-page__subdepartment-select select">
+                <option value="all">All</option>
+                <% sub_departments.forEach(sub_department=> { %>
+                    <option value=<%=sub_department.id %>>
+                        <%= departments[sub_department.department_id-1].title %> |
+                            <%= sub_department.title %>
+                    </option>
+                    <% }); %>
+            </select>
+            <select name="startMonth" id="startMonth">
+                <option value="">All</option>
+                <% for(let m=1; m<=12; m++) { %>
+                    <option value="<%= m %>" <%=typeof startMonth !=='undefined' && startMonth==m ? 'selected' : '' %>>
+                        <%= m %>
+                    </option>
+                    <% } %>
+            </select>
+            <select name="startYear" id="startYear">
+                <option value="">All</option>
+                <% const currentYear=new Date().getFullYear(); %>
+                    <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
+                        <option value="<%= y %>" <%=typeof startYear !=='undefined' && startYear==y ? 'selected' : '' %>
+                            ><%= y %>
+                        </option>
+                        <% } %>
+            </select>
+            <select name="endMonth" id="endMonth">
+                <option value="">All</option>
+                <% for(let m=1; m<=12; m++) { %>
+                    <option value="<%= m %>" <%=typeof endMonth !=='undefined' && endMonth==m ? 'selected' : '' %>><%= m
+                            %>
+                    </option>
+                    <% } %>
+            </select>
+            <select name="endYear" id="endYear">
+                <option value="">All</option>
+                <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
+                    <option value="<%= y %>" <%=typeof endYear !=='undefined' && endYear==y ? 'selected' : '' %>><%= y
+                            %>
+                    </option>
+                    <% } %>
+            </select>
+            <button type="submit" class="button">Filter</button>
+        </form>
+        <button class="analysis__new analysis-page__new-btn button">New analysis</button>
+        <form class="analysis__form analysis-page__form" id="analysisForm" action="/tasks/analysis" method="POST">
+            <h2 class="analysis-page__form-title">Add water analysis</h2>
+            <select class="timeSelect analysis-page__time-select select" name="time">
+                <option value="1">Morning</option>
+                <option value="2">Afternoon</option>
+            </select>
+            <select class="subDepartmentSelect analysis-page__subdepartment-select select" name="sub_department">
+                <% sub_departments.forEach(sub_department=> { %>
+                    <option value=<%=sub_department.id %>>
+                        <%= departments[sub_department.department_id-1].title %> |
+                            <%= sub_department.title %>
+                    </option>
+                    <% }); %>
+            </select>
+            <% measurement_definitions.forEach(measurement_definition=> { %>
+                <div class="measurement__input analysis-page__measurement-input">
+                    <label class="analysis-page__measurement-label">
+                        <%= measurement_definition.name%>
+                            (<%= measurement_definition.unit%>)
+                    </label>
+                    <input class="value-input analysis-page__value-input" <%=[2, 4, 5,
+                        6].includes(measurement_definition.id) ? "required" : "" %>
+                    name="<%= measurement_definition.id %>"
+                        id="<%= measurement_definition.id %>"
+                            type="number" step="0.01">
+                </div>
+                <% }); %>
+                    <div class="analysis-page__comment">
+                        <label class="analysis-page__comment-label">Comment</label>
+                        <input class="analysis-page__comment-input" name="comment" placeholder="Optional comment">
+                    </div>
+                    <button type="button" class="analysis__close analysis-page__close-btn button">Cancel</button>
+                    <button type="submit" class="analysis__add analysis-page__add-btn button">Add analysis</button>
+        </form>
+        <div class="analysis-page__tables">
+            <div class="analysis-page__table-container">
+                <table class="analysis-page__table" border="1px">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th colspan="2">Depolox</th>
+                        <th colspan="3">Manual</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <% measurement_definitions.forEach(measurement_definition=> { %>
+                            <th>
+                                <%= measurement_definition.short%>
+                            </th>
+                            <% }); %>
+                                <th>User</th>
+                                <th>Comment</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <% measurement_definitions.forEach(measurement_definition=> { %>
+                            <td>
+                                <%= measurement_definition.unit%>
+                            </td>
+                            <% }); %>
+                                <td></td>
+                                <td></td>
+                    </tr>
+
+                    <% measurement_logs.forEach(measurement_log=> { %>
+                        <% if(measurement_log.time===1) { %>
+                            <% const measurements=JSON.parse(measurement_log.measurements) %>
+                                <% const date=new Date(measurement_log.measured_date) %>
+                                    <% const options={ hour12: false, year: 'numeric' , month: '2-digit' ,
+                                        day: '2-digit' };%>
+
+                                        <tr class="row analysis-page__row"
+                                            data-sub-department-id="<%= measurement_log.sub_department_id  %>">
+                                            <td>
+                                                <%= date.toLocaleString('en-GB', options) %>
+                                            </td>
+                                            <% for (const measurement in measurements) { %>
+                                                <td>
+                                                    <%= measurements[measurement] %>
+                                                </td>
+                                                <% } %>
+                                                    <td>
+                                                        <%= users[measurement_log.user_id].first_name %>
+                                                    </td>
+                                                    <td>
+                                                        <%= measurement_log.comment %>
+                                                    </td>
+                                        </tr>
+                                        <% } %>
+                                            <% }); %>
+                </table>
             </div>
-        <% }); %>
-        <div class="analysis-page__comment">
-            <label class="analysis-page__comment-label">Comment</label>
-            <input class="analysis-page__comment-input" name="comment" placeholder="Optional comment">
-        </div>
-        <button type="button" class="analysis__close analysis-page__close-btn button">Cancel</button>
-        <button type="submit" class="analysis__add analysis-page__add-btn button">Add analysis</button>
-    </form>
 
-    <div class="analysis-page__tables">
-        <div class="analysis-page__table-container">
-            <table class="analysis-page__table" border="1px">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th colspan="2">Depolox</th>
-                    <th colspan="3">Manual</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <% measurement_definitions.forEach(measurement_definition => { %>
-                        <th><%= measurement_definition.short%></th>
-                    <% }); %>
-                    <th>User</th>
-                    <th>Comment</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <% measurement_definitions.forEach(measurement_definition => { %>
-                        <td><%= measurement_definition.unit%></td>
-                    <% }); %>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <% measurement_logs.forEach(measurement_log => { %>
-                    <% if(measurement_log.time === 1) { %>
-                        <% const measurements = JSON.parse(measurement_log.measurements) %>
-                        <% const date = new Date(measurement_log.measured_date) %>
-                        <% const options={ hour12: false, year: 'numeric' , month: '2-digit' , day: '2-digit' };%>
-
-                        <tr class="row analysis-page__row" data-sub-department-id="<%= measurement_log.sub_department_id  %>">
-                            <td><%= date.toLocaleString('en-GB', options) %>
-                            </td>
-                            <% for (const measurement in measurements) { %>
-                                <td><%= measurements[measurement] %></td>
-                            <% } %>
-                            <td><%= users[measurement_log.user_id].first_name %></td>
-                            <td><%= measurement_log.comment %></td>
-                        </tr>
-                    <% } %>
-                <% }); %>
-            </table>
-        </div>
-
-        <div class="analysis-page__table-container">
-            <table class="analysis-page__table" border="1px">
-                <tr>
-                    <th></th>
-                    <th >Depolox</th>
-                    <th colspan="3">Manual</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <% const allowedArr = [2, 4, 5, 6] %>
-                <tr>
-                    <th>Date</th>
-                    <% for(let i = 0; i < allowedArr.length; i++) { %>
-                        <th><%= measurement_definitions[allowedArr[i]-1].short%></th>
-                    <% } %>
-                    <th>User</th>
-                    <th>Comment</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <% for(let i = 0; i < allowedArr.length; i++) { %>
-                        <th><%= measurement_definitions[allowedArr[i]-1].unit%></th>
-                    <% } %>
-                    <th></th>
-                    <th></th>
-                    
-                </tr>
-
-                <% measurement_logs.forEach(measurement_log => { %>
-                    <% if(measurement_log.time === 2) { %>
-                        <% const measurements = JSON.parse(measurement_log.measurements) %>
-                        <% const date = new Date(measurement_log.measured_date) %>
-                        <% const options={ hour12: false, year: 'numeric' , month: '2-digit' , day: '2-digit' };%>
-
-                        <tr class="row analysis-page__row" data-sub-department-id="<%= measurement_log.sub_department_id  %>">
-                            <td><%= date.toLocaleString('en-GB', options) %>
-                            </td>
-                            <% for (const measurement in measurements) { %>
-                                <% if(measurements[measurement]) { %>
-                                    <td><%= measurements[measurement] %></td>
+            <div class="analysis-page__table-container">
+                <table class="analysis-page__table" border="1px">
+                    <tr>
+                        <th></th>
+                        <th>Depolox</th>
+                        <th colspan="3">Manual</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <% const allowedArr=[2, 4, 5, 6] %>
+                        <tr>
+                            <th>Date</th>
+                            <% for(let i=0; i < allowedArr.length; i++) { %>
+                                <th>
+                                    <%= measurement_definitions[allowedArr[i]-1].short%>
+                                </th>
                                 <% } %>
-                            <% } %>
-                            <td><%= users[measurement_log.user_id].first_name %></td>
-                            <td><%= measurement_log.comment %></td>
+                                    <th>User</th>
+                                    <th>Comment</th>
                         </tr>
-                    <% } %>
-                <% }); %>
-            </table>
-        </div>
-    </div>
-</section>
-<script src="/scripts/measurementsLog.js"></script>
-<script src="/scripts/analysis-add.js"></script>
+                        <tr>
+                            <th></th>
+                            <% for(let i=0; i < allowedArr.length; i++) { %>
+                                <th>
+                                    <%= measurement_definitions[allowedArr[i]-1].unit%>
+                                </th>
+                                <% } %>
+                                    <th></th>
+                                    <th></th>
 
-<%- include('../partials/navigation.ejs')%>
+                        </tr>
+
+                        <% measurement_logs.forEach(measurement_log=> { %>
+                            <% if(measurement_log.time===2) { %>
+                                <% const measurements=JSON.parse(measurement_log.measurements) %>
+                                    <% const date=new Date(measurement_log.measured_date) %>
+                                        <% const options={ hour12: false, year: 'numeric' , month: '2-digit' ,
+                                            day: '2-digit' };%>
+
+                                            <tr class="row analysis-page__row"
+                                                data-sub-department-id="<%= measurement_log.sub_department_id  %>">
+                                                <td>
+                                                    <%= date.toLocaleString('en-GB', options) %>
+                                                </td>
+                                                <% for (const measurement in measurements) { %>
+                                                    <% if(measurements[measurement]) { %>
+                                                        <td>
+                                                            <%= measurements[measurement] %>
+                                                        </td>
+                                                        <% } %>
+                                                            <% } %>
+                                                                <td>
+                                                                    <%= users[measurement_log.user_id].first_name %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= measurement_log.comment %>
+                                                                </td>
+                                            </tr>
+                                            <% } %>
+                                                <% }); %>
+                </table>
+            </div>
+        </div>
+    </section>
+    <script src="/scripts/measurementsLog.js"></script>
+    <script src="/scripts/analysis-add.js"></script>
+
+    <%- include('../partials/navigation.ejs')%>
