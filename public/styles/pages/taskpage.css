@@ -1,46 +1,67 @@
 .taskpage {
-    margin: 0 1rem;
-    .taskpage__title {
-        font-size: 1.5rem;
-        margin-top: 2rem;
-        text-transform: capitalize;
+  margin: 0 1rem;
+  .taskpage__title {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    text-transform: capitalize;
+  }
+
+  .taskpage__list {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .task {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .task__title {
+      text-transform: capitalize;
+      padding-right: 0.5rem;
     }
 
-    .taskpage__list {
-        margin-top: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+    .task__type {
+      text-transform: capitalize;
+      font-weight: 700;
     }
 
-    .task {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+    form {
 
-        .task__title {
-            text-transform: capitalize;
-            padding-right: 0.5rem;
+    }
+
+    input[type="checkbox"] {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+
+    .task__comment {
+        gap: 1.5rem;
+        position: absolute;
+        background-color: var(--cell-100);
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.196);
+        padding: 1rem;
+
+        .button--task {
+            height: 2.5rem;
         }
 
-        .task__type {
-            text-transform: capitalize;
-            font-weight: 700;
-        }
-
-        form {
-            height: 1.8rem;
-        }
-        input[type="checkbox"] {
-            width: 1.8rem;
-            height: 1.8rem;
+        textarea {
+            resize: vertical;
+            border-radius: 0.5rem;
+            line-height: 1rem;
+            height: 5rem;
         }
     }
+  }
 }
 
 @media (width > 800px) {
-    .taskpage {
-        width: fit-content;
-        margin: 0 auto;
-    }
+  .taskpage {
+    width: fit-content;
+    margin: 0 auto;
+  }
 }

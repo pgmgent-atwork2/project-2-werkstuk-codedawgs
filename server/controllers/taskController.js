@@ -15,7 +15,7 @@ export const taskComplete = async (req, res) => {
       user_id: req.user.id,
       object_type: task.object_type,
       object_id: task.object_id,
-      comment: "",
+      comment: req.body.comment,
       action: completed ? "completed" : "uncompleted",
       task_date,
     });
