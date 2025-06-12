@@ -23,6 +23,7 @@ import authRegisterSecondStepValidation from "./middleware/validation/authRegist
 
 import jwtAuth from "./middleware/jwtAuth.js";
 import isAdmin from './middleware/isAdmin.js';
+import checkApiKey from './middleware/checkApiKey.js';
 
 // APP config
 const app = express();
@@ -39,13 +40,13 @@ app.set("layout", "layouts/main");
 app.set("views", path.resolve("server", "views"));
 
 //API
-app.get("/api/users", API_UserController.users);
-app.get("/api/tasks", API_TaskController.tasks);
-app.get("/api/tasklogs", API_TaskController.taskLogs);
-app.get("/api/filters", API_FilterController.filters);
-app.get("/api/departments", API_DepartmentController.departments);
-app.get("/api/subdepartments", API_DepartmentController.subDepartments);
-app.get("/api/measurement-definitions", API_MeasurementController.measurementDefinitions);
+app.get("/api/users", checkApiKey, API_UserController.users);
+app.get("/api/tasks", checkApiKey ,API_TaskController.tasks);
+app.get("/api/tasklogs", checkApiKey, API_TaskController.taskLogs);
+app.get("/api/filters", checkApiKey, API_FilterController.filters);
+app.get("/api/departments",checkApiKey, API_DepartmentController.departments);
+app.get("/api/subdepartments", checkApiKey, API_DepartmentController.subDepartments);
+app.get("/api/measurement-definitions", checkApiKey, API_MeasurementController.measurementDefinitions);
 
 // Auth Routes
 app.get("/login", authController.login);
