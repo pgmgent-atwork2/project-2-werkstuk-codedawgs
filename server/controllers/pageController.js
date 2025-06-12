@@ -92,26 +92,52 @@ export const userPage = async (req, res) => {
 };
 
 export const taskPageAdmin = async (req, res) => {
-  let { departmentString } = req.params;
+  const { object_type, object_id, interval, visibility } = req.query;
 
-  const intervalString = req.path.split("/")[1];
+  const departments = await knex("departments").select("*");
+  const sub_departments = await knex("sub_departments").select("*");
+  const filters = await knex("filters").select("*");
+  const pumps = await knex("pumps").select("*");
+
+  let tasksQuery = knex("tasks").select("*");
+
+  if (object_type && object_type !== "") {
+    tasksQuery = tasksQuery.where("object_type", object_type);
+  }
+  if (object_id && object_id !== "") {
+    tasksQuery = tasksQuery.where("object_id", object_id);
+  }
+  if (interval && interval !== "") {
+    tasksQuery = tasksQuery.where("interval", interval);
+  }
+  if (typeof visibility !== "undefined" && visibility !== "") {
+    tasksQuery = tasksQuery.where("visible", visibility == "1" ? 1 : 0);
+  }
+
+  const tasks = await tasksQuery;
+
+  const taskTypes = await knex("tasks").distinct("object_type as value");
+  const taskTypeNames = await knex("tasks").distinct("object_id as value");
+  const intervals = await knex("tasks").distinct("interval as value");
+  const visibilities = [
+    { value: 1, label: "Visible" },
+    { value: 0, label: "Invisible" }
+  ];
+
   try {
-    const tasks = await knex("tasks").select("*");
-    const departments = await knex("departments").select("*");
-    const sub_departments = await knex("sub_departments").select("*");
-    const filters = await knex("filters").select("*");
-    const pumps = await knex("pumps").select("*");
-
     res.render("pages/admin-tasks", {
       title: "Tasks",
       user: req.user,
       tasks,
-      intervalString,
-      departmentString,
       departments,
       sub_departments,
       filters,
       pumps,
+      taskTypes,
+      taskTypeNames,
+      intervals,
+      visibilities,
+      query: req.query
     });
   } catch (error) {
     console.error(error);
