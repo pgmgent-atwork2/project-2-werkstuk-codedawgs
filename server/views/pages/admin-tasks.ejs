@@ -109,10 +109,7 @@
                 </select>
               </td>
               <td class="admin-tasks__table-cell">
-                <select name="completed" class="admin-tasks__select admin-tasks__select--completed select" form="form-<%= task.id %>" disabled>
-                  <option value="true" <%=task.completed ? "selected" : "" %>>Yes</option>
-                  <option value="false" <%=!task.completed ? "selected" : "" %>>No</option>
-                </select>
+                <%=task.completed ? "Yes" : "No" %>
               </td>
               <td class="admin-tasks__table-cell">
                 <form method="POST" action="/admin/tasks/<%= task.id %>" class="admin-tasks__task-form" id="form-<%= task.id %>">

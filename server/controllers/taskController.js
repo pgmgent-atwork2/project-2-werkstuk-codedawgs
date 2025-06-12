@@ -75,9 +75,8 @@ export const getObjectOptions = async (req, res) => {
 };
 
 export const editTask = async (req, res) => {
-  const { title, object_type, department, interval, completed } = req.body;
+  const { title, object_type, department, interval } = req.body;
   const id = req.params.id;
-  let completedValue = completed === "true" ? 1 : 0; 
 
   try {
     await knex("tasks")
@@ -86,7 +85,6 @@ export const editTask = async (req, res) => {
         title,
         object_type,
         interval,
-        completed: completedValue,
       });
 
     res.redirect(req.get("referer"));
