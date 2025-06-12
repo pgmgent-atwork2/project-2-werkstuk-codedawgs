@@ -4,7 +4,7 @@
   box-sizing: border-box;
   background: var(--bg-100);
   border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
 }
 
 .admin-tasks__title {
@@ -45,7 +45,6 @@
   color: var(--text-100);
 }
 
-
 .admin-tasks__input:disabled,
 .admin-tasks__select:disabled {
   pointer-events: none;
@@ -79,6 +78,7 @@
 }
 
 .admin-tasks__table-header {
+  width: min-content;
   background: var(--cell-200);
   padding: 0.7rem;
   text-align: left;
@@ -99,10 +99,12 @@
 }
 
 .admin-tasks__table-cell:first-child {
-  width: fit-content;
+  input {
+    width: 100%;
+  }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 800px) {
   .admin-tasks {
     padding: 2rem;
     margin: 2rem auto;
@@ -127,11 +129,15 @@
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-
   }
+
   
   .admin-tasks__subtitle {
     width: fit-content;
+  }
+
+  .admin-tasks__container {
+    width: 100%;
   }
 }
 
@@ -143,8 +149,13 @@
     gap: 2.5rem;
   }
 
+  .admin-tasks__container:first-child {
+    width: 20rem;
+  }
+
   .admin-tasks__container:last-child {
-    padding-left: 2.5rem ;
+    width: 90rem;
+    padding-left: 2.5rem;
     border-left: 2px solid var(--bg-200);
   }
 }
