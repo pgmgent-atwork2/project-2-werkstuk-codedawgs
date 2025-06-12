@@ -2,58 +2,63 @@
 
 <div class="main users">
   <h1 class="users__title">Users</h1>
-  <form class="users__form" action="/admin/users" method="POST">
-    <label class="users__label">First name: <input class="users__input" type="text" name="first_name" required></label>
-    <label class="users__label">Last name: <input class="users__input" type="text" name="last_name" required></label>
-    <label class="users__label">Role:
-      <select class="users__select select" name="role" required>
-        <option class="users__option" value="user">User</option>
-        <option class="users__option" value="admin">Admin</option>
-        <option class="users__option" value="aqua">Aquasplash</option>
-      </select>
-    </label>
-    <button class="users__button button" type="submit">Add user</button>
-  </form>
-  <h2 class="users__subtitle">Existing users</h2>
-  <div class="users__table-container">
-    <table class="users__table">
-      <tr class="users__table-row">
-        <th class="users__table-header">User name</th>
-        <th class="users__table-header">User type</th>
-        <th class="users__table-header">Token</th>
-        <th class="users__table-header">Pincode</th>
-        <th class="users__table-header">Action</th>
-      </tr>
-      <% users.forEach(user=> { %>
-        <tr class="users__table-row">
-          <td class="users__table-cell"><%= user.first_name %> <%= user.last_name %></td>
-          <td class="users__table-cell"><%= user.role %></td>
-          <td class="users__table-cell"><%= user.token %></td>
-          <td class="users__table-cell pincode-cell">
-            <input
-              type="password"
-              value="<%= user.pincode %>"
-              class="pincode-input"
-              readonly
-              style="border:none; background:transparent; width:60px;"
-            />
-            <img
-              src="/assets/svg/eye-slash.svg"
-              class="eye-toggle"
-              alt="Show pincode"
-              style=""
-              draggable="false"
-              tabindex="0"
-            />
-          </td>
-          <td class="users__table-cell">
-            <form action="/admin/users/<%= user.id %>" method="POST">
-              <button class="users__delete-button button" type="submit">Delete</button>
-            </form>
-          </td>
-        </tr>
-      <% }) %>
-    </table>
+  <section class="users__content">
+    <div class="users__container">
+      <h2 class="users__subtitle">Add user</h2>
+      <form class="users__form" action="/admin/users" method="POST">
+        <label class="users__label">First name: <input class="users__input" type="text" name="first_name" required></label>
+        <label class="users__label">Last name: <input class="users__input" type="text" name="last_name" required></label>
+        <label class="users__label">Role:
+          <select class="users__select select" name="role" required>
+            <option class="users__option" value="user">User</option>
+            <option class="users__option" value="admin">Admin</option>
+            <option class="users__option" value="aqua">Aquasplash</option>
+          </select>
+        </label>
+        <button class="users__button button" type="submit">Add user</button>
+      </form>
+    </div>
+    <div class="users__container">
+      <h2 class="users__subtitle">Existing users</h2>
+      <div class="users__table-container">
+        <table class="users__table">
+          <tr class="users__table-row">
+            <th class="users__table-header">User name</th>
+            <th class="users__table-header">User type</th>
+            <th class="users__table-header">Token</th>
+            <th class="users__table-header">Pincode</th>
+            <th class="users__table-header">Action</th>
+          </tr>
+          <% users.forEach(user=> { %>
+            <tr class="users__table-row">
+              <td class="users__table-cell"><%= user.first_name %> <%= user.last_name %></td>
+              <td class="users__table-cell"><%= user.role %></td>
+              <td class="users__table-cell"><%= user.token %></td>
+              <td class="users__table-cell pincode-cell">
+                <input
+                  type="password"
+                  value="<%= user.pincode %>"
+                  class="pincode-input"
+                  readonly
+                />
+                <img
+                  src="/assets/svg/eye-slash.svg"
+                  class="eye-toggle"
+                  alt="Show pincode"
+                  draggable="false"
+                  tabindex="0"
+                />
+              </td>
+              <td class="users__table-cell">
+                <form action="/admin/users/<%= user.id %>" method="POST">
+                  <button class="users__delete-button button" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </table>
+      </div>
+  </section>
   </div>
   <%- include('../partials/navigation.ejs')%>
 </div>
