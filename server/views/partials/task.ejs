@@ -5,9 +5,11 @@
           class="task__check" 
           data-id="<%= task.id %>" 
           type="checkbox"
-          <%= task.completed ? "checked" : "" %>
-          onchange="this.form.submit()"
-        />
+          <%= task.completed ? "checked" : "" %>>
+        <div class="task__comment">
+            <input name="comment"  placeholder="Optional: comment">
+            <button class="task__button" type="submit">Send</button>
+        </div>
     </form>
     <p class="task__title">
         <%= task.title %> | <span class="task__type"><%= title %></span>
