@@ -29,6 +29,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   });
 
+  //calc ecoli and coliform
+  const coliform = document.getElementById("9");
+  const ecoli = document.getElementById("10");
+  coliform.addEventListener('blur', () => {
+    coliform.value = coliform.value * 100;
+  });
+  ecoli.addEventListener('blur', () => {
+    ecoli.value = ecoli.value * 100;
+  });
+
   //calc chlorine
   const freeCl = document.getElementById("4");
   const totalCl = document.getElementById("5");
