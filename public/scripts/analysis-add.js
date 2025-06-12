@@ -134,6 +134,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   const subDepartmentSelect = document.querySelector(".subDepartmentSelect");
 
   timeSelect.addEventListener("change", () => {
+      inputs.forEach((input) => {
+      input.value = "";
+    });
+
     changeInputsDisplay();
   });
   subDepartmentSelect.addEventListener("change", () => {
