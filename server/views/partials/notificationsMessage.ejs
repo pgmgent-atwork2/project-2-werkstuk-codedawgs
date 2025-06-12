@@ -5,7 +5,7 @@
       <path d="M9.43454 20.8492C10.9631 20.8492 12.2024 19.537 12.2024 17.9185H6.66669C6.66669 19.537 7.90599 20.8492 9.43454 20.8492Z" fill="var(--bg-300)"/>
     </svg>
     <p class="notifications-message__text">
-      You have <%= notificationCount > 9 ? '9+' : notificationCount %> <%= notificationCount === 1 ? 'notification' : 'notifications' %>
+      You have <%= notificationCount %> <%= notificationCount === 1 ? 'notification' : 'notifications' %>
     </p>
     <button class="notifications-message__btn button" onclick="window.location.href='/notifications/all'">See all</button>
   </div>
