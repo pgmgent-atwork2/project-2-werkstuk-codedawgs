@@ -1,9 +1,9 @@
 <%- include("../partials/header.ejs") %>
 
 <div class="main notifications-page">
-  <h1 class="notifications-page__title">All Notifications (<%= notifications ? notifications.length : 0 %>)</h1>
+  <h1 class="notifications-page__title">You've got <%= notifications.length %> <%= notifications.length === 1 ? "Notification" : "Notifications" %></h1>
   <% if (notifications && notifications.length > 0) { %>
-    <ul class="notifications-page__list">
+    <ul class="notifications-page__list">N
       <% notifications.forEach(notification => { %>
         <li class="notifications-page__item">
           <% const def = measurement_definitions[notification.measurement_def_id-1] %>
