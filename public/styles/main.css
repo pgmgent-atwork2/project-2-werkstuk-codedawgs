@@ -95,8 +95,3 @@ body::-webkit-scrollbar {
   height: 0;
 }
 
-@media (width > 800px) {
-  .main {
-    padding-bottom: 0;
-  }
-}
