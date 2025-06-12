@@ -37,7 +37,7 @@
           <tr class="admin-tasks__table-row">
             <th class="admin-tasks__table-header">Title</th>
             <th class="admin-tasks__table-header">Task type</th>
-            <th class="admin-tasks__table-header">Department</th>
+            <th class="admin-tasks__table-header">Task type name</th>
             <th class="admin-tasks__table-header">Interval</th>
             <th class="admin-tasks__table-header">Completed</th>
             <th class="admin-tasks__table-header">Action</th>
@@ -82,8 +82,7 @@
                   form="form-<%= task.id %>" disabled />
               </td>
               <td class="admin-tasks__table-cell">
-                <select name="object_type" class="admin-tasks__select admin-tasks__select--object-type select" form="form-<%= task.id %>"
-                  disabled>
+                <select name="object_type" class="admin-tasks__select admin-tasks__select--object-type select" form="form-<%= task.id %>" disabled>
                   <option value="department" <%=task.object_type==="department" ? "selected" : "" %>>Department</option>
                   <option value="sub_department" <%=task.object_type==="sub_department" ? "selected" : "" %>>Sub Department</option>
                   <option value="pump" <%=task.object_type==="pump" ? "selected" : "" %>>Pump</option>
@@ -91,15 +90,25 @@
                 </select>
               </td>
               <td class="admin-tasks__table-cell">
-                <% if (task.object_type==="department" ) { %>
-                  <%= department.title %>
-                <% } else if (task.object_type==="sub_department" ) { %>
-                  <%= sub_departments.find(s=> s.id === task.object_id).title %>
-                <% } else if (task.object_type==="pump" ) { %>
-                  <%= pumps.find(p=> p.id === task.object_id).title %>
-                <% } else if (task.object_type==="filter" ) { %>
-                  <%= filters.find(f=> f.id === task.object_id).title %>
-                <% } %>
+                <select name="object_id" class="admin-tasks__select admin-tasks__select--object-type select" form="form-<%= task.id %>" disabled>
+                  <% if (task.object_type==="department" ) { %>
+                    <% departments.forEach(dep => { %>
+                      <option value="<%= dep.title.toLowerCase().replace(" ", "") %>" ><%= dep.title %></option>
+                    <% }); %>
+                  <% } else if (task.object_type==="sub_department" ) { %>
+                    <% sub_departments.forEach(sub => { %>
+                      <option value="<%= sub.title.toLowerCase().replace(" ", "") %>" ><%= sub.title %></option>
+                    <% }); %>
+                  <% } else if (task.object_type==="pump" ) { %>
+                    <% pumps.forEach(pum => { %>
+                      <option value="<%= pum.title.toLowerCase().replace(" ", "") %>" ><%= pum.title %></option>
+                    <% }); %>
+                  <% } else if (task.object_type==="filter" ) { %>
+                    <% filters.forEach(fil => { %>
+                      <option value="<%= fil.title.toLowerCase().replace(" ", "") %>" ><%= fil.title %></option>
+                    <% }); %>
+                  <% } %>
+                </select>
               </td>
               <td class="admin-tasks__table-cell">
                 <select name="interval" class="admin-tasks__select admin-tasks__select--interval select" form="form-<%= task.id %>" disabled>
