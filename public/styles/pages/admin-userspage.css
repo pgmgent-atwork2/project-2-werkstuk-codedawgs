@@ -4,7 +4,7 @@
 
 .users__title {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 1.5rem 1.5rem;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .users__table {
-  min-width: 31.25rem;
+  width: 100%;
   border-collapse: collapse;
   background: var(--cell-300);
   border-radius: 0.5rem;
@@ -71,21 +71,57 @@
   font-size: 1rem;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 800px) {
   .users {
     padding: 2rem;
-    margin: 2rem auto;
+    margin: 0 auto;
 
+    div {
+      width: fit-content;
+    }
   }
   .users__button {
-  width: fit-content;
-}
+    width: fit-content;
+  }
   .users__table {
-    width: 100%;
+    width: 50rem;
+    margin: 0 auto;
   }
   .users__table,
   .users__table-header,
   .users__table-cell {
     font-size: 0.95rem;
+  }
+
+  .users__form {
+    width: 20rem;
+    margin: 0 auto;
+  }
+
+  .users__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+
+  }
+  
+  .users__subtitle {
+    width: fit-content;
+  }
+}
+
+@media (min-width: 1200px) {
+  .users__content {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+
+  .users__container:last-child {
+    padding-left: 2.5rem ;
+    border-left: 2px solid var(--bg-200);
   }
 }
