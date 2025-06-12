@@ -3,6 +3,7 @@
         <input 
           name="completed"
           class="task__check" 
+          id="completed-<%= task.id %>"
           data-id="<%= task.id %>" 
           type="checkbox"
           <%= task.completed ? "checked" : "" %>>
@@ -12,6 +13,6 @@
         </div>
     </form>
     <p class="task__title">
-        <%= task.title %> | <span class="task__type"><%= title %></span>
+        <label for="completed-<%= task.id %>"><%= task.title %> | <span class="task__type"><%= title %></span></label>
     </p>
 </li>
