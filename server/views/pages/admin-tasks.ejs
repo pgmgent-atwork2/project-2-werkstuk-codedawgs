@@ -40,6 +40,7 @@
             <th class="admin-tasks__table-header">Task type name</th>
             <th class="admin-tasks__table-header">Interval</th>
             <th class="admin-tasks__table-header">Completed</th>
+            <th class="admin-tasks__table-header">Visibility</th>
             <th class="admin-tasks__table-header">Action</th>
           </tr>
         </thead>
@@ -90,22 +91,22 @@
                 </select>
               </td>
               <td class="admin-tasks__table-cell">
-                <select name="object_id" class="admin-tasks__select admin-tasks__select--object-type select" form="form-<%= task.id %>" disabled>
+                <select name="object_id" class="admin-tasks__select admin-tasks__select--object-id select" form="form-<%= task.id %>" disabled>
                   <% if (task.object_type==="department" ) { %>
                     <% departments.forEach(dep => { %>
-                      <option value="<%= dep.title.toLowerCase().replace(" ", "") %>" ><%= dep.title %></option>
+                      <option <%= task.object_id === dep.id ? "selected" : "" %> value="<%= dep.id %>" ><%= dep.title %></option>
                     <% }); %>
                   <% } else if (task.object_type==="sub_department" ) { %>
                     <% sub_departments.forEach(sub => { %>
-                      <option value="<%= sub.title.toLowerCase().replace(" ", "") %>" ><%= sub.title %></option>
+                      <option <%= task.object_id === sub.id ? "selected" : "" %> value="<%= sub.id %>" ><%= sub.title %></option>
                     <% }); %>
                   <% } else if (task.object_type==="pump" ) { %>
                     <% pumps.forEach(pum => { %>
-                      <option value="<%= pum.title.toLowerCase().replace(" ", "") %>" ><%= pum.title %></option>
+                      <option <%= task.object_id === pum.id ? "selected" : "" %> value="<%= pum.id %>" ><%= pum.title %></option>
                     <% }); %>
                   <% } else if (task.object_type==="filter" ) { %>
                     <% filters.forEach(fil => { %>
-                      <option value="<%= fil.title.toLowerCase().replace(" ", "") %>" ><%= fil.title %></option>
+                      <option <%= task.object_id === fil.id ? "selected" : "" %> value="<%= fil.id %>" ><%= fil.title %></option>
                     <% }); %>
                   <% } %>
                 </select>
@@ -121,7 +122,14 @@
                 <%=task.completed ? "Yes" : "No" %>
               </td>
               <td class="admin-tasks__table-cell">
+                <select name="visible" class="admin-tasks__select admin-tasks__select--visible select" form="form-<%= task.id %>" disabled>
+                  <option value="1" <%= task.visible ? "selected" : "" %>>Visible</option>
+                  <option value="0" <%= !task.visible ? "selected" : "" %>>Invisible</option>
+                </select>
+              </td>
+              <td class="admin-tasks__table-cell">
                 <form method="POST" action="/admin/tasks/<%= task.id %>" class="admin-tasks__task-form" id="form-<%= task.id %>">
+                  <button class="admin-tasks__cancel-btn button" type="button" style="display:none;">Cancel</button>
                   <button class="admin-tasks__edit-btn button" type="button" data-task-id="<%= task.id %>">Edit</button>
                   <button class="admin-tasks__save-btn button" type="submit" style="display:none;">Save</button>
                 </form>
