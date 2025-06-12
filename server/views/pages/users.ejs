@@ -29,7 +29,7 @@
           <td class="users__table-cell"><%= user.first_name %> <%= user.last_name %></td>
           <td class="users__table-cell"><%= user.role %></td>
           <td class="users__table-cell"><%= user.token %></td>
-          <td class="users__table-cell">
+          <td class="users__table-cell pincode-cell">
             <input
               type="password"
               value="<%= user.pincode %>"
@@ -41,7 +41,7 @@
               src="/assets/svg/eye-slash.svg"
               class="eye-toggle"
               alt="Show pincode"
-              style="width:20px;cursor:pointer;vertical-align:middle;"
+              style=""
               draggable="false"
               tabindex="0"
             />
