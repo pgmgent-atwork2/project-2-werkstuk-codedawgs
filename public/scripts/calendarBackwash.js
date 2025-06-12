@@ -34,7 +34,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   async function fetchData(slug) {
     try {
-      const response = await fetch(`/api/${slug}`);
+      const response = await fetch(`/api/${slug}`,{
+        headers: {
+          "api-key": apiKey,
+        }
+      });
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }      
@@ -49,6 +53,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const response = await fetch(`/tasks/${id}/completed`, {
         method: "POST",
         headers: {
+          "api-key": apiKey,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
