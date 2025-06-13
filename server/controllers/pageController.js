@@ -96,11 +96,10 @@ export const taskPageAdmin = async (req, res) => {
 
   const departments = await knex("departments").select("*");
   const sub_departments = await knex("sub_departments").select("*");
-  const filters = await knex("filters").select("*");
   const pumps = await knex("pumps").select("*");
+  const filters = await knex("filters").select("*");
 
   let tasksQuery = knex("tasks").select("*");
-
   if (object_type && object_type !== "") {
     tasksQuery = tasksQuery.where("object_type", object_type);
   }
@@ -113,38 +112,36 @@ export const taskPageAdmin = async (req, res) => {
   if (typeof visibility !== "undefined" && visibility !== "") {
     tasksQuery = tasksQuery.where("visible", visibility == "1" ? 1 : 0);
   }
-
   const tasks = await tasksQuery;
 
+  let objectIdOptions = [];
+  if (object_type === "department") objectIdOptions = departments;
+  if (object_type === "sub_department") objectIdOptions = sub_departments;
+  if (object_type === "pump") objectIdOptions = pumps;
+  if (object_type === "filter") objectIdOptions = filters;
+
   const taskTypes = await knex("tasks").distinct("object_type as value");
-  const taskTypeNames = await knex("tasks").distinct("object_id as value");
   const intervals = await knex("tasks").distinct("interval as value");
   const visibilities = [
     { value: 1, label: "Visible" },
     { value: 0, label: "Invisible" }
   ];
 
-  try {
-    res.render("pages/admin-tasks", {
-      title: "Tasks",
-      user: req.user,
-      tasks,
-      departments,
-      sub_departments,
-      filters,
-      pumps,
-      taskTypes,
-      taskTypeNames,
-      intervals,
-      visibilities,
-      query: req.query
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error loading tasks");
-  }
+  res.render("pages/admin-tasks", {
+    title: "Tasks",
+    user: req.user,
+    tasks,
+    departments,
+    sub_departments,
+    pumps,
+    filters,
+    taskTypes,
+    intervals,
+    visibilities,
+    objectIdOptions, 
+    query: req.query
+  });
 };
-
 
 export const taskPage = async (req, res) => {  
   const { departmentString } = req.params;

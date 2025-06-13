@@ -31,8 +31,9 @@
 
   <div class="admin-tasks_filter__container">
     <form action="/admin/tasks" method="GET" class="admin-tasks__filter-form">
+      <button type="button" onclick="window.location.href='/admin/tasks'">Clear filters</button>
       <label for="object_type">Task type:</label>
-      <select name="object_type" id="object_type">
+      <select name="object_type" id="object_type" class="admintask__object_type">
         <option value="">All</option>
         <% taskTypes.forEach(type => { %>
           <option value="<%= type.value %>" <%= query && query.object_type === type.value ? "selected" : "" %>>
@@ -42,11 +43,11 @@
       </select>
 
       <label for="object_id">Task type name:</label>
-      <select name="object_id" id="object_id">
+      <select class="admintask__object_id" name="object_id" id="object_id">
         <option value="">All</option>
-        <% taskTypeNames.forEach(name => { %>
-          <option value="<%= name.value %>" <%= query && query.object_id === String(name.value) ? "selected" : "" %>>
-            <%= name.value %>
+        <% objectIdOptions.forEach(opt => { %>
+          <option value="<%= opt.id %>" <%= query && query.object_id === String(opt.id) ? "selected" : "" %>>
+            <%= opt.title %>
           </option>
         <% }) %>
       </select>
@@ -70,8 +71,7 @@
           </option>
         <% }) %>
       </select>
-
-      <button type="submit">Filter</button>
+      <button type="submit">Apply filter</button>
     </form>
   </div>
 
@@ -190,5 +190,5 @@
   <%- include('../partials/navigation.ejs') %>
 </div>
 
-<script defer src="/scripts/admin-tasks-dynamic.js"></script>
+é<script defer src="/scripts/admin-tasks-dynamic.js"></script>
 <script defer src="/scripts/admin-tasks-edit.js"></script>
