@@ -4,6 +4,7 @@ import { PORT, VIEWS_PATH } from "./consts.js";
 import path from "path";
 import cookieParser from "cookie-parser";
 import "./cron/intervalCron.js";
+import dotenv from 'dotenv';
 
 import * as pageController from "./controllers/pageController.js";
 import * as authController from "./controllers/authController.js";
@@ -30,6 +31,8 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+dotenv.config();
+
 app.use(cookieParser());
 
 // EJS config
@@ -39,13 +42,13 @@ app.set("layout", "layouts/main");
 app.set("views", path.resolve("server", "views"));
 
 //API
-app.get("/api/users", API_UserController.users);
-app.get("/api/tasks", API_TaskController.tasks);
-app.get("/api/tasklogs", API_TaskController.taskLogs);
-app.get("/api/filters", API_FilterController.filters);
-app.get("/api/departments", API_DepartmentController.departments);
-app.get("/api/subdepartments", API_DepartmentController.subDepartments);
-app.get("/api/measurement-definitions", API_MeasurementController.measurementDefinitions);
+app.get("/api/users", jwtAuth, API_UserController.users);
+app.get("/api/tasks", jwtAuth, API_TaskController.tasks);
+app.get("/api/tasklogs", jwtAuth, API_TaskController.taskLogs);
+app.get("/api/filters", jwtAuth, API_FilterController.filters);
+app.get("/api/departments",jwtAuth, API_DepartmentController.departments);
+app.get("/api/subdepartments", jwtAuth, API_DepartmentController.subDepartments);
+app.get("/api/measurement-definitions", jwtAuth, API_MeasurementController.measurementDefinitions);
 
 // Auth Routes
 app.get("/login", authController.login);

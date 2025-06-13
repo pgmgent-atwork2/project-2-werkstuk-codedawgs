@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const response = await fetch(`/tasks/${id}/completed`, {
         method: "POST",
         headers: {
+          "api-key": apiKey,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({

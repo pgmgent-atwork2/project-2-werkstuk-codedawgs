@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function fetchData(slug) {
     try {
-      const response = await fetch(`api/${slug}`);
+      const response = await fetch(`/api/${slug}`);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }

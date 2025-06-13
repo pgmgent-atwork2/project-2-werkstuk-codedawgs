@@ -99,7 +99,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       try {
         const response1 = await fetch("/tasks/analysis", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            "header": apiKey,
+           },
           body: JSON.stringify(data),
         });
         if (!response1.ok) {
@@ -113,7 +116,10 @@ document.addEventListener("DOMContentLoaded", async function () {
           if (calc.error !== "none") {
             const data = await fetch("/analysis/notification", {
               method: "POST",
-              headers: { "Content-Type": "application/json" },
+              headers: { 
+                "Content-Type": "application/json",
+                "headers" : apiKey
+               },
               body: JSON.stringify({
                 measurement_log_id: result.id.id,
                 measurement_def_id: calc.def_id,

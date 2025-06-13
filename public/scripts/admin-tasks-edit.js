@@ -52,11 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function updateObjectIdOptions(typeSelect, idSelect) {
     idSelect.innerHTML = "<option>Loading...</option>";
     try {
-      const res = await fetch(
-        `/admin/tasks/object-options?type=${encodeURIComponent(
-          typeSelect.value
-        )}`
-      );
+      const res = await fetch(`/admin/tasks/object-options?type=${encodeURIComponent(typeSelect.value)}`);
       const options = await res.json();
 
       idSelect.innerHTML = options
