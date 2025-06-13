@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       const options = await res.json();
 
-      idSelect.innerHTML = `<option value="">All (${options.length})</option>` +
+      idSelect.innerHTML = `<option value="">All</option>` +
         options
           .map(
             (option) => `<option value="${option.id}">${option.title}</option>`

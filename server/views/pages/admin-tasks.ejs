@@ -32,6 +32,52 @@
       </form>
     </div>
     <div class="admin-tasks__container">
+      
+  <div class="admin-tasks_filter__container">
+    <form action="/admin/tasks" method="GET" class="admin-tasks__filter-form">
+      <button type="button" onclick="window.location.href='/admin/tasks'">Clear filters</button>
+      <label for="object_type">Task type:</label>
+      <select name="object_type" id="object_type" class="admintask__object_type">
+        <option value="">All</option>
+        <% taskTypes.forEach(type => { %>
+          <option value="<%= type.value %>" <%= query && query.object_type === type.value ? "selected" : "" %>>
+            <%= type.value %>
+          </option>
+        <% }) %>
+      </select>
+
+      <label for="object_id">Task type name:</label>
+      <select class="admintask__object_id" name="object_id" id="object_id">
+        <option value="">All</option>
+        <% objectIdOptions.forEach(opt => { %>
+          <option value="<%= opt.id %>" <%= query && query.object_id === String(opt.id) ? "selected" : "" %>>
+            <%= opt.title %>
+          </option>
+        <% }) %>
+      </select>
+
+      <label for="interval">Interval:</label>
+      <select name="interval" id="interval">
+        <option value="">All</option>
+        <% intervals.forEach(interval => { %>
+          <option value="<%= interval.value %>" <%= query && query.interval === interval.value ? "selected" : "" %>>
+            <%= interval.value %>
+          </option>
+        <% }) %>
+      </select>
+
+      <label for="visibility">Visibility:</label>
+      <select name="visibility" id="visibility">
+        <option value="">All</option>
+        <% visibilities.forEach(vis => { %>
+          <option value="<%= vis.value %>" <%= query && String(query.visibility) === String(vis.value) ? "selected" : "" %>>
+            <%= vis.label %>
+          </option>
+        <% }) %>
+      </select>
+      <button type="submit">Apply filter</button>
+    </form>
+  </div>
   <% departments.forEach(function(department) { %>
     <h3 class="admin-tasks__department-title"><%= department.title %></h3>
     <div class="admin-tasks__table-container">
