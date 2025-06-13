@@ -43,11 +43,11 @@ export const postLogin = async (req, res, next) => {
     }
 
     const user = await User.query().findOne({
-      first_name: req.body.first_name,
+      id: req.body.id,
     });
 
     if (!user) {
-      req.formErrorFields = { first_name: "User does not exist" };
+      req.formErrorFields = { id: "User does not exist" };
       req.flash = { type: "danger", message: "Errors occurred" };
       return next();
     }
