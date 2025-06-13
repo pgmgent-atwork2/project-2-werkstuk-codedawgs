@@ -4,7 +4,7 @@
   box-sizing: border-box;
   background: var(--bg-100);
   border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
 }
 
 .admin-tasks__title {
@@ -45,6 +45,14 @@
   color: var(--text-100);
 }
 
+.admin-tasks__input:disabled,
+.admin-tasks__select:disabled {
+  pointer-events: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+}
+
 .admin-tasks__department-title {
   margin-top: 2.5rem;
   margin-bottom: 0.7rem;
@@ -70,6 +78,7 @@
 }
 
 .admin-tasks__table-header {
+  width: min-content;
   background: var(--cell-200);
   padding: 0.7rem;
   text-align: left;
@@ -77,18 +86,27 @@
   font-weight: 600;
 }
 
+.admin-tasks__table-header:first-child {
+  width: 5rem;
+}
+
+.admin-tasks__container:first-child {
+    width: 20rem;
+  }
+
 .admin-tasks__table-row:nth-child(even) {
   background: var(--cell-100);
 }
 
 .admin-tasks__table-cell {
   padding: 0.7rem;
+  width: fit-content;
   border-bottom: 1px solid var(--cell-300);
   font-size: 1rem;
   color: var(--text-200);
 }
 
-@media (min-width: 500px) {
+@media (min-width: 800px) {
   .admin-tasks {
     padding: 2rem;
     margin: 2rem auto;
@@ -96,12 +114,50 @@
   .admin-tasks__button {
     width: fit-content;
   }
-  .admin-tasks__table {
-    width: 100%;
-  }
   .admin-tasks__table,
   .admin-tasks__table-header,
   .admin-tasks__table-cell {
     font-size: 0.95rem;
+  }
+
+  .admin-tasks__form {
+    width: 20rem;
+    margin: 0 auto;
+  }
+
+  .admin-tasks__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+
+  .admin-tasks__subtitle {
+    width: fit-content;
+  }
+
+  .admin-tasks__container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .admin-tasks__content {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+
+  .admin-tasks__container:first-child {
+    width: 20rem;
+  }
+
+  .admin-tasks__container:last-child {
+    width: 90rem;
+    padding-left: 2.5rem;
+    border-left: 2px solid var(--bg-200);
   }
 }
