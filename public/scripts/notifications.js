@@ -1,10 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function() {
   try {
-    const res = await fetch("/notifications", {
-        headers: {
-          "api-key": apiKey,
-        }
-      });
+    const res = await fetch("/notifications");
     const data = await res.json();
     if (data.count && data.count > 0) {
       const notifDiv = document.querySelector('.header__notifs');

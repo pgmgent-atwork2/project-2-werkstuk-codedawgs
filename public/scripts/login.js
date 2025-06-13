@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch("/login", {
         method: "POST",
         headers: {
-          "api-key": apiKey,
+          
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),

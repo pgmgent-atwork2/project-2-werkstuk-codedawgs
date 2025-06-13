@@ -1,6 +1,3 @@
-const apiKey = process.env.API_KEY;
-console.log(apiKey);
-
 document.addEventListener("DOMContentLoaded", function () {
   const events = [];
 
@@ -8,11 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function fetchData(slug) {
     try {
-      const response = await fetch(`/api/${slug}`, {
-        headers: {
-          "api-key": apiKey,
-        }
-      });
+      const response = await fetch(`/api/${slug}`);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
