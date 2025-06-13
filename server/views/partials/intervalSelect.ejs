@@ -14,22 +14,19 @@
                     </svg>
                 </summary>
                 <% if(user.role ==="aqua" ) { %>
-                    <% const url=departments[3].title.replace(/\s/g, '' ).toLowerCase(); %>
-                        <ul class="summary__ul">
-                            <li class="summary__li">
-                                <a class="summary__link" href='<%= interval %>/<%= url %>'>
-                                    <%= departments[3].title %>
-                                </a></li>
-                        </ul>
-                        <% } else {%>
-                            <ul class="summary__ul">
-                                <% departments.forEach(department=> { %>
-                                    <% const url=department.title.replace(/\s/g, '' ).toLowerCase(); %>
-                                        <%- include('./summaryDepartment.ejs', {interval: interval, url: url, department: department, tasks: tasks, pumps: pumps, filters: filters})%>
-                                    <% }); %>
-                                <% } %>
-                            </ul>
-
+                    <% const department = departments[3] %>
+                    <% const url=department.title.replace(/\s/g, '' ).toLowerCase(); %>
+                    <ul class="summary__ul">
+                        <%- include('./summaryDepartment.ejs', {interval: interval, url: url, department: department, tasks: tasks, pumps: pumps, filters: filters})%>
+                    </ul>
+                <% } else {%>
+                    <ul class="summary__ul">
+                        <% departments.forEach(department=> { %>
+                            <% const url=department.title.replace(/\s/g, '' ).toLowerCase(); %>
+                                <%- include('./summaryDepartment.ejs', {interval: interval, url: url, department: department, tasks: tasks, pumps: pumps, filters: filters})%>
+                            <% }); %>
+                        <% } %>
+                    </ul>
             </details>
             <% }); %>
     </section>
