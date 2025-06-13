@@ -4,13 +4,18 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.196);
   padding: 1rem 1.5rem;
   margin: 1rem auto;
-  max-width: 350px;
+  max-width: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.notifications-message__btn {
+  padding: .5rem 1rem !important;
+  font-size: 0.9rem !important;
 }
 
 .notification-box p {
