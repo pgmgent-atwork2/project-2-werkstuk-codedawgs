@@ -7,17 +7,32 @@
             <h1 class="analysis-page__title">Select sub department:</h1>
             <form id="analysisFilterForm" method="GET" action="/general/analysis">
                 <button type="button" onclick="window.location.href='/general/analysis'">Clear filters</button>
+                <select class="analysis-page__department-select select" name="filter_department" id="filter_department">
+                  <% if (user.role === "aqua") { %>
+                    <% departments.forEach(dep => { %>
+                      <% if (dep.id === 4) { %>
+                        <option value="<%= dep.id %>" selected><%= dep.title %></option>
+                      <% } %>
+                    <% }) %>
+                  <% } else { %>
+                    <option value="all" <%= typeof filter_department==='undefined' || filter_department==='all' ? 'selected' : '' %>>All</option>
+                    <% departments.forEach(dep => { %>
+                      <option value="<%= dep.id %>" <%= typeof filter_department !=='undefined' && filter_department==dep.id ? 'selected' : '' %>><%= dep.title %></option>
+                    <% }) %>
+                  <% } %>
+                </select>
                 <select class="analysis-page__subdepartment-select select" name="filter_sub_department"
                     id="filter_sub_department">
-                    <option value="all" <%=typeof filter_sub_department==='undefined' || filter_sub_department==='all'
+                    <option value="all" <%= typeof filter_sub_department==='undefined' || filter_sub_department==='all'
                         ? 'selected' : '' %>>All</option>
-                    <% sub_departments.forEach(sub_department_item=> { %>
-                        <option value="<%= sub_department_item.id %>" <%=typeof filter_sub_department !=='undefined' &&
+                    <% sub_departments.forEach(sub_department_item => { %>
+                      <% if (user.role !== "aqua" || sub_department_item.department_id === 4) { %>
+                        <option value="<%= sub_department_item.id %>" <%= typeof filter_sub_department !=='undefined' &&
                             filter_sub_department==sub_department_item.id ? 'selected' : '' %>>
-                            <%= departments[sub_department_item.department_id-1].title %> | <%=
-                                    sub_department_item.title %>
+                            <%= departments[sub_department_item.department_id-1].title %> | <%= sub_department_item.title %>
                         </option>
-                        <% }); %>
+                      <% } %>
+                    <% }); %>
                 </select>
                 <select class="analysis-page__subdepartment-select select" name="startMonth" id="startMonth">
                     <option value="">All</option>
@@ -66,13 +81,14 @@
                 </select>
                 <select class="subDepartmentSelect analysis-page__subdepartment-select select" name="sub_department"
                     id="sub_department">
-                    <% sub_departments.forEach(sub_department_item=> { %>
-                        <option value="<%= sub_department_item.id %>" <%=typeof sub_department !=='undefined' &&
-                            sub_department==sub_department_item.id ? 'selected' : '' %>>
-                            <%= departments[sub_department_item.department_id-1].title %> | <%=
-                                    sub_department_item.title %>
-                        </option>
-                        <% }); %>
+                    <% sub_departments.forEach(sub_department_item => { %>
+    <% if (user.role !== "aqua" || sub_department_item.department_id === 4) { %>
+      <option value="<%= sub_department_item.id %>" <%= typeof sub_department !=='undefined' &&
+        sub_department==sub_department_item.id ? 'selected' : '' %>>
+        <%= departments[sub_department_item.department_id-1].title %> | <%= sub_department_item.title %>
+      </option>
+    <% } %>
+  <% }); %>
                 </select>
                 <% measurement_definitions.forEach(measurement_definition=> { %>
                     <div class="measurement__input analysis-page__measurement-input">
