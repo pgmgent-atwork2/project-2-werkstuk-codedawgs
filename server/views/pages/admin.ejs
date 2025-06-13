@@ -8,8 +8,6 @@
             <section class="admin__container">
                 <aside class="admin__sidebar">
                     <div class="admin__sidebar-buttons">
-                        <button class="button admin__sidebar-btn export-excel-btn" data-table="task-logs">
-                            Export to Excel</button>
                         <button class="button admin__sidebar-btn"
                             onclick="window.location.href='/admin/users'">Users</button>
                         <button class="button admin__sidebar-btn"
@@ -82,6 +80,11 @@
                             <span id="dateRangeError" style="color: red; display: none;"></span>
                         </form>
                     </div>
+
+                    <button class="button admin__sidebar-btn export-excel-btn" data-table="task-logs">
+                            Export to Excel
+                    </button>
+
                 </aside>
                 <%- include('../partials/task-logs.ejs') %>
             </section>
