@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const events = [];
+  const aquasplashUser = document.querySelector(".aqua")
 
   generateEvents();
 
@@ -71,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
       dayMaxEvents: 2,
 
       eventContent: function (arg) {
+        console.log(arg);
+        
         const time = arg.event.start.toLocaleTimeString('en-US', { hour: "2-digit", minute: "2-digit", hour12: false });
         const title = arg.event.title;
         const user = arg.event.extendedProps.user;
