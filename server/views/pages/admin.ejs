@@ -16,74 +16,94 @@
                             onclick="window.location.href='/admin/analysis'">Analysis</button>
                     </div>
                     <div class="admin__sidebar-filter">
+                        <h2>Filter task logs</h2>
                         <form id="logFilterForm" method="GET" action="/admin">
-                            <button type="button" onclick="window.location.href='/admin'">Clear filters</button>
+                            <section>
+                                <div>
+                                    <h3>From</h3>
+                                    <label for="startMonth">Month</label>
+                                    <select class="select" name="startMonth" id="startMonth">
+                                        <option value="">All</option>
+                                        <% for(let m=1; m<=12; m++) { %>
+                                            <option value="<%= m %>" <%=typeof startMonth !=='undefined' && startMonth==m
+                                                ? 'selected' : '' %>>
+                                                <%= monthNames[m-1] %>
+                                            </option>
+                                            <% } %>
+                                    </select>
+                                    <label for="startYear">Year</label>
+                                    <select class="select" name="startYear" id="startYear">
+                                        <option value="">All</option>
+                                        <% const currentYear=new Date().getFullYear(); %>
+                                            <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
+                                                <option value="<%= y %>" <%=typeof startYear !=='undefined' && startYear==y
+                                                    ? 'selected' : '' %>><%= y %>
+                                                </option>
+                                                <% } %>
+                                    </select>
+                                </div>
+                                <div>
+                                    <h3>To</h3>
+                                    <label for="endMonth" >Month</label>
+                                    <select class="select" name="endMonth" id="endMonth">
+                                        <option value="">All</option>
+                                        <% for(let m=1; m<=12; m++) { %>
+                                            <option value="<%= m %>" <%=typeof endMonth !=='undefined' && endMonth==m
+                                                ? 'selected' : '' %>>
+                                                <%= monthNames[m-1] %>
+                                            </option>
+                                            <% } %>
+                                    </select>
+                                    <label for="endYear">Year</label>
+                                    <select class="select" name="endYear" id="endYear">
+                                        <option value="">All</option>
+                                        <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
+                                            <option value="<%= y %>" <%=typeof endYear !=='undefined' && endYear==y ? 'selected'
+                                                : '' %>><%= y %>
+                                            </option>
+                                            <% } %>
+                                    </select>
+                                </div>
+                            </section>
 
-                            <select name="startMonth" id="startMonth">
-                                <option value="">All</option>
-                                <% for(let m=1; m<=12; m++) { %>
-                                    <option value="<%= m %>" <%=typeof startMonth !=='undefined' && startMonth==m
-                                        ? 'selected' : '' %>>
-                                        <%= monthNames[m-1] %>
-                                    </option>
-                                    <% } %>
-                            </select>
-                            <select name="startYear" id="startYear">
-                                <option value="">All</option>
-                                <% const currentYear=new Date().getFullYear(); %>
-                                    <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
-                                        <option value="<%= y %>" <%=typeof startYear !=='undefined' && startYear==y
-                                            ? 'selected' : '' %>><%= y %>
-                                        </option>
-                                        <% } %>
-                            </select>
-                            <select name="endMonth" id="endMonth">
-                                <option value="">All</option>
-                                <% for(let m=1; m<=12; m++) { %>
-                                    <option value="<%= m %>" <%=typeof endMonth !=='undefined' && endMonth==m
-                                        ? 'selected' : '' %>>
-                                        <%= monthNames[m-1] %>
-                                    </option>
-                                    <% } %>
-                            </select>
-                            <select name="endYear" id="endYear">
-                                <option value="">All</option>
-                                <% for(let y=currentYear-5; y<=currentYear+1; y++) { %>
-                                    <option value="<%= y %>" <%=typeof endYear !=='undefined' && endYear==y ? 'selected'
-                                        : '' %>><%= y %>
-                                    </option>
-                                    <% } %>
-                            </select>
+                            <section>
+                                <div>
+                                    <label for="userFilter">User</label>
+                                    <select class="select" name="userId" id="userFilter">
+                                        <option value="">All users</option>
+                                        <% users.forEach(u=> { %>
+                                            <option value="<%= u.id %>" <%=typeof userId !=='undefined' && userId==u.id
+                                                ? 'selected' : '' %>>
+                                                <%= u.first_name %>
+                                                    <%= u.last_name %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="objectType">Object type</label>
+                                    <select class="select" name="objectType" id="objectType">
+                                        <option value="">All types</option>
+                                        <% allObjectTypes.forEach(type=> { %>
+                                            <option value="<%= type %>" <%=typeof objectType !=='undefined' && objectType===type
+                                                ? 'selected' : '' %>><%= type %>
+                                            </option>
+                                            <% }); %>
+                                    </select>
+                                </div>
 
-                            <select name="userId" id="userFilter">
-                                <option value="">All users</option>
-                                <% users.forEach(u=> { %>
-                                    <option value="<%= u.id %>" <%=typeof userId !=='undefined' && userId==u.id
-                                        ? 'selected' : '' %>>
-                                        <%= u.first_name %>
-                                            <%= u.last_name %>
-                                    </option>
-                                    <% }) %>
-                            </select>
+                                <button class="button" type="submit">Apply filter</button>
+                                <button class="button" type="button" onclick="window.location.href='/admin'">Clear filters</button>
+                                <span id="dateRangeError" ></span>
+                            </section>
 
-                            <select name="objectType" id="objectType">
-                                <option value="">All types</option>
-                                <% allObjectTypes.forEach(type=> { %>
-                                    <option value="<%= type %>" <%=typeof objectType !=='undefined' && objectType===type
-                                        ? 'selected' : '' %>><%= type %>
-                                    </option>
-                                    <% }); %>
-                            </select>
-
-                            <button type="submit">Apply filter</button>
-                            <br>
-                            <span id="dateRangeError" style="color: red; display: none;"></span>
                         </form>
+
+                        <button class="button admin__sidebar-btn export-excel-btn" data-table="task-logs">
+                                Export to Excel
+                        </button>
                     </div>
 
-                    <button class="button admin__sidebar-btn export-excel-btn" data-table="task-logs">
-                            Export to Excel
-                    </button>
 
                 </aside>
                 <%- include('../partials/task-logs.ejs') %>
