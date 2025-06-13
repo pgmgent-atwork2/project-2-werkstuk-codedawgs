@@ -101,7 +101,6 @@ document.addEventListener("DOMContentLoaded", async function () {
           method: "POST",
           headers: { 
             "Content-Type": "application/json",
-            "header": apiKey,
            },
           body: JSON.stringify(data),
         });
@@ -118,7 +117,6 @@ document.addEventListener("DOMContentLoaded", async function () {
               method: "POST",
               headers: { 
                 "Content-Type": "application/json",
-                "headers" : apiKey
                },
               body: JSON.stringify({
                 measurement_log_id: result.id.id,
