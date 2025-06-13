@@ -107,6 +107,10 @@
   left: 2rem;
 }
 
+.login__back:hover {
+  color: var(--accent-200, );
+}
+
 .login__users {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -134,3 +138,11 @@
 }
 
 }
+
+
+  form {
+    input,
+    button {
+      width: 100%;
+    }
+  }
