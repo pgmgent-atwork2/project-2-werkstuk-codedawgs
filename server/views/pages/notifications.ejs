@@ -19,7 +19,7 @@
               <% } else if (notification.message === "low") { %>
                 <% diff = def.min_value - value %>
               <% } %>
-              <strong><%= sub.title %></strong>: <%= value %><%= def.unit %> for <%= def.name %> is <%= diff %><%= def.unit %> too <strong><%= notification.message %></strong> 
+              <strong><%= sub.title %></strong>: <%= value %><%= def.unit %> for <%= def.name %> is <%= diff.toFixed(2) %><%= def.unit %> too <strong><%= notification.message %></strong> 
             <% } else { %>
               <%= notification.message %>
             <% } %>
