@@ -71,6 +71,11 @@
   font-size: 1rem;
 }
 
+.users__delete-button {
+  padding: .5rem 1rem !important;
+  font-size: 0.9rem !important;
+}
+
 @media (min-width: 800px) {
   .users {
     padding: 2rem;
