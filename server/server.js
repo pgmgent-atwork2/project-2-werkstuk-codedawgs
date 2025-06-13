@@ -15,6 +15,7 @@ import * as notificationController from "./controllers/notificationController.js
 import * as API_UserController from "./controllers/api/userController.js";
 import * as API_TaskController from "./controllers/api/taskController.js";
 import * as API_FilterController from "./controllers/api/filterController.js";
+import * as API_PumpController from "./controllers/api/pumpController.js";
 import * as API_DepartmentController from "./controllers/api/departmentController.js";
 import * as API_MeasurementController from "./controllers/api/measurementController.js";
 
@@ -46,6 +47,7 @@ app.get("/api/users", jwtAuth, API_UserController.users);
 app.get("/api/tasks", jwtAuth, API_TaskController.tasks);
 app.get("/api/tasklogs", jwtAuth, API_TaskController.taskLogs);
 app.get("/api/filters", jwtAuth, API_FilterController.filters);
+app.get("/api/pumps", jwtAuth, API_PumpController.pumps);
 app.get("/api/departments",jwtAuth, API_DepartmentController.departments);
 app.get("/api/subdepartments", jwtAuth, API_DepartmentController.subDepartments);
 app.get("/api/measurement-definitions", jwtAuth, API_MeasurementController.measurementDefinitions);
