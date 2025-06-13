@@ -15,9 +15,11 @@
                 <% const taskList = [] %>
                 <% tasks.forEach(task => { %>
                     <% if(task.interval === "none") { %>
+                        <% if(task.visible) { %>
                         <% if(!taskList.includes(task.title)) {%>
                             <% taskList.push(task.title); %>
                         <%}%>
+                    <% } %>
                     <% } %>
                 <% }); %> 
                 
