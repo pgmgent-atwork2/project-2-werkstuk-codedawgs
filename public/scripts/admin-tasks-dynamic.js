@@ -1,21 +1,35 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const objectTypeSelect = document.getElementById('object_type');
-  const objectIdSelect = document.getElementById('object_id');
+document.addEventListener("DOMContentLoaded", () => {  
+  const taskTypeInputs = document.querySelectorAll(
+    ".admintask__object_type"
+  );
+  const taskIdInputs = document.querySelectorAll(
+    ".admintask__object_id"
+  );
 
-  async function updateObjectIdOptions() {
-    const type = objectTypeSelect.value;
-    objectIdSelect.innerHTML = '<option>Loading...</option>';
+  taskTypeInputs.forEach((input, index) => {
+    input.addEventListener("change", () => {
+      updateObjectIdOptions(input, taskIdInputs[index]);
+    });
+  });
+
+  async function updateObjectIdOptions(typeSelect, idSelect) {
+    idSelect.innerHTML = "<option>Loading...</option>";
     try {
-      const res = await fetch(`/admin/tasks/object-options?type=${encodeURIComponent(type)}`);
+      const res = await fetch(
+        `/admin/tasks/object-options?type=${encodeURIComponent(
+          typeSelect.value
+        )}`
+      );
       const options = await res.json();
-      objectIdSelect.innerHTML = options.map(opt =>
-        `<option value="${opt.id}">${opt.title}</option>`
-      ).join('');
+
+      idSelect.innerHTML = `<option value="">All (${options.length})</option>` +
+        options
+          .map(
+            (option) => `<option value="${option.id}">${option.title}</option>`
+          )
+          .join("");
     } catch {
-      objectIdSelect.innerHTML = '<option>Error loading options</option>';
+      idSelect.innerHTML = "<option>Error</option>";
     }
   }
-
-  objectTypeSelect.addEventListener('change', updateObjectIdOptions);
-  updateObjectIdOptions();
 });

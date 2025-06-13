@@ -92,31 +92,55 @@ export const userPage = async (req, res) => {
 };
 
 export const taskPageAdmin = async (req, res) => {
-  let { departmentString } = req.params;
+  const { object_type, object_id, interval, visibility } = req.query;
 
-  const intervalString = req.path.split("/")[1];
-  try {
-    const tasks = await knex("tasks").select("*");
-    const departments = await knex("departments").select("*");
-    const sub_departments = await knex("sub_departments").select("*");
-    const filters = await knex("filters").select("*");
-    const pumps = await knex("pumps").select("*");
+  const departments = await knex("departments").select("*");
+  const sub_departments = await knex("sub_departments").select("*");
+  const pumps = await knex("pumps").select("*");
+  const filters = await knex("filters").select("*");
 
-    res.render("pages/admin-tasks", {
-      title: "Tasks",
-      user: req.user,
-      tasks,
-      intervalString,
-      departmentString,
-      departments,
-      sub_departments,
-      filters,
-      pumps,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error loading tasks");
+  let tasksQuery = knex("tasks").select("*");
+  if (object_type && object_type !== "") {
+    tasksQuery = tasksQuery.where("object_type", object_type);
   }
+  if (object_id && object_id !== "") {
+    tasksQuery = tasksQuery.where("object_id", object_id);
+  }
+  if (interval && interval !== "") {
+    tasksQuery = tasksQuery.where("interval", interval);
+  }
+  if (typeof visibility !== "undefined" && visibility !== "") {
+    tasksQuery = tasksQuery.where("visible", visibility == "1" ? 1 : 0);
+  }
+  const tasks = await tasksQuery;
+
+  let objectIdOptions = [];
+  if (object_type === "department") objectIdOptions = departments;
+  if (object_type === "sub_department") objectIdOptions = sub_departments;
+  if (object_type === "pump") objectIdOptions = pumps;
+  if (object_type === "filter") objectIdOptions = filters;
+
+  const taskTypes = await knex("tasks").distinct("object_type as value");
+  const intervals = await knex("tasks").distinct("interval as value");
+  const visibilities = [
+    { value: 1, label: "Visible" },
+    { value: 0, label: "Invisible" }
+  ];
+
+  res.render("pages/admin-tasks", {
+    title: "Tasks",
+    user: req.user,
+    tasks,
+    departments,
+    sub_departments,
+    pumps,
+    filters,
+    taskTypes,
+    intervals,
+    visibilities,
+    objectIdOptions, 
+    query: req.query
+  });
 };
 
 export const taskPage = async (req, res) => {  
