@@ -1,18 +1,19 @@
-<li class="task">
-    <form action="/tasks/<%= task.id %>/completed" method="POST">
-        <input 
-          name="completed"
-          class="task__check" 
-          id="completed-<%= task.id %>"
-          data-id="<%= task.id %>" 
-          type="checkbox"
-          <%= task.completed ? "checked" : "" %>>
-        <div class="task__comment">
-            <textarea name="comment"  placeholder="Optional: comment"></textarea>
-            <button class="button button--task" type="submit">Send</button>
-        </div>
-    </form>
-    <p class="task__title">
-        <label for="completed-<%= task.id %>"><%= task.title %> | <span class="task__type"><%= title %></span></label>
-    </p>
-</li>
+<% if (task.visible) { %>
+    <li class="task">
+        <form action="/tasks/<%= task.id %>/completed" method="POST">
+            <input name="completed" class="task__check" id="completed-<%= task.id %>" data-id="<%= task.id %>"
+                type="checkbox" <%=task.completed ? "checked" : "" %>>
+            <div class="task__comment">
+                <textarea name="comment" placeholder="Optional: comment"></textarea>
+                <button class="button button--task" type="submit">Send</button>
+            </div>
+        </form>
+        <p class="task__title">
+            <label for="completed-<%= task.id %>">
+                <%= task.title %> | <span class="task__type">
+                        <%= title %>
+                    </span>
+            </label>
+        </p>
+    </li>
+    <% } %>

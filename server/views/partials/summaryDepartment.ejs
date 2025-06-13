@@ -1,5 +1,6 @@
 <% const filteredTasks = []; %>
 <% tasks.forEach(task => { %>
+    <% if(task.visible) { %>
     <% if(task.interval !== "none") { %>
         <% if(task.interval === interval) { %>
             <% if(task.object_type === 'department') { %>
@@ -21,6 +22,8 @@
             <% } %>
         <% } %>
     <% } %>
+<% } %>
+
 <% }); %>
 
 <% const totalTasks = filteredTasks.length %>
