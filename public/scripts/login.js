@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   back.style.display = "none";
   register.style.display = "block";
 
-  back.addEventListener("click", () => {
+  back.addEventListener("click", () => {   
     userSelect.style.display = "grid";
     pinEnter.style.display = "none";
     back.style.display = "none";
@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", (event) => {   
     if(userSelect.style.display !== "grid") {
+      document.querySelector(".login__error-msg").innerHTML = "";
       const key = event.key;
   
       if (/^\d$/.test(key)) {
