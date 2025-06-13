@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
+  const backwashAqua = document.getElementById("selectAquasplash");
+
   let events = [];
   let resources = [];
 
@@ -9,19 +11,23 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   async function generateSelect() {
     const departments = await fetchData("departments");
-    departments.forEach((department) => {
-      backwashSelect.innerHTML += `
-      <option value=${department.id}>
-        ${department.title}
-      </option>
-      `;
-    });
+    if (!backwashAqua) {
+      departments.forEach((department) => {
+        backwashSelect.innerHTML += `
+          <option value=${department.id}>
+            ${department.title}
+          </option>
+          `;
+      });
+    }
   }
 
-  backwashSelect.addEventListener("change", function () {
-    currentDepartment = parseInt(backwashSelect.value);
-    regenerateTable();
-  });
+  if (!backwashAqua) {
+    backwashSelect.addEventListener("change", function () {
+      currentDepartment = parseInt(backwashSelect.value);
+      regenerateTable();
+    });
+  }
 
   async function regenerateTable() {
     const calendarEl = document.getElementById("calendarBackwash");
@@ -49,7 +55,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       const response = await fetch(`/tasks/${id}/completed`, {
         method: "POST",
         headers: {
-          "api-key": apiKey,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -81,7 +86,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
 
     if (!generalTasks.length) {
-      console.error("No Backwash tasks found");
       return [];
     }
 
@@ -93,7 +97,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     monday.setDate(today.getDate() + mondayOffset);
 
     filters.forEach((filter, filterIndex) => {
-      const task = generalTasks[filterIndex];
+      let task = generalTasks[filterIndex];
 
       if (!task) return;
 
@@ -102,8 +106,14 @@ document.addEventListener("DOMContentLoaded", async function () {
         eventDate.setDate(monday.getDate() + i);
         const formattedDate = eventDate.toISOString().split("T")[0];
 
-        const subDepartment = subDepartments[filter.sub_department_id - 1];
-        const department = departments[subDepartment.department_id - 1];
+        let subDepartment = subDepartments[filter.sub_department_id - 1];
+        let department = departments[subDepartment.department_id - 1];
+
+        if(backwashAqua) {
+          department = departments[3]
+        }
+
+        
 
         events.push({
           id: `${task.id}-${i + 1}`,
@@ -123,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         id: filter.title.toLowerCase(),
         title: filter.title,
       });
-    });
+    });    
   }
 
   async function generateTableWeek() {
@@ -136,11 +146,17 @@ document.addEventListener("DOMContentLoaded", async function () {
       events
         .filter((event) => event.department === currentDepartment)
         .map((event) => event.resourceId)
-    );
+    );    
 
-    const filteredResources = resources.filter((res) =>
+    let filteredResources = resources.filter((res) =>
       matchingResourceIds.has(res.id)
     );
+
+    if(backwashAqua) {
+      // Only show the resource with id "faq1"
+      filteredResources = resources.filter(res => res.id === "faq1");
+      currentDepartment = 4;
+    }    
 
     const table = document.createElement("table");
 

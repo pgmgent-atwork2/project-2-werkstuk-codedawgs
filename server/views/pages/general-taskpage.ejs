@@ -29,11 +29,17 @@
         <div class="backwash__container">
             <div>
                 <label for="backwashSelect">Select department:</label>
-                <select class="backwashSelect select" id="backwashSelect"></select>
+                <% if(user.role === "aqua") { %>
+                    <select disabled class="backwashSelect select" id="selectAquasplash">
+                        <option value="4">Aquasplash</option>
+                    </select>
+                <% } else { %>
+                    <select class="backwashSelect select" id="backwashSelect">
+                    </select>
+                <% } %>
             </div>
             <section id="calendarBackwash"></section>
         </div>
-
         <script src="/scripts/calendarBackwash.js" defer></script>
     <% } %>
 
