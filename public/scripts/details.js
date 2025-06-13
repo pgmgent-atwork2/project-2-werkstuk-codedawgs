@@ -6,11 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
           if (element !== details && element.open) {
             element.open = false;
             element.classList.remove("is-open");
+            element.classList.add("is-closed");
           }
         });
         details.classList.add("is-open");
+        details.classList.remove("is-closed");
       } else {
         details.classList.remove("is-open");
+        details.classList.add("is-closed");
       }
     });
   });
