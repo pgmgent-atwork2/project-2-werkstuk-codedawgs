@@ -85,6 +85,12 @@
     font-size: 1.3rem;
   }
 
+  .image-select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .register__back {
     color: var(--accent-100);
     top: 3rem;

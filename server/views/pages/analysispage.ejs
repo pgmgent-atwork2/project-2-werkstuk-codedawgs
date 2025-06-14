@@ -85,7 +85,7 @@
                 </label>
                 <input class="value-input analysis-page__value-input"
                        <%=[2, 4, 5, 6].includes(def.id) ? "required" : "" %>
-                       <%= def.id === 6 ? "disabled" : "" %>
+                       <%= def.id === 6 ? "readonly" : "" %>
                        name="<%= def.id %>"
                        type="number" step="0.01"
                        id="<%= def.id %>"
@@ -122,12 +122,12 @@
                     <th>Comment</th>
                 </tr>
                 <tr>
-                    <td></td>
+                    <th></th>
                     <% measurement_definitions.forEach(def => { %>
-                        <td><%= def.unit %></td>
+                        <th><%= def.unit %></th>
                     <% }); %>
-                    <td></td>
-                    <td></td>
+                    <th></th>
+                    <th></th>
                 </tr>
 
                 <% measurement_logs.forEach(log => { 

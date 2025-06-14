@@ -15,7 +15,7 @@
             <div class="<%= imageInput.name %>__grid" >
                 <% for (let i=1; i <=16; i++) { %>
                     <label class="image-select__image">
-                        <input type="<%= imageInput.type %>" name="image_id" value="<%= i %>" required>
+                        <input type="<%= imageInput.type %>" name="image_id" value="<%= i %>" id="<%= i %>" required>
                         <img src="/assets/images/pfp<%= i %>.png" alt="Profile <%= i %>">
                     </label>
                 <% } %>
