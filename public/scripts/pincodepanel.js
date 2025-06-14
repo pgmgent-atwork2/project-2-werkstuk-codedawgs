@@ -16,6 +16,15 @@ function resetPin() {
   });
 }
 
+function updateDisplay() {
+  pincodeDisplay.forEach((display) => {
+    display.classList.remove("pincode-display__circle--filled");
+  });
+  for (let i = 0; i < pinAmount; i++) {
+    pincodeDisplay[i].classList.add("pincode-display__circle--filled");
+  }
+}
+
 
 pincodeKeys.forEach((key) => {
   key.addEventListener("click", () => {
