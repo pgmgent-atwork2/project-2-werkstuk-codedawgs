@@ -22,6 +22,11 @@
   }
 }
 
+.login__name {
+  font-size: 1.1rem;
+  max-width: 7rem;
+}
+
 .pincode-panel__key:nth-child(10) {
   grid-column: 2;
   grid-row: 4;
