@@ -1,10 +1,15 @@
+.admin-tasks__content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .admin-tasks {
   padding: 1rem;
   width: 100%;
-  box-sizing: border-box;
-  background: var(--bg-100);
-  border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
 }
 
 .admin-tasks__title {
@@ -19,13 +24,25 @@
   color: var(--text-200);
 }
 
+
 .admin-tasks__form {
+  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 2rem;
   box-sizing: border-box;
 }
+
+  .admin-tasks__filter-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+    button {
+      width: 100%;
+    }
+  }
 
 .admin-tasks__label {
   display: flex;
@@ -61,11 +78,20 @@
 }
 
 .admin-tasks__table-container {
+  margin: 0 auto;
   width: 100%;
   overflow-x: auto;
   scrollbar-color: var(--bg-400) var(--bg-100);
   scrollbar-width: thin;
 }
+
+.admin-tasks_filter__container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 auto;
+}
+
 
 .admin-tasks__table {
   min-width: 20rem;
@@ -90,10 +116,6 @@
   width: 5rem;
 }
 
-.admin-tasks__container:first-child {
-    width: 20rem;
-  }
-
 .admin-tasks__table-row:nth-child(even) {
   background: var(--cell-100);
 }
@@ -116,6 +138,17 @@
 
   h2 {
       text-align: center;
+  }
+}
+
+.admin-tasks__filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  div {
+    display: flex;
+    gap: 0.2rem;
+    flex-direction: column;
   }
 }
 
@@ -157,7 +190,6 @@
   }
 }
 
-
 @media (min-width: 800px) {
   .admin__form-content {
     flex-direction: row;
@@ -178,7 +210,12 @@
       div {
         margin-top: 1.8rem;
       }
+
     }
+  }
+
+  .admin-tasks__filter-buttons {
+    flex-direction: row;
   }
 
   .admin__form-buttons {
@@ -193,9 +230,6 @@
     padding: 2rem;
     margin: 2rem auto;
   }
-  .admin-tasks__button {
-    width: fit-content;
-  }
   .admin-tasks__table,
   .admin-tasks__table-header,
   .admin-tasks__table-cell {
@@ -203,13 +237,11 @@
   }
 
   .admin-tasks__form {
-    width: 20rem;
     margin: 0 auto;
   }
 
   .admin-tasks__content {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
