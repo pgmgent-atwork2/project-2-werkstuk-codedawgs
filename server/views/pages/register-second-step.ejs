@@ -1,5 +1,5 @@
 <section class="register">
-    <h2 class="title">Choose a 4-digit pincode</h2>
+    <h2 class="register__title">Choose a 4-digit pincode</h2>
     <a href="/register" class="register__back">&lt; Back</a>
 
 
@@ -15,7 +15,7 @@
             <div class="<%= imageInput.name %>__grid" >
                 <% for (let i=1; i <=16; i++) { %>
                     <label class="image-select__image">
-                        <input type="<%= imageInput.type %>" name="image_id" value="<%= i %>" required>
+                        <input type="<%= imageInput.type %>" name="image_id" value="<%= i %>" id="<%= i %>" required>
                         <img src="/assets/images/pfp<%= i %>.png" alt="Profile <%= i %>">
                     </label>
                 <% } %>

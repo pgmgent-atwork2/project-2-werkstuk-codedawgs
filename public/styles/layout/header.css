@@ -61,10 +61,18 @@
     display: block !important;
     width: 12rem;
   }
+
+  .header__username {
+    display: none !important;
+  }
 }
 
 @media (width < 325px) {
   .header__logo {
+    display: none !important;
+  }
+
+  .header__username {
     display: none !important;
   }
 }
@@ -94,4 +102,32 @@
   text-align: center;
   user-select: none;
   pointer-events: none;
+}
+
+@keyframes notif-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 6px rgba(255, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+.header__notifications.has-notifications .header__notifs {
+  display: flex !important;
+  animation: notif-pulse 1.5s infinite;
+}
+
+.header__pfp-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--bg-100);
 }

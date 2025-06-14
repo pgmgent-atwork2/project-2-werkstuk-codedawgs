@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
       events: events,
       dayMaxEvents: 2,
 
-      eventContent: function (arg) {      
+      eventContent: function (arg) {
         const time = arg.event.start.toLocaleTimeString('en-US', { hour: "2-digit", minute: "2-digit", hour12: false });
         const title = arg.event.title;
         const user = arg.event.extendedProps.user;
