@@ -38,7 +38,7 @@ const { title, object_type, object_id, interval } = req.body;
       completed: false,
       visible: true
     });
-
+    res.cookie('toast', encodeURIComponent(`Succesfully added task "${title}"`), { maxAge: 10000, path: '/' });
     res.redirect('/admin/tasks');
   } catch (error) {
     console.error("Add task error:", error);
@@ -76,7 +76,6 @@ export const getObjectOptions = async (req, res) => {
 
 export const editTask = async (req, res) => {
   const { title, object_type, object_id, interval, visible } = req.body;
-  console.log(req.body.object_id);
   const id = req.params.id;
 
   try {

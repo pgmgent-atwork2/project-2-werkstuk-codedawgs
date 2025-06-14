@@ -23,6 +23,7 @@
 @import url("./components/calendarBackwash.css");
 @import url("./components/calendarWeek.css");
 @import url("./components/password.css");
+@import url("./components/toast.css");
 
 :root {
   --primary-100: #273787;

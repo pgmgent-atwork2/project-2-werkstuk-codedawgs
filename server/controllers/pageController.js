@@ -106,7 +106,7 @@ export const taskPageAdmin = async (req, res) => {
   if (object_id && object_id !== "") {
     tasksQuery = tasksQuery.where("object_id", object_id);
   }
-  if (interval && interval !== "") {
+  if (interval) {
     tasksQuery = tasksQuery.where("interval", interval);
   }
   if (typeof visibility !== "undefined" && visibility !== "") {
@@ -126,6 +126,8 @@ export const taskPageAdmin = async (req, res) => {
     { value: 1, label: "Visible" },
     { value: 0, label: "Invisible" }
   ];
+
+  console.log(req.query);
 
   res.render("pages/admin-tasks", {
     title: "Tasks",
@@ -149,7 +151,6 @@ export const taskPage = async (req, res) => {
 
   try {
     const tasks = await knex("tasks").select("*").where("interval", intervalString);
-    
     const departments = await knex("departments").select("*");
     const sub_departments = await knex("sub_departments").select("*");
     const filters = await knex("filters").select("*");
