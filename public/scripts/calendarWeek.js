@@ -31,6 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const tasks = await fetchData("tasks");
     const users = await fetchData("users");
 
+    const departments = await fetchData("departments");
+    const subdepartments = await fetchData("subdepartments");
+    const filters = await fetchData("filters");
+    const pumps = await fetchData("pumps");
+
     const latestTasks = new Map();
 
     taskLogs.forEach((task) => {
@@ -56,8 +61,21 @@ document.addEventListener("DOMContentLoaded", function () {
           circleColor = "red";
         }
 
+        let type = "";
+
+        if (task.object_type === "department") {
+          type = departments[task.object_id - 1].title;
+        } else if (task.object_type === "sub_department") {
+          type = subdepartments[task.object_id - 1].title;
+        } else if (task.object_type === "pump") {
+          type = pumps[task.object_id - 1].title;
+        } else if (task.object_type === "filter") {
+          type = filters[task.object_id - 1].title;
+        }
+
         events.push({
           id: task.id,
+          type: type,
           title: tasks[task.task_id - 1].title,
           user: users[task.user_id - 1].first_name,
           circleColor: circleColor,
@@ -100,14 +118,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const title = arg.event.title;
         const user = arg.event.extendedProps.user;
         const color = arg.event.extendedProps.circleColor;
+        const type = arg.event.extendedProps.type;
 
         return {
           html: `
           <div class="calendar-event">
             <span class="${color}"></span>
             ${time}
-            <strong>${title}</strong> 
-            ${user}
+            <strong>${type} :</strong>
+            ${title}
+            <strong>${user}</strong> 
           </div>`,
         };
       },
