@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M21 12L13 12" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M18 15L20.913 12.087V12.087C20.961 12.039 20.961 11.961 20.913 11.913V11.913L18 9" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16 5V4.5V4.5C16 3.67157 15.3284 3 14.5 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H14.5C15.3284 21 16 20.3284 16 19.5V19.5V19" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="666" height="668" viewBox="0 0 666 668" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M609 334H367" stroke="black" stroke-width="66.6667" stroke-linecap="square" stroke-linejoin="round"/>
+<path d="M534 434L631.1 336.9C632.7 335.3 632.7 332.7 631.1 331.1L534 234" stroke="black" stroke-width="66.6667" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M467.333 100.667V84C467.333 56.3857 444.947 34 417.333 34H100.667C63.8477 34 34 63.8477 34 100.667V567.333C34 604.153 63.8477 634 100.667 634H417.333C444.947 634 467.333 611.613 467.333 584V567.333" stroke="black" stroke-width="66.6667" stroke-linecap="square" stroke-linejoin="round"/>
 </svg>
