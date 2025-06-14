@@ -4,6 +4,6 @@ window.addEventListener("load", () => {
         setTimeout(() => {
             splash.classList.add("hidden");
             setTimeout(() => splash.remove(), 500);
-        }, 5000); 
+        }, 3000); 
     }
 });
