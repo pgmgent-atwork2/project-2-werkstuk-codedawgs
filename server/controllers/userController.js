@@ -11,7 +11,7 @@ export const postUser = async (req, res) => {
       token,
       role,
     });
-    res.redirect("/admin/users");
+    res.redirect("/admin/users?message=userAdded");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error while trying to add a user.");
@@ -22,7 +22,7 @@ export const deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
     await knex("users").where("id", id).del();
-    res.redirect("/admin/users");
+    res.redirect("/admin/users?message=userDeleted");
   } catch (error) {
     console.error("Delete user error:", error);
     res.status(500).send("Failed to delete user");
