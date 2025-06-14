@@ -40,31 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
     register.style.display = "none";
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (userSelect.style.display !== "grid") {
-      pinError.innerHTML = "";
-      const key = event.key;
-
-      if (/^\d$/.test(key)) {
-        if (pinAmount < 4) {
-          pinInput.value += key;
-          pincodeDisplay[pinAmount].classList.add("pincode-display__circle--filled");
-          pinAmount++;
-
-          if (pinAmount === 4) {
-            document.querySelector("form").requestSubmit();
-          }
-        }
-      } else if (key === "Backspace") {
-        if (pinAmount > 0) {
-          pinAmount--;
-          pinInput.value = pinInput.value.slice(0, -1);
-          pincodeDisplay[pinAmount].classList.remove("pincode-display__circle--filled");
-        }
-      }
-    }
-  });
-
   const form = document.querySelector("form");
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
