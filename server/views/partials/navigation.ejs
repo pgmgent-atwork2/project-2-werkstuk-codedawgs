@@ -2,8 +2,8 @@
     <ul class="nav__list">
         <li class="nav__item">
             <a href="/">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 822 775" fill="none">
-                    <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="66.7" d="M34 307 375 52c13-10 19-15 26-17h20c7 2 13 7 26 17l341 255M298 741V462c0-21 0-32 4-40 4-7 9-13 16-16 9-4 19-4 40-4h106c21 0 31 0 40 4 7 3 12 9 16 16 4 8 4 19 4 40v279c42 0 131-1 147-9 15-7 26-18 33-32 9-16 9-37 9-80V251L483 79c-26-20-39-29-53-33-12-3-26-3-38 0-14 4-27 13-53 33L109 251v369c0 43 0 64 9 80 7 14 18 26 33 33 16 8 105 8 147 8Z"/>
+                <svg class="nav__svg--stroke" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 822 775" fill="none">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="66.7" d="M34 307 375 52c13-10 19-15 26-17h20c7 2 13 7 26 17l341 255M298 741V462c0-21 0-32 4-40 4-7 9-13 16-16 9-4 19-4 40-4h106c21 0 31 0 40 4 7 3 12 9 16 16 4 8 4 19 4 40v279c42 0 131-1 147-9 15-7 26-18 33-32 9-16 9-37 9-80V251L483 79c-26-20-39-29-53-33-12-3-26-3-38 0-14 4-27 13-53 33L109 251v369c0 43 0 64 9 80 7 14 18 26 33 33 16 8 105 8 147 8Z"/>
                 </svg>
                 Home
             </a>
@@ -11,9 +11,9 @@
         <% if (user.role === 'admin') {%>
             <li class="nav__item"> 
                 <a href="/admin">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 614 754" fill="none">
-                        <path fill="#000" d="M267 434v66A200 200 0 0 0 67 700H0a267 267 0 0 1 267-266Zm0-34a200 200 0 1 1 0-400 200 200 0 0 1 0 400Zm0-66a133 133 0 1 0 0-267 133 133 0 0 0 0 267Zm300 200v17H367v-51a100 100 0 0 1 200 0v34Zm-67 0v-34a33 33 0 0 0-66 0v34h66Z"/>
-                        <path fill="#000" d="M565 534H374c-27 0-49 17-49 37v146c0 20 22 37 49 37h191c27 0 49-17 49-37V571c0-20-22-37-49-37Z"/>
+                    <svg class="nav__svg--fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 614 754" fill="none">
+                        <path  d="M267 434v66A200 200 0 0 0 67 700H0a267 267 0 0 1 267-266Zm0-34a200 200 0 1 1 0-400 200 200 0 0 1 0 400Zm0-66a133 133 0 1 0 0-267 133 133 0 0 0 0 267Zm300 200v17H367v-51a100 100 0 0 1 200 0v34Zm-67 0v-34a33 33 0 0 0-66 0v34h66Z"/>
+                        <path  d="M565 534H374c-27 0-49 17-49 37v146c0 20 22 37 49 37h191c27 0 49-17 49-37V571c0-20-22-37-49-37Z"/>
                     </svg>
                     Admin
                 </a>
@@ -21,14 +21,14 @@
         <%}%>
         <li class="nav__item">
             <a href="/calendar">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 768" fill="none">
-                    <path fill="#000" d="M0 618c0 42 15 77 44 106s65 43 106 44h500c41 0 77-15 106-44s44-65 44-106V151c0-33-9-62-28-88-19-25-43-43-72-53v65c0 21-7 39-22 54a69 69 0 0 1-53 22c-22-1-39-8-53-22a75 75 0 0 1-22-54V0H250v75c0 21-7 39-22 54a69 69 0 0 1-53 22c-20-1-38-8-53-22a64 64 0 0 1-22-54V10C71 20 47 38 28 63S0 117 0 151v467Zm68 1V218h665v407c0 13-12 39-22 49s-47 27-61 27H149c-14 0-48-14-58-23-10-10-24-45-23-59Zm82-544c0 7 3 13 8 18 4 5 10 7 17 7s13-2 18-7 7-11 7-18V0h-50v75Zm450 0c0 7 2 13 7 18s11 7 18 7 13-2 17-7c5-5 8-11 8-18V0h-50v75Z"/>
-                    <rect width="140" height="140" x="139" y="289" fill="#000" rx="25"/>
-                    <rect width="140" height="140" x="330" y="289" fill="#000" rx="25"/>
-                    <rect width="140" height="140" x="521" y="289" fill="#000" rx="25"/>
-                    <rect width="140" height="140" x="139" y="476" fill="#000" rx="25"/>
-                    <rect width="140" height="140" x="330" y="476" fill="#000" rx="25"/>
-                    <rect width="140" height="140" x="521" y="476" fill="#000" rx="25"/>
+                <svg class="nav__svg--fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 768" fill="none">
+                    <path d="M0 618c0 42 15 77 44 106s65 43 106 44h500c41 0 77-15 106-44s44-65 44-106V151c0-33-9-62-28-88-19-25-43-43-72-53v65c0 21-7 39-22 54a69 69 0 0 1-53 22c-22-1-39-8-53-22a75 75 0 0 1-22-54V0H250v75c0 21-7 39-22 54a69 69 0 0 1-53 22c-20-1-38-8-53-22a64 64 0 0 1-22-54V10C71 20 47 38 28 63S0 117 0 151v467Zm68 1V218h665v407c0 13-12 39-22 49s-47 27-61 27H149c-14 0-48-14-58-23-10-10-24-45-23-59Zm82-544c0 7 3 13 8 18 4 5 10 7 17 7s13-2 18-7 7-11 7-18V0h-50v75Zm450 0c0 7 2 13 7 18s11 7 18 7 13-2 17-7c5-5 8-11 8-18V0h-50v75Z"/>
+                    <rect width="140" height="140" x="139" y="289" rx="25"/>
+                    <rect width="140" height="140" x="330" y="289" rx="25"/>
+                    <rect width="140" height="140" x="521" y="289" rx="25"/>
+                    <rect width="140" height="140" x="139" y="476" rx="25"/>
+                    <rect width="140" height="140" x="330" y="476" rx="25"/>
+                    <rect width="140" height="140" x="521" y="476" rx="25"/>
                 </svg>
                 Calendar
             </a>
@@ -36,13 +36,13 @@
         <li class="nav__item">
             <form action="/logout" method="post">
                 <button class="button button--nav" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 666 668" fill="none">
-                        <path stroke="#000" stroke-linecap="square" stroke-linejoin="round" stroke-width="66.7" d="M609 334H367"/>
-                        <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="66.7" d="m534 434 97-97c2-2 2-4 0-6l-97-97"/>
-                        <path stroke="#000" stroke-linecap="square" stroke-linejoin="round" stroke-width="66.7" d="M467 101V84c0-28-22-50-50-50H101c-37 0-67 30-67 67v466c0 37 30 67 67 67h316c28 0 50-22 50-50v-17"/>
+                    <svg class="nav__svg--stroke" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 666 668" fill="none">
+                        <path stroke-linecap="square" stroke-linejoin="round" stroke-width="66.7" d="M609 334H367"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="66.7" d="m534 434 97-97c2-2 2-4 0-6l-97-97"/>
+                        <path stroke-linecap="square" stroke-linejoin="round" stroke-width="66.7" d="M467 101V84c0-28-22-50-50-50H101c-37 0-67 30-67 67v466c0 37 30 67 67 67h316c28 0 50-22 50-50v-17"/>
                     </svg>
                 </button>
-                Log out
+                <p>Log out</p>
             </form>
         </li>
     </ul>
