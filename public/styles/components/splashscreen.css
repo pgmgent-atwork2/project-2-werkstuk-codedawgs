@@ -11,7 +11,7 @@
         flex-direction: column;
         justify-content: space-evenly;
         z-index: 9999;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.3s ease;
     }
 
     .splashscreen.hidden {
@@ -24,7 +24,7 @@
     }
 
     .splashscreen__loader {
-        animation: loader 1.5s linear infinite;
+        animation: loader 0.8s linear infinite;
     }
 
     @keyframes loader {
