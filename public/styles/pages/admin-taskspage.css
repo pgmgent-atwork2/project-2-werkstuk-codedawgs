@@ -190,6 +190,25 @@
   }
 }
 
+.admin-tasks__task-form {
+  display: flex;
+  gap: 0.2rem;
+
+}
+
+.admin-tasks__edit-btn,
+.admin-tasks__delete-btn,
+.admin-tasks__save-btn,
+.admin-tasks__cancel-btn {
+  padding: 0.65rem !important;
+      width: 2.5rem;
+    height: 2.5rem;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 @media (min-width: 800px) {
   .admin__form-content {
     flex-direction: row;

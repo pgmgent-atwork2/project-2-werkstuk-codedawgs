@@ -223,13 +223,13 @@
                     <td class="admin-tasks__table-cell">
                       <form method="POST" action="/admin/tasks/<%= task.id %>" class="admin-tasks__task-form"
                         id="form-<%= task.id %>">
-                        <button class="admin-tasks__cancel-btn button" type="button"
-                          style="display:none;"><img src="/assets/svg/xmark-solid.svg"></button>
                         <button class="admin-tasks__edit-btn button" type="button"
                           data-task-id="<%= task.id %>">
                             <img src="/assets/svg/pencil-solid.svg">
-                          </button>
+                        </button>
                         <button class="admin-tasks__save-btn button" type="submit" style="display:none;"><img src="/assets/svg/check-solid.svg"></button>
+                        <button class="admin-tasks__cancel-btn button" type="button"
+                          style="display:none;"><img src="/assets/svg/xmark-solid.svg"></button>
                         <button data-task-id="<%= task.id %>" class="admin-tasks__delete-btn button" type="button" style="display:none;"><img src="/assets/svg/trash-solid.svg"></button>
                       </form>
                     </td>
