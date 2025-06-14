@@ -78,8 +78,15 @@
     justify-content: center;
     flex-direction: column;
     gap: 0.5rem;
+    button {
+      width: 100%;
+    }
   }
 
+  .admin__sidebar-btn {
+  width: 100%;
+  }
+  
   .admin__container {
     flex-direction: row;
   }
