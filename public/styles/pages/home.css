@@ -9,6 +9,14 @@
   padding-left: 1rem;
 }
 
+@media (width < 800px) {
+  .homepage__title {
+    margin-top: 1rem;
+    text-align: center;
+    padding-left: 0;
+  }
+}
+
 @media (width > 800px) {
   .homepage__content {
     flex-direction: row;
