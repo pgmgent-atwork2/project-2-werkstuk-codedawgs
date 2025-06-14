@@ -95,3 +95,23 @@
   user-select: none;
   pointer-events: none;
 }
+
+@keyframes notif-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 6px rgba(255, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+.header__notifications.has-notifications .header__notifs {
+  display: flex !important;
+  animation: notif-pulse 1.5s infinite;
+}
