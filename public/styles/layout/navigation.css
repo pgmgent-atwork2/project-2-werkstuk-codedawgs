@@ -65,6 +65,29 @@
     }
   }
 
+  .nav__item--selected {
+    position: relative;
+    &::before {
+      content: '';
+      width: 6rem;
+      height: 3px;
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--accent-100);;
+    }
+    a {
+      color: var(--accent-100);
+    }
+    .nav__svg--stroke {
+      stroke: var(--accent-100);
+    }
+    .nav__svg--fill {
+      fill: var(--accent-100);
+    }
+  }
+
   .nav__item a,
   .nav__item form {
     display: flex;
