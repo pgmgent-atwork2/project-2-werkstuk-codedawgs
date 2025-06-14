@@ -9,11 +9,21 @@ document.addEventListener("DOMContentLoaded", function () {
             element.classList.add("is-closed");
           }
         });
+
         details.classList.add("is-open");
         details.classList.remove("is-closed");
+
+        details.querySelectorAll(".summary__link").forEach((link) => {
+          const percentage = link.getAttribute("data-percentage");
+          link.style.width = percentage + "%";
+        });
       } else {
         details.classList.remove("is-open");
         details.classList.add("is-closed");
+
+        details.querySelectorAll(".summary__link").forEach((link) => {
+          link.style.width = "0%";
+        });
       }
     });
   });

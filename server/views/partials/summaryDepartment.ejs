@@ -34,7 +34,12 @@
 
 <li class="summary__li">
     <p class="summary__task-complete"><%= totalCompletedTasks %> / <%= totalTasks %> </p>
-    <a style='width: <%= percentage %>% ' class="summary__link" href='<%= interval %>/<%= url %>'>
-        <%= department.title %>
-    </a>
+<a
+  class="summary__link"
+  data-percentage="<%= percentage %>"
+  style="width: 0%"
+  href="<%= interval %>/<%= url %>"
+>
+  <%= department.title %>
+</a>
 </li>
