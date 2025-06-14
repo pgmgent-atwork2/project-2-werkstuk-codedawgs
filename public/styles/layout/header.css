@@ -61,10 +61,18 @@
     display: block !important;
     width: 12rem;
   }
+
+  .header__username {
+    display: none !important;
+  }
 }
 
 @media (width < 325px) {
   .header__logo {
+    display: none !important;
+  }
+
+  .header__username {
     display: none !important;
   }
 }
