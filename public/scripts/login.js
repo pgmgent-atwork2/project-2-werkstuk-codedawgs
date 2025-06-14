@@ -4,10 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const back = document.querySelector("#backButton");
   const register = document.querySelector(".login__register");
   const pinInput = document.getElementById("pinInput");
-  const pincodeDisplay = document.querySelectorAll(".pincode-display__circle");
   const pinError = document.getElementById("pinError");
-
-  let pinAmount = 0;
 
   pinInput.style.display = "none";
   userSelect.style.display = "grid";
@@ -20,12 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     pinEnter.style.display = "none";
     back.style.display = "none";
     register.style.display = "block";
-    pinAmount = 0;
     pinError.innerHTML = "";
-    pincodeDisplay.forEach((display) => {
-      display.classList.remove("pincode-display__circle--filled");
-    });
-    pinInput.value = "";
+    resetPin();
 
     const selectedRadio = document.querySelector('input[name="first_name"]:checked');
     if (selectedRadio) {
@@ -40,44 +33,19 @@ document.addEventListener("DOMContentLoaded", () => {
     register.style.display = "none";
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (userSelect.style.display !== "grid") {
-      pinError.innerHTML = "";
-      const key = event.key;
-
-      if (/^\d$/.test(key)) {
-        if (pinAmount < 4) {
-          pinInput.value += key;
-          pincodeDisplay[pinAmount].classList.add("pincode-display__circle--filled");
-          pinAmount++;
-
-          if (pinAmount === 4) {
-            document.querySelector("form").requestSubmit();
-          }
-        }
-      } else if (key === "Backspace") {
-        if (pinAmount > 0) {
-          pinAmount--;
-          pinInput.value = pinInput.value.slice(0, -1);
-          pincodeDisplay[pinAmount].classList.remove("pincode-display__circle--filled");
-        }
-      }
-    }
-  });
-
   const form = document.querySelector("form");
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
+    pinError.innerHTML = "";
+
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-
+    
     try {
       const response = await fetch("/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
@@ -85,24 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         pinInput.value = "";
+        resetPin();
         window.location.href = result.redirectUrl;
       } else {
-        pinInput.value = "";
-        pincodeDisplay.forEach((display) => {
-          display.classList.remove("pincode-display__circle--filled");
-        });
-        pinAmount = 0;
+        resetPin();
         pinError.innerHTML = result.message || "Incorrect Pin";
         pinError.classList.remove("shake");
         void pinError.offsetWidth;
         pinError.classList.add("shake");
       }
     } catch (error) {
-      pinInput.value = "";
-      pincodeDisplay.forEach((display) => {
-        display.classList.remove("pincode-display__circle--filled");
-      });
-      pinAmount = 0;
+      resetPin();
       pinError.innerHTML = "Incorrect Pin";
       pinError.classList.remove("shake");
       void pinError.offsetWidth;
