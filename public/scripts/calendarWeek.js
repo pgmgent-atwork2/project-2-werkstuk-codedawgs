@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const events = [];
-  const aquasplashUser = document.querySelector(".aqua")
+  const aquasplashUser = document.querySelector(".aqua");
 
   generateEvents();
 
@@ -31,34 +31,42 @@ document.addEventListener("DOMContentLoaded", function () {
     const tasks = await fetchData("tasks");
     const users = await fetchData("users");
 
+    const latestTasks = new Map();
+
     taskLogs.forEach((task) => {
-      const date = new Date(task.task_date);
-      const startDate = new Date(date.getTime());
-      startDate.setMinutes(startDate.getMinutes() - 1);
-
-      const localISOString = toLocalISOString(date);
-      const startDateISO = toLocalISOString(startDate);
-
-      const interval = tasks[task.task_id - 1].interval;
-      let circleColor = ""
-      if (interval === "daily") {
-        circleColor = "green";
-      } else if (interval === "weekly") {
-        circleColor = "blue"
-      } else if (interval === "monthly") {
-        circleColor = "red"
-      }
-      
-
-      events.push({
-        id: task.id,
-        title: tasks[task.task_id - 1].title,
-        user: users[task.user_id - 1].first_name,
-        circleColor: circleColor,
-        start: startDateISO,
-        end: localISOString,
-      });
+      latestTasks.set(task.task_id, task);
     });
+
+    latestTasks.forEach((task) => {
+      if (task.action === "completed") {
+        const date = new Date(task.task_date);
+        const startDate = new Date(date.getTime());
+        startDate.setMinutes(startDate.getMinutes() - 1);
+
+        const localISOString = toLocalISOString(date);
+        const startDateISO = toLocalISOString(startDate);
+
+        const interval = tasks[task.task_id - 1].interval;
+        let circleColor = "";
+        if (interval === "daily") {
+          circleColor = "green";
+        } else if (interval === "weekly") {
+          circleColor = "blue";
+        } else if (interval === "monthly") {
+          circleColor = "red";
+        }
+
+        events.push({
+          id: task.id,
+          title: tasks[task.task_id - 1].title,
+          user: users[task.user_id - 1].first_name,
+          circleColor: circleColor,
+          start: startDateISO,
+          end: localISOString,
+        });
+      }
+    });
+
     generateCalenderWeek();
   }
 
@@ -84,11 +92,15 @@ document.addEventListener("DOMContentLoaded", function () {
       dayMaxEvents: 2,
 
       eventContent: function (arg) {
-        const time = arg.event.start.toLocaleTimeString('en-US', { hour: "2-digit", minute: "2-digit", hour12: false });
+        const time = arg.event.start.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        });
         const title = arg.event.title;
         const user = arg.event.extendedProps.user;
         const color = arg.event.extendedProps.circleColor;
-        
+
         return {
           html: `
           <div class="calendar-event">
