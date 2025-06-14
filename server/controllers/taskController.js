@@ -38,7 +38,7 @@ const { title, object_type, object_id, interval } = req.body;
       completed: false,
       visible: true
     });
-
+    res.cookie('toast', encodeURIComponent(`Succesfully added task "${title}"`), { maxAge: 10000, path: '/' });
     res.redirect('/admin/tasks');
   } catch (error) {
     console.error("Add task error:", error);
@@ -89,6 +89,7 @@ export const editTask = async (req, res) => {
         interval,
         visible,
       });
+    res.cookie('toast', encodeURIComponent(`Succesfully edited task "${title}"`), { maxAge: 10000, path: '/' });
 
     res.redirect(req.get("referer"));
   } catch (error) {

@@ -32,7 +32,7 @@
   bottom: 0;
   left: 0;
   height: 4px;
-  background: #4caf50;
+  background: var(--accent-100);
   width: 100%;
   transform-origin: left center;
   animation: shrink 3s linear forwards;

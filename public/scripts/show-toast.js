@@ -56,4 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (message === 'userDeleted' && firstName && role) {
     showToast(`Succesfully deleted ${decodeURIComponent(firstName)} (${decodeURIComponent(role)})!`);
     }
+    if (message === 'taskAdded') {
+      const taskTitle = params.get('task_title');
+      if (taskTitle) {
+        showToast(`Succesfully added task "${decodeURIComponent(taskTitle)}"!`);
+      }
+    }
 });
