@@ -24,6 +24,7 @@
 @import url("./components/calendarWeek.css");
 @import url("./components/password.css");
 @import url("./components/toast.css");
+@import url("./components/splashscreen.css");
 
 :root {
   --primary-100: #273787;

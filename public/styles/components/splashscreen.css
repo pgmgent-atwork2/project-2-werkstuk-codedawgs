@@ -1,0 +1,44 @@
+@media (max-width: 799px) {
+    .splashscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-100);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-evenly;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+    }
+
+    .splashscreen.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .splashscreen__logo {
+        width: 25rem;
+    }
+
+    .splashscreen__loader {
+        animation: loader 1.5s linear infinite;
+    }
+
+    @keyframes loader {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+@media (min-width: 800px) {
+    .splashscreen {
+        display: none;
+    }
+}
