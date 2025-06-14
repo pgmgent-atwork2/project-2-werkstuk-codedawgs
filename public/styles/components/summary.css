@@ -162,7 +162,7 @@ details.is-open .summary__ul {
 }
 
 .summary__task-complete {
-  color: var(--bg-400);
+  color: var(--text-200);
   font-size: 1.2rem;
   font-weight: 600;
   position: absolute;
