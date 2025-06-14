@@ -42,16 +42,6 @@
               <option value="weekly">Weekly</option>
               <option value="monthly">Monthly</option>
             </select>
-             <label for="visibility">Visibility:</label>
-            <select name="visibility" id="visibility">
-              <option value="">All</option>
-              <% visibilities.forEach(vis=> { %>
-                <option value="<%= vis.value %>" <%=query && String(query.visibility)===String(vis.value) ? "selected"
-                  : "" %>>
-                  <%= vis.label %>
-                </option>
-                <% }) %>
-            </select>
           </label>
 
           <button class="admin-tasks__button button" type="submit">Add Task</button>
@@ -238,6 +228,7 @@
                         <button class="admin-tasks__edit-btn button" type="button"
                           data-task-id="<%= task.id %>">Edit</button>
                         <button class="admin-tasks__save-btn button" type="submit" style="display:none;">Save</button>
+                        <button data-task-id="<%= task.id %>" class="admin-tasks__delete-btn button" type="button" style="display:none;">Delete</button>
                       </form>
                     </td>
                   </tr>

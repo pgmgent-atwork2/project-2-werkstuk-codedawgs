@@ -103,6 +103,8 @@ app.post('/admin/analysis/:id', jwtAuth, isAdmin, taskController.editMeasurement
 
 // Task Edit
 app.post('/admin/tasks/:id', jwtAuth, isAdmin, taskController.editTask);
+app.delete('/admin/tasks/:id', jwtAuth, isAdmin, taskController.deleteTask);
+
 
 // Notification Routes
 app.get('/notifications', jwtAuth, notificationController.getNotifications);

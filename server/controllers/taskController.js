@@ -147,3 +147,14 @@ export const postAnalysis = async (req, res) => {
     res.status(500).send("Post task failed");
   }
 };
+
+export const deleteTask = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await knex("tasks").where("id", id).del();
+    res.redirect(`/admin/tasks`);
+  } catch (error) {
+    console.error("Delete user error:", error);
+    res.status(500).send("Failed to delete task");
+  }
+};
