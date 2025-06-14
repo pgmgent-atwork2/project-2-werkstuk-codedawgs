@@ -29,18 +29,43 @@
   font-weight: 600;
 }
 
+.analysis-table__header:last-child {
+  border-left: 1px solid var(--bg-300);
+}
+
 .analysis-table__body .analysis-table__row:nth-child(even) {
   background: var(--cell-300);
 }
 
+.analysis-table__row {
+  .analysis-table__cell:first-child {
+    min-width: 14rem;
+  }
+  .analysis-table__cell:last-child {
+    border-left: 1px solid var(--bg-300);
+    max-width: 3rem;
+  }
+}
+
+.analysis-table__btn {
+  padding: 0.65rem !important;
+      width: 2.5rem;
+    height: 2.5rem;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .analysis-table__cell {
+  width: 10em;
   padding: 0.7rem;
   border-bottom: 1px solid var(--bg-300);
   font-size: 1rem;
 }
 
 .analysis-table__input {
-  width: 100%;
+  width: 6rem;
   min-width: 4rem;
   padding: 0.4rem 0.6rem;
   border: 1px solid var(--bg-300);
@@ -48,6 +73,11 @@
   background: var(--cell-100);
   font-size: 1rem;
   box-sizing: border-box;
+}
+
+.analysis-table__input:disabled {
+  background: none;
+  border: none;
 }
 
 .analysis-table__form {
@@ -60,8 +90,9 @@
     padding: 2rem;
   }
   .analysis-table-container {
-    max-width: 90%;
+    max-width: fit-content;
   }
+
 }
 
 @media (max-width: 600px) {

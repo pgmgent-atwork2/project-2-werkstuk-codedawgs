@@ -191,9 +191,9 @@
 }
 
 .admin-tasks__task-form {
+  width: fit-content;
   display: flex;
   gap: 0.2rem;
-
 }
 
 .admin-tasks__edit-btn,
@@ -206,6 +206,16 @@
   img {
     width: 20px;
     height: 20px;
+  }
+}
+
+.admin-tasks__table-header:last-child {
+  border-left: 1px solid var(--bg-300);
+}
+
+.admin-tasks__table-row {
+  .admin-tasks__table-cell:last-child {
+    border-left: 1px solid var(--bg-300);
   }
 }
 
