@@ -10,11 +10,23 @@
   top: 0;
   width: 100%;
   z-index: 10000;
+  box-shadow: 0 0 8px black;
 
   .header__pfp {
     width: 3rem;
     height: 3rem;
     border-radius: 5rem;
+  }
+
+  .header__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    .button {
+      font-size: 1rem;
+      font-weight: 500;
+    }
   }
 
   .header__logo {
@@ -42,7 +54,7 @@
 
     a {
       color: var(--bg-100);
-      font-weight: 600;
+      font-weight: 500;
       &:hover {
         color: var(--bg-200);
       }
@@ -53,9 +65,15 @@
 @media (width < 800px) {
   .header {
     justify-content: space-between;
+    padding: 1rem 2rem;
   }
   .header__nav {
     display: none !important;
+  }
+  .header__content {
+    form {
+      display: none;
+    }
   }
   .header__logo {
     display: block !important;
@@ -80,6 +98,10 @@
 .header__notifications {
   position:relative;
   display:inline-block;
+}
+
+.header--selected {
+  font-weight: 700 !important;
 }
 
 .header__notifs {
@@ -107,11 +129,11 @@
 @keyframes notif-pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 1);
   }
   70% {
     transform: scale(1.05);
-    box-shadow: 0 0 0 6px rgba(255, 0, 0, 0);
+    box-shadow: 0 0 0 8px rgba(255, 0, 0, 0);
   }
   100% {
     transform: scale(1);

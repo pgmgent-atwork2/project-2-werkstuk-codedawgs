@@ -17,18 +17,26 @@
 
   .nav__item {
     color: var(--bg-400);
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
+
+    .nav__svg--stroke {
+      stroke: var(--bg-400);
+    }
+    .nav__svg--fill {
+      fill: var(--bg-400);
+    }
 
     a {
       color: var(--bg-400);
-      font-weight: 600;
-      svg {
-        fill: var(--bg-400);
-      }
+      font-weight: 700;
+
       &:hover {
         color: var(--accent-100);
-        svg {
+        .nav__svg--stroke {
+          stroke: var(--accent-100);
+        }
+        .nav__svg--fill {
           fill: var(--accent-100);
         }
       }
@@ -38,16 +46,45 @@
       height: 2rem;
       width: 2rem;
     }
+
     form {
-      svg path {
-        stroke: var(--bg-400);
+      button {
+        width: fit-content;
       }
+
+      p {
+        font-weight: 700;
+      }
+
       &:hover {
         svg path {
           stroke: var(--accent-100);
         }
         color: var(--accent-100);
       }
+    }
+  }
+
+  .nav__item--selected {
+    position: relative;
+    &::before {
+      content: '';
+      width: 6rem;
+      height: 3px;
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--accent-100);;
+    }
+    a {
+      color: var(--accent-100);
+    }
+    .nav__svg--stroke {
+      stroke: var(--accent-100);
+    }
+    .nav__svg--fill {
+      fill: var(--accent-100);
     }
   }
 

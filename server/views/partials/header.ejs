@@ -1,24 +1,33 @@
 <header class="header">
     <a class="header__pfp-link" href="/">
         <img class="header__pfp" src="/assets/images/pfp<%= user.image_id %>.png">
-        <span class="header__username"><%= user.first_name %> <%= user.last_name.charAt(0)%>.</span>
+        <span class="header__username">
+            <%= user.first_name %>
+                <%= user.last_name.charAt(0)%>.
+        </span>
     </a>
+
     <nav class="header__nav">
-        <a href="/">Home</a>
+        <a href="/" class="<%= title === 'Home'? 'header--selected' : '' %>">Home</a>
         <% if (user.role==='admin' ) {%>
-            <a href="/admin">Admin</a>
+            <a href="/admin" class="<%= title === 'Admin'? 'header--selected' : '' %>">Admin</a>
             <%}%>
-                <form action="/logout" method="post">
-                    <button class="button" type="submit">Log out</button>
-                </form>
+        <a href="/calendar" class="<%= title === 'Calendar'? 'header--selected' : '' %>">Calendar</a>
     </nav>
     <a class="header__logo" href="/">
         <img src="/assets/svg/logo.svg">
     </a>
-    <a href="/notifications/all" class="header__notifications">
-        <img class="header__bell" src="/assets/svg/bell.svg">
-        <div class="header__notifs"><span class="header__notifs_number"></span></div>
-    </a>
+
+    <div class="header__content">
+        <form action="/logout" method="post">
+            <button class="button" type="submit">Log out</button>
+        </form>
+        <a href="/notifications/all" class="header__notifications">
+            <img class="header__bell" src="/assets/svg/bell.svg">
+            <div class="header__notifs"><span class="header__notifs_number"></span></div>
+        </a>
+    </div>    
+
 </header>
 
 <script defer src="/scripts/notifications.js"></script>
