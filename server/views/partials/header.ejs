@@ -8,11 +8,11 @@
     </a>
 
     <nav class="header__nav">
-        <a href="/">Home</a>
+        <a href="/" class="<%= title === 'Home'? 'header--selected' : '' %>">Home</a>
         <% if (user.role==='admin' ) {%>
-            <a href="/admin">Admin</a>
+            <a href="/admin" class="<%= title === 'Admin'? 'header--selected' : '' %>">Admin</a>
             <%}%>
-                <a href="/calendar">Calendar</a>
+        <a href="/calendar" class="<%= title === 'Calendar'? 'header--selected' : '' %>">Calendar</a>
     </nav>
     <a class="header__logo" href="/">
         <img src="/assets/svg/logo.svg">

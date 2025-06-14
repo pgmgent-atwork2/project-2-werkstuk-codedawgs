@@ -21,7 +21,12 @@
   .header__content {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 2rem;
+    .button {
+      font-size: 1rem;
+      font-weight: 500;
+    }
   }
 
   .header__logo {
@@ -49,7 +54,7 @@
 
     a {
       color: var(--bg-100);
-      font-weight: 600;
+      font-weight: 500;
       &:hover {
         color: var(--bg-200);
       }
@@ -93,6 +98,10 @@
 .header__notifications {
   position:relative;
   display:inline-block;
+}
+
+.header--selected {
+  font-weight: 700 !important;
 }
 
 .header__notifs {
