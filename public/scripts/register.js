@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pincodeInput = document.querySelector(".register__pincode");
   const imageSelect = document.querySelector(".image-select");
   const nextButton = document.querySelector(".button--register-next");
-  const title = document.querySelector(".title");
+  const title = document.querySelector(".register__title");
 
   tokenInput.style.display = "none";
   imageSelect.style.display = "none";
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   nextButton.addEventListener("click", () => {
     if (pincodeInput.value.length === 4) {
-      imageSelect.style.display = "block";
+      imageSelect.style.display = "flex";
       pincodeInput.style.display = "none";
       nextButton.style.display = "none";
       title.style.display = "none";
