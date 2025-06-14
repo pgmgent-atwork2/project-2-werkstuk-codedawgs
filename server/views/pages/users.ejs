@@ -51,6 +51,8 @@
               </td>
               <td class="users__table-cell">
                 <form action="/admin/users/<%= user.id %>" method="POST">
+                    <input type="hidden" name="first_name" value="<%= user.first_name %>">
+                    <input type="hidden" name="role" value="<%= user.role %>">
                   <button class="users__delete-button button" type="submit">Delete</button>
                 </form>
               </td>

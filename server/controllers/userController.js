@@ -11,7 +11,8 @@ export const postUser = async (req, res) => {
       token,
       role,
     });
-    res.redirect("/admin/users?message=userAdded");
+  res.cookie('toast', `Successfully added ${first_name} (${role})`, { httpOnly: false, maxAge: 10 * 1000 });
+  res.redirect(`/admin/users`);
   } catch (error) {
     console.error(error);
     res.status(500).send("Error while trying to add a user.");
@@ -20,9 +21,12 @@ export const postUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
+  const { first_name, role } = req.body;
+  
   try {
     await knex("users").where("id", id).del();
-    res.redirect("/admin/users?message=userDeleted");
+    res.cookie('toast', `Successfully deleted ${first_name} (${role})`, { httpOnly: false, maxAge: 10 * 1000 });
+    res.redirect(`/admin/users`);
   } catch (error) {
     console.error("Delete user error:", error);
     res.status(500).send("Failed to delete user");
