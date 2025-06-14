@@ -29,6 +29,7 @@ export const taskComplete = async (req, res) => {
 
 export const addTask = async (req, res) => {
 const { title, object_type, object_id, interval } = req.body;
+
   try {
     await knex("tasks").insert({
       title,
