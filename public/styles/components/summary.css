@@ -112,7 +112,7 @@ details.is-open summary .chevron {
   background-color: inherit;
   color: inherit;
   text-decoration: none;
-  transition: width 1s ease-in-out;
+  transition: width .6s ease-in-out;
 
   top: 0;
   height: 100%;
