@@ -115,3 +115,11 @@
   display: flex !important;
   animation: notif-pulse 1.5s infinite;
 }
+
+.header__pfp-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--bg-100);
+}
