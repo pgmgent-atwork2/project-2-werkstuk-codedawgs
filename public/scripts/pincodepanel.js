@@ -7,6 +7,14 @@ const pincodeDisplay = document.querySelectorAll(".pincode-display__circle");
 
 let pinAmount = 0;
 
+function resetPin() {
+  pinInput.value = "";
+  input.value = "";
+  pinAmount = 0;
+  pincodeDisplay.forEach((display) => {
+    display.classList.remove("pincode-display__circle--filled");
+  });
+}
 
 
 pincodeKeys.forEach((key) => {
@@ -36,8 +44,6 @@ pincodeKeys.forEach((key) => {
     }
     console.log(pinAmount);
   });
-
-  
 });
 
 document.addEventListener("keydown", (event) => {
