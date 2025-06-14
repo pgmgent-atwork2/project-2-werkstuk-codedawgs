@@ -72,6 +72,14 @@
     width: fit-content;
     margin: 1rem;
   }
+
+
+  .admin__sidebar-buttons {
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   .admin__container {
     flex-direction: row;
   }

@@ -202,11 +202,18 @@
 
 @media (min-width: 1400px) {
 
+  .admin__sidebar-filter {
+    width: 12.5rem;
+  }
+
   .admin-tasks__content {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     gap: 2.5rem;
+    label {
+      margin-right: 0.5rem;
+    }
   }
 
   .admin-tasks__container:first-child {
