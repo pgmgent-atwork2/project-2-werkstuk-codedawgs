@@ -3,10 +3,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  @media screen and (min-width: 1000px) {
-    flex-direction: row;
-  }
 }
 
 .admin__sidebar {
@@ -16,46 +12,75 @@
   width: fit-content;
   margin: 0 auto 1rem auto;
   padding-bottom: 1rem;
-
-  @media screen and (min-width: 1000px) {
-    flex-direction: column;
-    margin: 0;
-    width: 15rem;
-  }
 }
 
 .task-logs__container {
   padding: 1rem;
-
-  @media screen and (min-width: 1000px) {
-    border-left: 1px solid var(--bg-300);
-    border-top: none;
-    border-bottom: none;
-    border-right: none;
-  }
-}
-@media screen and (min-width: 1000px) {
-
-  .admin__sidebar-buttons {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1rem;
-  }
 }
 
 .admin__sidebar-btn {
   width: fit-content;
-  font-size: 1rem;
+  font-size: 1rem !important;
   padding: 2rem;
-  background-color: var(--accent-200) !important;
-  &:hover {
-    background-color: var(--accent-300) !important;
-  }
 }
+
+
+  .admin__sidebar-buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
+  }
 
 .admin__title {
   font-size: 1.5rem;
   padding: 0.6rem;
   text-align: center;
+}
+
+@media screen and (min-width: 800px) {
+
+  .admin__container {
+    flex-direction: column;
+    margin: 0;
+  }
+  
+  .admin__sidebar {
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+  }
+
+  .task-logs__container {
+    overflow-x: scroll;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+  }
+
+  .admin__sidebar-btn {
+    height: fit-content;
+  }
+
+  .export-excel-btn {
+    height: fit-content;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .admin__sidebar {
+    width: fit-content;
+    margin: 1rem;
+  }
+
+
+  .admin__sidebar-buttons {
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .admin__container {
+    flex-direction: row;
+  }
 }
