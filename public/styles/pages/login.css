@@ -113,9 +113,11 @@
 
 .login__users {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: min-content;
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
   gap: 1rem;
+  width: 100%;
+  max-width: 37.5rem;
+  margin: 0 auto;
 }
 
 .login__user:nth-child(11) {
