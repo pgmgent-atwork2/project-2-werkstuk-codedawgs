@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const loginSection = document.querySelector(".login");
   const userSelect = document.querySelector("#userSelect");
   const pinEnter = document.querySelector("#pinEnter");
   const back = document.querySelector("#backButton");
@@ -7,41 +8,54 @@ document.addEventListener("DOMContentLoaded", () => {
   const pinError = document.getElementById("pinError");
 
   pinInput.style.display = "none";
-  userSelect.style.display = "grid";
-  pinEnter.style.display = "none";
+  userSelect.classList.add("login__content");
+  pinEnter.classList.add("login__content", "login__content--hidden");
   back.style.display = "none";
   register.style.display = "block";
 
-  back.addEventListener("click", () => {
-    userSelect.style.display = "grid";
-    pinEnter.style.display = "none";
-    back.style.display = "none";
-    register.style.display = "block";
-    pinError.innerHTML = "";
-    resetPin();
+  loginSection.classList.add("login--wide");
 
-    const selectedRadio = document.querySelector('input[name="first_name"]:checked');
-    if (selectedRadio) {
-      selectedRadio.checked = false;
-    }
+  back.addEventListener("click", () => {
+    loginSection.classList.remove("login--narrow");
+    loginSection.classList.add("login--wide");
+
+-    userSelect.classList.remove("login__content--hidden");
+    pinEnter.classList.add("login__content--hidden");
+
+    setTimeout(() => {
+      back.style.display = "none";
+      register.style.display = "block";
+      pinError.innerHTML = "";
+      resetPin();
+
+      const selectedRadio = document.querySelector('input[name="id"]:checked');
+      if (selectedRadio) selectedRadio.checked = false;
+    }, 300);
   });
 
-  userSelect.addEventListener("click", () => {
-    userSelect.style.display = "none";
-    pinEnter.style.display = "flex";
-    back.style.display = "block";
-    register.style.display = "none";
+  userSelect.addEventListener("click", (e) => {
+    if (e.target.closest(".login__user")) {
+      loginSection.classList.remove("login--wide");
+      loginSection.classList.add("login--narrow");
+
+      userSelect.classList.add("login__content--hidden");
+      pinEnter.classList.remove("login__content--hidden");
+
+      setTimeout(() => {
+        back.style.display = "block";
+        register.style.display = "none";
+      }, 300);
+    }
   });
 
   const form = document.querySelector("form");
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-
     pinError.innerHTML = "";
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    
+
     try {
       const response = await fetch("/login", {
         method: "POST",

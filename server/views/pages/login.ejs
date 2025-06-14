@@ -4,7 +4,7 @@
 
     <form method="post" action="/login" class="login__form">
 
-        <div id="userSelect" class="login__users">
+        <div id="userSelect" class="login__users login__content">
             <% users.forEach(user => { %>
                 <% if(user.pincode) {%>
                     <div class="login__user">
@@ -18,7 +18,7 @@
             <% }); %>
         </div>
 
-        <div id="pinEnter" class="login__pin-enter">
+        <div id="pinEnter" class="login__pin-enter login__content login__content--hidden">
             <%- include('../partials/pincodepanel.ejs')%>
             <input class="login__pin-input" type="<%= input.type %>" id="pinInput" name="<%= input.name %>" placeholder="<%= input.label %>">
         </div>
