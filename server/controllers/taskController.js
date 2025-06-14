@@ -76,7 +76,6 @@ export const getObjectOptions = async (req, res) => {
 
 export const editTask = async (req, res) => {
   const { title, object_type, object_id, interval, visible } = req.body;
-  console.log(req.body.object_id);
   const id = req.params.id;
 
   try {
@@ -89,7 +88,6 @@ export const editTask = async (req, res) => {
         interval,
         visible,
       });
-    res.cookie('toast', encodeURIComponent(`Succesfully edited task "${title}"`), { maxAge: 10000, path: '/' });
 
     res.redirect(req.get("referer"));
   } catch (error) {
