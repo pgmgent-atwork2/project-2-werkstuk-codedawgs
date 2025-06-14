@@ -62,8 +62,17 @@
     height: 8px;
     width: 8px;
     border-radius: 50%;
-    background-color: var(--accent-100);
+    background-color: #d9d38e;
     margin: 0 2px;
+  }
+  .blue {
+    background-color: #7792c3;
+  }
+  .green {
+    background-color: #bdd28c;;
+  }
+  .red {
+    background-color: #d9a1a2;
   }
 }
 
