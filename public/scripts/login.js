@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const register = document.querySelector(".login__register");
   const pinInput = document.getElementById("pinInput");
   const pinError = document.getElementById("pinError");
+  const loginTitle = document.querySelector(".login__title");
 
   pinInput.style.display = "none";
   userSelect.classList.add("login__content");
@@ -16,35 +17,37 @@ document.addEventListener("DOMContentLoaded", () => {
   loginSection.classList.add("login--wide");
 
   back.addEventListener("click", () => {
-    loginSection.classList.remove("login--narrow");
-    loginSection.classList.add("login--wide");
-
--    userSelect.classList.remove("login__content--hidden");
+    
+    userSelect.classList.remove("login__content--hidden");
     pinEnter.classList.add("login__content--hidden");
-
-    setTimeout(() => {
+    
+      loginTitle.classList.remove('down');
       back.style.display = "none";
       register.style.display = "block";
       pinError.innerHTML = "";
       resetPin();
-
+      
       const selectedRadio = document.querySelector('input[name="id"]:checked');
       if (selectedRadio) selectedRadio.checked = false;
-    }, 300);
+
+
+    loginSection.classList.remove("login--narrow");
+    loginSection.classList.add("login--wide");
   });
 
   userSelect.addEventListener("click", (e) => {
     if (e.target.closest(".login__user")) {
-      loginSection.classList.remove("login--wide");
-      loginSection.classList.add("login--narrow");
-
+      
       userSelect.classList.add("login__content--hidden");
       pinEnter.classList.remove("login__content--hidden");
 
-      setTimeout(() => {
         back.style.display = "block";
         register.style.display = "none";
-      }, 300);
+        loginTitle.classList.add('down');
+
+        loginSection.classList.remove("login--wide");
+        loginSection.classList.add("login--narrow");
+ 
     }
   });
 
