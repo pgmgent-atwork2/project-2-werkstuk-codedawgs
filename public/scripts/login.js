@@ -4,10 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const back = document.querySelector("#backButton");
   const register = document.querySelector(".login__register");
   const pinInput = document.getElementById("pinInput");
-  const pincodeDisplay = document.querySelectorAll(".pincode-display__circle");
   const pinError = document.getElementById("pinError");
-
-  let pinAmount = 0;
 
   pinInput.style.display = "none";
   userSelect.style.display = "grid";
@@ -20,12 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     pinEnter.style.display = "none";
     back.style.display = "none";
     register.style.display = "block";
-    pinAmount = 0;
     pinError.innerHTML = "";
-    pincodeDisplay.forEach((display) => {
-      display.classList.remove("pincode-display__circle--filled");
-    });
-    pinInput.value = "";
+    resetPin();
 
     const selectedRadio = document.querySelector('input[name="first_name"]:checked');
     if (selectedRadio) {
@@ -44,15 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
+    pinError.innerHTML = "";
+
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-
+    
     try {
       const response = await fetch("/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
@@ -60,24 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         pinInput.value = "";
+        resetPin();
         window.location.href = result.redirectUrl;
       } else {
-        pinInput.value = "";
-        pincodeDisplay.forEach((display) => {
-          display.classList.remove("pincode-display__circle--filled");
-        });
-        pinAmount = 0;
+        resetPin();
         pinError.innerHTML = result.message || "Incorrect Pin";
         pinError.classList.remove("shake");
         void pinError.offsetWidth;
         pinError.classList.add("shake");
       }
     } catch (error) {
-      pinInput.value = "";
-      pincodeDisplay.forEach((display) => {
-        display.classList.remove("pincode-display__circle--filled");
-      });
-      pinAmount = 0;
+      resetPin();
       pinError.innerHTML = "Incorrect Pin";
       pinError.classList.remove("shake");
       void pinError.offsetWidth;
