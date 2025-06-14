@@ -39,10 +39,22 @@ document.addEventListener("DOMContentLoaded", function () {
       const localISOString = toLocalISOString(date);
       const startDateISO = toLocalISOString(startDate);
 
+      const interval = tasks[task.task_id - 1].interval;
+      let circleColor = ""
+      if (interval === "daily") {
+        circleColor = "green";
+      } else if (interval === "weekly") {
+        circleColor = "blue"
+      } else if (interval === "monthly") {
+        circleColor = "red"
+      }
+      
+
       events.push({
         id: task.id,
         title: tasks[task.task_id - 1].title,
         user: users[task.user_id - 1].first_name,
+        circleColor: circleColor,
         start: startDateISO,
         end: localISOString,
       });
@@ -71,17 +83,16 @@ document.addEventListener("DOMContentLoaded", function () {
       events: events,
       dayMaxEvents: 2,
 
-      eventContent: function (arg) {
-        console.log(arg);
-        
+      eventContent: function (arg) {      
         const time = arg.event.start.toLocaleTimeString('en-US', { hour: "2-digit", minute: "2-digit", hour12: false });
         const title = arg.event.title;
         const user = arg.event.extendedProps.user;
-
+        const color = arg.event.extendedProps.circleColor;
+        
         return {
           html: `
           <div class="calendar-event">
-            <span></span>
+            <span class="${color}"></span>
             ${time}
             <strong>${title}</strong> 
             ${user}
