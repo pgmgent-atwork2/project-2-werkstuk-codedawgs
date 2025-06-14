@@ -1,14 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {  
-  const taskTypeInputs = document.querySelectorAll(
-    ".admintask__object_type"
-  );
-  const taskIdInputs = document.querySelectorAll(
-    ".admintask__object_id"
-  );
+  const taskTypeInputsAdd = document.querySelectorAll(".admintask__object_type--add");
+  const taskIdInputsAdd = document.querySelectorAll(".admintask__object_id--add"); 
 
-  taskTypeInputs.forEach((input, index) => {
+  const taskTypeInputsFilter = document.querySelectorAll(".admintask__object_type--filter");
+  const taskIdInputsFilter = document.querySelectorAll(".admintask__object_id--filter");  
+
+  taskTypeInputsAdd.forEach((input, index) => {
     input.addEventListener("change", () => {
-      updateObjectIdOptions(input, taskIdInputs[index]);
+      console.log("add");
+      
+      updateObjectIdOptions(input, taskIdInputsAdd[index]);
+    });
+  });
+  
+  taskTypeInputsFilter.forEach((input, index) => {
+    input.addEventListener("change", () => {
+            console.log("filter");
+
+      updateObjectIdOptions(input, taskIdInputsFilter[index]);
     });
   });
 

@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  //Load Task type name
   const taskTypeInputs = document.querySelectorAll(
     ".admin-tasks__select--object-type"
   );
