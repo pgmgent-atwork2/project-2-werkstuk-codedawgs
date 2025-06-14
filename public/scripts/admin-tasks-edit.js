@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   document.querySelectorAll(".admin-tasks__edit-btn").forEach((editBtn) => {
     editBtn.addEventListener("click", () => {
       const form = editBtn.closest("form");
       const cancelBtn = form.querySelector(".admin-tasks__cancel-btn");
       const saveBtn = form.querySelector(".admin-tasks__save-btn");
+      const deleteBtn = form.querySelector(".admin-tasks__delete-btn");
       const row = editBtn.closest("tr");
       const inputs = row.querySelectorAll(
         'input[form="' + form.id + '"], select[form="' + form.id + '"]'
@@ -14,12 +16,31 @@ document.addEventListener("DOMContentLoaded", () => {
       editBtn.style.display = "none";
       saveBtn.style.display = "";
       cancelBtn.style.display = "";
+      deleteBtn.style.display = "";
     });
   });
 
   document.querySelectorAll(".admin-tasks__cancel-btn").forEach((cancelBtn) => {
     cancelBtn.addEventListener("click", () => {
       window.location.reload()
+    });
+  });
+
+  document.querySelectorAll(".admin-tasks__delete-btn").forEach((deleteBtn) => {
+    deleteBtn.addEventListener("click", async () => {
+      
+      try {
+        const res = await fetch(`/admin/tasks/${deleteBtn.dataset.taskId}`, {
+          method: 'DELETE'
+        })
+          .then(res => {
+            if (res.redirected) {
+              window.location.href = res.url;
+            }
+          });
+      } catch {
+        console.error("Error deleting task")
+      }
     });
   });
 
@@ -35,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  //Load Task type name
   const taskTypeInputs = document.querySelectorAll(
     ".admin-tasks__select--object-type"
   );
@@ -63,5 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch {
       idSelect.innerHTML = "<option>Error</option>";
     }
+  }
+
+  function deleteTask() {
+    console.log("teest");
+    
   }
 });

@@ -29,6 +29,7 @@ export const taskComplete = async (req, res) => {
 
 export const addTask = async (req, res) => {
 const { title, object_type, object_id, interval } = req.body;
+
   try {
     await knex("tasks").insert({
       title,
@@ -144,5 +145,16 @@ export const postAnalysis = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Post task failed");
+  }
+};
+
+export const deleteTask = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await knex("tasks").where("id", id).del();
+    res.redirect(`/admin/tasks`);
+  } catch (error) {
+    console.error("Delete user error:", error);
+    res.status(500).send("Failed to delete task");
   }
 };
