@@ -20,7 +20,7 @@ const seed = async function (knex) {
       role: "user",
     },
     {
-      first_name: "Lukas",
+      first_name: "Aqua",
       last_name: "Account",
       token: "748cb8318c07",
       image_id: 8,
