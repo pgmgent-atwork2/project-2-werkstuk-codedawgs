@@ -127,8 +127,6 @@ export const taskPageAdmin = async (req, res) => {
     { value: 0, label: "Invisible" }
   ];
 
-  console.log(req.query);
-
   res.render("pages/admin-tasks", {
     title: "Tasks",
     user: req.user,
