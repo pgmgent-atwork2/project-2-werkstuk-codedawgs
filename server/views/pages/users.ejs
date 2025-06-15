@@ -50,11 +50,19 @@
                 />
               </td>
               <td class="users__table-cell">
-                <form action="/admin/users/<%= user.id %>" method="POST">
-                    <input type="hidden" name="first_name" value="<%= user.first_name %>">
-                    <input type="hidden" name="role" value="<%= user.role %>">
-                  <button class="users__delete-button button" type="submit"><img src="/assets/svg/trash-solid.svg"></button>
-                </form>
+                <% let firstAdmin = null %>
+                <% users.forEach(us => { %>
+                  <% if(firstAdmin === null && us.role === 'admin') {%>
+                    <% firstAdmin = us %>
+                  <% } %>
+                <% }); %>
+                <% if(user !== firstAdmin) { %>
+                  <form action="/admin/users/<%= user.id %>" method="POST">
+                      <input type="hidden" name="first_name" value="<%= user.first_name %>">
+                      <input type="hidden" name="role" value="<%= user.role %>">
+                    <button class="users__delete-button button" type="submit"><img src="/assets/svg/trash-solid.svg"></button>
+                  </form>
+                <% } %>
               </td>
             </tr>
           <% }) %>
