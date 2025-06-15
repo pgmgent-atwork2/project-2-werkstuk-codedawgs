@@ -38,11 +38,28 @@
   text-align: center;
 }
 
-@media screen and (min-width: 800px) {
+  .export-excel-btn {
+    display: none;
+  }
 
+.analysis-page__head {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (min-width: 800px) {
+  
   .admin__container {
     flex-direction: column;
     margin: 0;
+  }
+
+  .export-excel-btn {
+    display: block;
+    width: fit-content !important;
+    height: fit-content;
+    margin: 0 !important;
   }
   
   .admin__sidebar {
@@ -62,9 +79,6 @@
     height: fit-content;
   }
 
-  .export-excel-btn {
-    height: fit-content;
-  }
 }
 
 @media screen and (min-width: 1400px) {

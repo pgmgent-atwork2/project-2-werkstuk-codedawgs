@@ -4,8 +4,9 @@
 
 <section class="main analysis-page">
     <h1 class="analysis-page__title">Water analysis:</h1>
-    <form id="analysisFilterForm" method="GET" action="/general/analysis">
-        <button type="button" onclick="window.location.href='/general/analysis'">Clear filters</button>
+    <form id="analysisFilterForm" class="analysis-page__form" method="GET" action="/general/analysis">
+        
+        <label for="filter_sub_department" class="analysis-page__subdepartment-label">Sub department:</label>
         <select class="analysis-page__subdepartment-select select" name="filter_sub_department" id="filter_sub_department">
             <% if (user.role === "aqua") { %>
                 <% sub_departments.forEach(sub => { %>
@@ -24,41 +25,55 @@
                 <% }) %>
             <% } %>
         </select>
+        
+        <div class="analysis-page__date-range">
+            <div>
+                <label for="startMonth" class="analysis-page__date-label">Start Month:</label>
+                <select class="analysis-page__subdepartment-select select" name="startMonth" id="startMonth">
+                    <option value="">All</option>
+                    <% for (let m = 1; m <= 12; m++) { %>
+                        <option value="<%= m %>" <%= typeof startMonth !== 'undefined' && startMonth == m ? 'selected' : '' %>><%= monthNames[m - 1] %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div>
+                <label for="startYear" class="analysis-page__date-label">Start Year:</label>
+                <select class="analysis-page__subdepartment-select select" name="startYear" id="startYear">
+                    <option value="">All</option>
+                    <% const currentYear = new Date().getFullYear(); %>
+                    <% for (let y = currentYear - 5; y <= currentYear + 1; y++) { %>
+                        <option value="<%= y %>" <%= typeof startYear !== 'undefined' && startYear == y ? 'selected' : '' %>><%= y %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
 
-        <select class="analysis-page__subdepartment-select select" name="startMonth" id="startMonth">
-            <option value="">All</option>
-            <% for (let m = 1; m <= 12; m++) { %>
-                <option value="<%= m %>" <%= typeof startMonth !== 'undefined' && startMonth == m ? 'selected' : '' %>><%= monthNames[m - 1] %></option>
-            <% } %>
-        </select>
-
-        <select class="analysis-page__subdepartment-select select" name="startYear" id="startYear">
-            <option value="">All</option>
-            <% const currentYear = new Date().getFullYear(); %>
-            <% for (let y = currentYear - 5; y <= currentYear + 1; y++) { %>
-                <option value="<%= y %>" <%= typeof startYear !== 'undefined' && startYear == y ? 'selected' : '' %>><%= y %></option>
-            <% } %>
-        </select>
-
-        <select class="analysis-page__subdepartment-select select" name="endMonth" id="endMonth">
-            <option value="">All</option>
-            <% for (let m = 1; m <= 12; m++) { %>
-                <option value="<%= m %>" <%= typeof endMonth !== 'undefined' && endMonth == m ? 'selected' : '' %>><%= monthNames[m - 1] %></option>
-            <% } %>
-        </select>
-
-        <select class="analysis-page__subdepartment-select select" name="endYear" id="endYear">
-            <option value="">All</option>
-            <% for (let y = currentYear - 5; y <= currentYear + 1; y++) { %>
-                <option value="<%= y %>" <%= typeof endYear !== 'undefined' && endYear == y ? 'selected' : '' %>><%= y %></option>
-            <% } %>
-        </select>
-
-        <button type="submit" class="button">Apply filter</button>
+        <div class="analysis-page__date-range">
+            <div>
+                <label for="endMonth" class="analysis-page__date-label">End Month:</label>
+                <select class="analysis-page__subdepartment-select select" name="endMonth" id="endMonth">
+                    <option value="">All</option>
+                    <% for (let m = 1; m <= 12; m++) { %>
+                        <option value="<%= m %>" <%= typeof endMonth !== 'undefined' && endMonth == m ? 'selected' : '' %>><%= monthNames[m - 1] %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div>
+                <label for="endYear" class="analysis-page__date-label">End Year:</label>
+                <select class="analysis-page__subdepartment-select select" name="endYear" id="endYear">
+                    <option value="">All</option>
+                    <% for (let y = currentYear - 5; y <= currentYear + 1; y++) { %>
+                        <option value="<%= y %>" <%= typeof endYear !== 'undefined' && endYear == y ? 'selected' : '' %>><%= y %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        <div class="analysis-page__buttons">
+            <button type="button" class="button" onclick="window.location.href='/general/analysis'">Clear filters</button>
+            <button type="submit" class="button">Apply filter</button>
+        </div>
         <span id="dateRangeError" style="color: red; display: none;"></span>
     </form>
-
-    <button class="analysis__new analysis-page__new-btn button">New analysis</button>
 
     <form class="analysis__form analysis-page__form" id="analysisForm" action="/tasks/analysis" method="POST">
         <h2 class="analysis-page__form-title">Add water analysis</h2>
@@ -97,13 +112,18 @@
             <label class="analysis-page__comment-label">Comment</label>
             <input class="analysis-page__comment-input" name="comment" placeholder="Optional comment">
         </div>
-
-        <button type="button" class="analysis__close analysis-page__close-btn button">Cancel</button>
-        <button type="submit" class="analysis__add analysis-page__add-btn button">Add analysis</button>
+        <div class="analysis-page__buttons">
+            <button type="button" class="analysis__close analysis-page__close-btn button">Cancel</button>
+            <button type="submit" class="analysis__add analysis-page__add-btn button">Add analysis</button>
+        </div>
     </form>
 
     <div class="analysis-page__tables">
-        <button type="button" class="export-excel-btn" data-table="analysis-page__table-morning">Export to Excel</button>
+        <button class="analysis__new analysis-page__new-btn button">+ New analysis</button>
+        <div class="analysis-page__head">
+            <h2 class="analysis-page__table-title">Morning</h2>
+            <button type="button" class="export-excel-btn button" data-table="analysis-page__table-morning">Export to Excel</button>
+        </div>
         <div class="analysis-page__table-container">
             <table class="analysis-page__table analysis-page__table-morning" border="1px">
                 <tr>
@@ -111,7 +131,12 @@
                     <th></th>
                     <th colspan="2">Depolox</th>
                     <th colspan="3">Manual</th>
-                    <th></th><th></th><th></th><th></th><th></th><th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 <tr>
                     <th>Date</th>
@@ -154,7 +179,11 @@
             </table>
         </div>
 
-        <button type="button" class="export-excel-btn" data-table="analysis-page__table-afternoon">Export to Excel</button>
+        <div class="analysis-page__head">
+            <h2 class="analysis-page__table-title">Afternoon</h2>
+            <button type="button" class="export-excel-btn button" data-table="analysis-page__table-afternoon">Export to Excel</button>
+        </div>
+
         <div class="analysis-page__table-container">
             <table class="analysis-page__table analysis-page__table-afternoon" border="1px">
                 <tr>
