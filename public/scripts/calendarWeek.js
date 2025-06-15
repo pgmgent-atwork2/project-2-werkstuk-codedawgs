@@ -72,16 +72,17 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (task.object_type === "filter") {
           type = filters[task.object_id - 1].title;
         }
-
-        events.push({
-          id: task.id,
-          type: type,
-          title: tasks[task.task_id - 1].title,
-          user: users[task.user_id - 1].first_name,
-          circleColor: circleColor,
-          start: startDateISO,
-          end: localISOString,
-        });
+        if(users[task.user_id - 1]) {
+          events.push({
+            id: task.id,
+            type: type,
+            title: tasks[task.task_id - 1].title,
+            user: users[task.user_id - 1].first_name,
+            circleColor: circleColor,
+            start: startDateISO,
+            end: localISOString,
+          });
+        }
       }
     });
 

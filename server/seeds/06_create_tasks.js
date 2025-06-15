@@ -4,7 +4,7 @@ const seed = async function (knex) {
   await knex(tableName).truncate();
   await knex(tableName).insert([
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -12,7 +12,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -20,7 +20,7 @@ const seed = async function (knex) {
       completed: true,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -28,7 +28,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -36,7 +36,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -44,7 +44,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -52,7 +52,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -60,7 +60,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -68,7 +68,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -76,7 +76,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -84,7 +84,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -92,7 +92,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -100,7 +100,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -108,7 +108,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -116,7 +116,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "check voorfilters pompen",
+      title: "Check pre-filters pumps",
       visible: true,
       interval: "daily",
       object_type: "pump",
@@ -125,7 +125,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "opvullen dagtank chloor",
+      title: "Refill chlorine day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -133,7 +133,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank chloor",
+      title: "Refill chlorine day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -141,7 +141,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank chloor",
+      title: "Refill chlorine day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -149,7 +149,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank chloor",
+      title: "Refill chlorine day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -157,7 +157,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank chloor",
+      title: "Refill chlorine day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -165,7 +165,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank chloor",
+      title: "Refill chlorine day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -174,7 +174,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "opvullen dagtank chloor",
+      title: "Refill chlorine day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -182,7 +182,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank chloor",
+      title: "Refill chlorine day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -191,7 +191,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "opvullen dagtank zwavelzuur",
+      title: "Refill sulfuric acid day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -199,7 +199,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank zwavelzuur",
+      title: "Refill sulfuric acid day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -207,7 +207,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank zwavelzuur",
+      title: "Refill sulfuric acid day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -215,7 +215,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank zwavelzuur",
+      title: "Refill sulfuric acid day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -223,7 +223,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank zwavelzuur",
+      title: "Refill sulfuric acid day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -231,7 +231,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank zwavelzuur",
+      title: "Refill sulfuric acid day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -239,7 +239,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank zwavelzuur",
+      title: "Refill sulfuric acid day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -247,7 +247,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank zwavelzuur",
+      title: "Refill sulfuric acid day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -256,7 +256,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "opvullen dagtank locron",
+      title: "Refill locron day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -264,7 +264,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank locron",
+      title: "Refill locron day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -272,7 +272,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank locron",
+      title: "Refill locron day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -280,7 +280,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank locron",
+      title: "Refill locron day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -288,7 +288,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank locron",
+      title: "Refill locron day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -296,7 +296,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank locron",
+      title: "Refill locron day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -304,7 +304,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank locron",
+      title: "Refill locron day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -312,7 +312,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "opvullen dagtank locron",
+      title: "Refill locron day tank",
       visible: true,
       interval: "daily",
       object_type: "sub_department",
@@ -321,7 +321,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Stofzuigen",
+      title: "Vacuuming",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -329,7 +329,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Stofzuigen",
+      title: "Vacuuming",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -337,7 +337,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Stofzuigen",
+      title: "Vacuuming",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -345,7 +345,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Stofzuigen",
+      title: "Vacuuming",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -353,7 +353,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Stofzuigen",
+      title: "Vacuuming",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -361,7 +361,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Stofzuigen",
+      title: "Vacuuming",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -369,7 +369,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Stofzuigen",
+      title: "Vacuuming",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -377,7 +377,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Stofzuigen",
+      title: "Vacuuming",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -386,7 +386,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Duiken",
+      title: "Diving",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -394,7 +394,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Duiken",
+      title: "Diving",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -402,7 +402,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Duiken",
+      title: "Diving",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -410,7 +410,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Duiken",
+      title: "Diving",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -418,7 +418,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Duiken",
+      title: "Diving",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -426,7 +426,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Duiken",
+      title: "Diving",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -434,7 +434,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Duiken",
+      title: "Diving",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -442,7 +442,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Duiken",
+      title: "Diving",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -451,7 +451,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Schoonmaak voorfilter depolox",
+      title: "Clean depolox pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -459,7 +459,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak voorfilter depolox",
+      title: "Clean depolox pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -467,7 +467,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak voorfilter depolox",
+      title: "Clean depolox pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -475,7 +475,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak voorfilter depolox",
+      title: "Clean depolox pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -483,7 +483,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak voorfilter depolox",
+      title: "Clean depolox pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -491,7 +491,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak voorfilter depolox",
+      title: "Clean depolox pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -499,7 +499,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak voorfilter depolox",
+      title: "Clean depolox pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -507,7 +507,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak voorfilter depolox",
+      title: "Clean depolox pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -516,7 +516,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -524,7 +524,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -532,7 +532,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -540,7 +540,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -548,7 +548,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -556,7 +556,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -564,7 +564,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -572,7 +572,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -580,7 +580,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -588,7 +588,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -596,7 +596,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -604,7 +604,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -612,7 +612,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -620,7 +620,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -628,7 +628,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaak kijkglas voorfilter",
+      title: "Clean sight glass pre-filter",
       visible: true,
       interval: "weekly",
       object_type: "pump",
@@ -637,7 +637,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Niveau voorraadvat checken",
+      title: "Check stock tank level",
       visible: true,
       interval: "weekly",
       object_type: "department",
@@ -645,7 +645,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Niveau voorraadvat checken",
+      title: "Check stock tank level",
       visible: true,
       interval: "weekly",
       object_type: "department",
@@ -653,7 +653,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Niveau voorraadvat checken",
+      title: "Check stock tank level",
       visible: true,
       interval: "weekly",
       object_type: "department",
@@ -661,7 +661,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Niveau voorraadvat checken",
+      title: "Check stock tank level",
       visible: true,
       interval: "weekly",
       object_type: "department",
@@ -670,7 +670,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Aanvullen vaten",
+      title: "Refill barrels",
       visible: true,
       interval: "weekly",
       object_type: "department",
@@ -678,7 +678,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Aanvullen vaten",
+      title: "Refill barrels",
       visible: true,
       interval: "weekly",
       object_type: "department",
@@ -687,7 +687,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Quarantaine legen",
+      title: "Empty quarantine",
       visible: true,
       interval: "weekly",
       object_type: "sub_department",
@@ -696,7 +696,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Verwijderen zout aanslag",
+      title: "Remove salt deposits",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -704,7 +704,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Verwijderen zout aanslag",
+      title: "Remove salt deposits",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -712,7 +712,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Verwijderen zout aanslag",
+      title: "Remove salt deposits",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -720,7 +720,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Verwijderen zout aanslag",
+      title: "Remove salt deposits",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -728,7 +728,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Verwijderen zout aanslag",
+      title: "Remove salt deposits",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -736,7 +736,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Verwijderen zout aanslag",
+      title: "Remove salt deposits",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -744,7 +744,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Verwijderen zout aanslag",
+      title: "Remove salt deposits",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -752,7 +752,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Verwijderen zout aanslag",
+      title: "Remove salt deposits",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -761,7 +761,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -769,7 +769,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -777,7 +777,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -785,7 +785,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -793,7 +793,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -801,7 +801,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -809,7 +809,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -817,7 +817,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -825,7 +825,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -833,7 +833,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -841,7 +841,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -849,7 +849,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -857,7 +857,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -865,7 +865,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -873,7 +873,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken ontluchters",
+      title: "Clean air vents",
       visible: true,
       interval: "monthly",
       object_type: "filter",
@@ -882,7 +882,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Afvoerput dompelpomp",
+      title: "Drain pit submersible pump",
       visible: true,
       interval: "monthly",
       object_type: "department",
@@ -890,7 +890,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Afvoerput dompelpomp",
+      title: "Drain pit submersible pump",
       visible: true,
       interval: "monthly",
       object_type: "department",
@@ -898,7 +898,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Afvoerput dompelpomp",
+      title: "Drain pit submersible pump",
       visible: true,
       interval: "monthly",
       object_type: "department",
@@ -906,7 +906,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Afvoerput dompelpomp",
+      title: "Drain pit submersible pump",
       visible: true,
       interval: "monthly",
       object_type: "department",
@@ -915,7 +915,7 @@ const seed = async function (knex) {
     },
 
     {
-      title: "Schoonmaken display Depolox",
+      title: "Clean Depolox display",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -923,7 +923,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken display Depolox",
+      title: "Clean Depolox display",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -931,7 +931,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken display Depolox",
+      title: "Clean Depolox display",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -939,7 +939,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Schoonmaken display Depolox",
+      title: "Clean Depolox display",
       visible: true,
       interval: "monthly",
       object_type: "sub_department",
@@ -1067,7 +1067,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Calibratie Depolox",
+      title: "Calibration Depolox",
       visible: true,
       interval: "none",
       object_type: "sub_department",
@@ -1075,7 +1075,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Calibratie Depolox",
+      title: "Calibration Depolox",
       visible: true,
       interval: "none",
       object_type: "sub_department",
@@ -1083,7 +1083,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Calibratie Depolox",
+      title: "Calibration Depolox",
       visible: true,
       interval: "none",
       object_type: "sub_department",
@@ -1091,7 +1091,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Calibratie Depolox",
+      title: "Calibration Depolox",
       visible: true,
       interval: "none",
       object_type: "sub_department",
@@ -1099,7 +1099,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Calibratie Depolox",
+      title: "Calibration Depolox",
       visible: true,
       interval: "none",
       object_type: "sub_department",
@@ -1107,7 +1107,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Calibratie Depolox",
+      title: "Calibration Depolox",
       visible: true,
       interval: "none",
       object_type: "sub_department",
@@ -1115,7 +1115,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Calibratie Depolox",
+      title: "Calibration Depolox",
       visible: true,
       interval: "none",
       object_type: "sub_department",
@@ -1123,7 +1123,7 @@ const seed = async function (knex) {
       completed: false,
     },
     {
-      title: "Calibratie Depolox",
+      title: "Calibration Depolox",
       visible: true,
       interval: "none",
       object_type: "sub_department",
