@@ -17,7 +17,11 @@
                         <% } else if(task.object_type==="filter" ) { %>
                             <% titleToShow=filters[task.object_id-1].title %>
                         <% } %>
-                        <%- include('../partials/task', { task: task, title: titleToShow, type: "button"  }) %>
+                        <% if(user.role === "aqua" && titleToShow === "aquasplash") { %>
+                            <%- include('../partials/task', { task: task, title: titleToShow, type: "button"  }) %>
+                        <% } else if (user.role !== "aqua") { %>
+                            <%- include('../partials/task', { task: task, title: titleToShow, type: "button"  }) %>
+                        <% } %>
                     <% } %>
                 <% }); %>
             </div>
