@@ -2,7 +2,9 @@ import knex from "../lib/Knex.js";
 
 export const taskComplete = async (req, res) => { 
   const { id } = req.params;
-  const completed = req.body.completed ? true : false;
+  const completed = Boolean(req.body.completed);
+
+  const action = completed ? "completed" : "uncompleted";
   const task_date = Date.now();
 
   const task = await knex("tasks").where("id", id).first();
@@ -16,7 +18,7 @@ export const taskComplete = async (req, res) => {
       object_type: task.object_type,
       object_id: task.object_id,
       comment: req.body.comment,
-      action: completed ? "completed" : "uncompleted",
+      action,
       task_date,
     });
 
@@ -26,6 +28,7 @@ export const taskComplete = async (req, res) => {
     res.status(500).send("Edit task failed");
   }
 };
+
 
 export const addTask = async (req, res) => {
 const { title, object_type, object_id, interval } = req.body;

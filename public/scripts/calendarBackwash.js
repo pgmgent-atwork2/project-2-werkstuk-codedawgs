@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             isCompleted = latestLog.action === "completed";
           }
 
-          const todayDate = new Date().toLocaleDateString('en-CA');          
+          const todayDate = new Date().toLocaleDateString('en-CA');
 
           if (event.date !== todayDate) {
             checkbox.disabled = true;

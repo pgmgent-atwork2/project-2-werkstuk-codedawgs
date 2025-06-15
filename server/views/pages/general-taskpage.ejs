@@ -17,7 +17,7 @@
                         <% } else if(task.object_type==="filter" ) { %>
                             <% titleToShow=filters[task.object_id-1].title %>
                         <% } %>
-                        <%- include('../partials/task', { task: task, title: titleToShow }) %>
+                        <%- include('../partials/task', { task: task, title: titleToShow, type: "button"  }) %>
                     <% } %>
                 <% }); %>
             </div>
