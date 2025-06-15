@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       for (let i = 0; i < 7; i++) {
         const eventDate = new Date(monday);
         eventDate.setDate(monday.getDate() + i);
-        const formattedDate = eventDate.toISOString().split("T")[0];
+        const formattedDate = eventDate.toLocaleDateString('en-CA');
 
         let subDepartment = subDepartments[filter.sub_department_id - 1];
         let department = departments[subDepartment.department_id - 1];
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const date = new Date(monday);
       date.setDate(monday.getDate() + i);
 
-      days.push(date.toISOString().split("T")[0]);
+      days.push(date.toLocaleDateString('en-CA'));
 
       const day = String(date.getDate()).padStart(2, "0");
       const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -187,8 +187,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       const th = document.createElement("th");
       th.textContent = `${day}/${month}`;
 
-      const todayDate = new Date().toISOString().split("T")[0];
-      if (date.toISOString().split("T")[0] === todayDate) {
+      const todayDate = new Date().toLocaleDateString('en-CA');
+      if (date.toLocaleDateString('en-CA') === todayDate) {
         th.className = "table__today";
       }
 
@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           const eventDate = event.date;
           
           const logsForTaskDate = generalTaskLogs.filter((log) => {
-            const logDate = new Date(log.task_date).toISOString().split("T")[0];
+            const logDate = new Date(log.task_date).toLocaleDateString('en-CA');
             return (
               String(log.task_id) === eventTaskId &&
               logDate === eventDate
@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             isCompleted = latestLog.action === "completed";
           }
 
-          const todayDate = new Date().toISOString().split("T")[0];
+          const todayDate = new Date().toLocaleDateString('en-CA');
 
           if (event.date !== todayDate) {
             checkbox.disabled = true;

@@ -84,9 +84,4 @@ document.addEventListener("DOMContentLoaded", () => {
       idSelect.innerHTML = "<option>Error</option>";
     }
   }
-
-  function deleteTask() {
-    console.log("teest");
-    
-  }
 });

@@ -84,12 +84,12 @@ export const postLogin = async (req, res, next) => {
 
 export const registerFirstStep = async (req, res) => {
   const input = {
-      name: "token",
-      label: "Token",
-      type: "text",
-      value: req.body?.token ? req.body.token : "",
-      err: req.formErrorFields?.token ? req.formErrorFields["token"] : "",
-  }
+    name: "token",
+    label: "Token",
+    type: "text",
+    value: req.body?.token ? req.body.token : "",
+    err: req.formErrorFields?.token ? req.formErrorFields["token"] : "",
+  };
   const flash = req.flash || {};
 
   res.render("pages/register-first-step", {
@@ -117,7 +117,7 @@ export const postRegisterFirstStep = async (req, res, next) => {
 
       return next();
     } else {
-      const user = await User.query().findOne({ token: req.body.token });    
+      const user = await User.query().findOne({ token: req.body.token });
 
       if (!user) {
         req.formErrorFields = { token: "Invalid token" };
@@ -135,7 +135,7 @@ export const postRegisterFirstStep = async (req, res, next) => {
 export const registerSecondStep = async (req, res) => {
   const clearPincode = req.formErrorFields?.pincode
     ? ""
-    : req.body?.pincode || ""; 
+    : req.body?.pincode || "";
 
   const inputs = [
     {
@@ -212,10 +212,9 @@ export const postRegisterSecondStep = async (req, res, next) => {
   }
 };
 
-
 //Logout
 
 export const logout = async (req, res) => {
-  res.clearCookie("token");
-  res.redirect('/login');
+  res.clearCookie("userToken");
+  res.redirect("/login");
 };

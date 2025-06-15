@@ -7,16 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   taskTypeInputsAdd.forEach((input, index) => {
     input.addEventListener("change", () => {
-      console.log("add");
-      
       updateObjectIdOptions(input, taskIdInputsAdd[index]);
     });
   });
   
   taskTypeInputsFilter.forEach((input, index) => {
     input.addEventListener("change", () => {
-            console.log("filter");
-
       updateObjectIdOptions(input, taskIdInputsFilter[index]);
     });
   });

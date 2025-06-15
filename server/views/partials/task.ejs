@@ -1,8 +1,15 @@
 <% if (task.visible) { %>
     <li class="task">
         <form action="/tasks/<%= task.id %>/completed" method="POST">
-            <input name="completed" class="task__check" id="completed-<%= task.id %>" data-id="<%= task.id %>"
+            <% if(type === "checkbox") { %>
+                <input name="completed" class="task__check" id="completed-<%= task.id %>" data-id="<%= task.id %>"
                 type="checkbox" <%=task.completed ? "checked" : "" %>>
+            <% } else if(type === "button") { %>
+                <input type="hidden" name="completed" value="true">
+                <button type="submit" name="complete" class="task__complete button" id="completed-<%= task.id %>" data-id="<%= task.id %>">
+                    Complete
+                </button>
+            <% } %>
             <div class="task__comment">
                 <textarea name="comment" placeholder="Optional: comment"></textarea>
                 <button class="button button--task" type="submit">Send</button>

@@ -6,97 +6,101 @@
 
     <section class="admin-tasks__content">
       
-      <div class="admin-tasks__container">
-        <h2 class="admin-tasks__subtitle">Add tasks</h2>
-        <form class="admin-tasks__form" method="POST" action="/admin/tasks">
-          <label class="admin-tasks__label" for="title">Title:
-            <input class="admin-tasks__input" type="text" name="title" id="title" required />
-          </label>
-          <label class="admin-tasks__label" for="object_type">Task Type:
-            <select class="select admintask__object_type--add" name="object_type" id="object_type" required>
-              <option value="">-- Choose a task type --</option>
+      <div class="admin-tasks__head">
+        <div class="admin-tasks__container">
+          <h2 class="admin-tasks__subtitle">Add Task</h2>
+          <form class="admin-tasks__form" method="POST" action="/admin/tasks">
+            <label class="admin-tasks__label" for="title">Title:
+              <input class="admin-tasks__input" type="text" name="title" id="title" required />
+            </label>
+            <label class="admin-tasks__label" for="object_type">Task Type:
+              <select class="select admintask__object_type--add" name="object_type" id="object_type" required>
+                <option value="">-- Choose a task type --</option>
+                <% taskTypes.forEach(type=> { %>
+                  <option value="<%= type.value %>" <%=query && query.object_type===type.value ? "selected" : "" %>>
+                    <%= type.value %>
+                  </option>
+                  <% }) %>
+              </select>
+            </label>
+  
+            <label class="admin-tasks__label" for="object_id">Task Type Name:
+              <select class="select admintask__object_id--add" name="object_id" id="object_id" required>
+                <option value="">-- Choose a task type name --</option>
+                <% objectIdOptions.forEach(opt=> { %>
+                  <option value="<%= opt.id %>" <%=query && query.object_id===String(opt.id) ? "selected" : "" %>>
+                    <%= opt.title %>
+                  </option>
+                  <% }) %>
+              </select>
+            </label>
+  
+            <label class="admin-tasks__label" for="interval">Interval:
+              <select class="admin-tasks__select select" name="interval" id="interval" required>
+                <option value="none" selected>None</option>
+  
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </label>
+  
+            <button class="admin-tasks__button button" type="submit">Add Task</button>
+          </form>
+        </div>
+  
+        <div class="admin-tasks__container">
+          <h2 class="admin-tasks__subtitle">Filter Tasklog</h2>
+  
+          <form action="/admin/tasks" method="GET" class="admin-tasks__filter-form">
+  
+            <label class="admin-tasks__label" for="object_type">Task type:</label>
+            <select name="object_type" id="object_type" class="select admintask__object_type--filter">
+              <option value="">All</option>
               <% taskTypes.forEach(type=> { %>
                 <option value="<%= type.value %>" <%=query && query.object_type===type.value ? "selected" : "" %>>
                   <%= type.value %>
                 </option>
                 <% }) %>
             </select>
-          </label>
-
-          <label class="admin-tasks__label" for="object_id">Task Type Name:
-            <select class="select admintask__object_id--add" name="object_id" id="object_id" required>
-              <option value="">-- Choose a task type name --</option>
+  
+            <label class="admin-tasks__label" for="object_id">Task type name:</label>
+            <select name="object_id" id="object_id" class="select admintask__object_id--filter" >
+              <option value="">All</option>
               <% objectIdOptions.forEach(opt=> { %>
                 <option value="<%= opt.id %>" <%=query && query.object_id===String(opt.id) ? "selected" : "" %>>
                   <%= opt.title %>
                 </option>
                 <% }) %>
             </select>
-          </label>
-
-          <label class="admin-tasks__label" for="interval">Interval:
-            <select class="admin-tasks__select select" name="interval" id="interval" required>
-              <option value="none" selected>None</option>
-
-              <option value="daily">Daily</option>
-              <option value="weekly">Weekly</option>
-              <option value="monthly">Monthly</option>
+  
+            <label class="admin-tasks__label" for="interval">Interval:</label>
+            <select name="interval" id="interval" class="select">
+              <option value="">All</option>
+              <% intervals.forEach(interval=> { %>
+                <option value="<%= interval.value %>" <%=query && query.interval===interval.value ? "selected" : "" %>>
+                  <%= interval.value %>
+                </option>
+                <% }) %>
             </select>
-          </label>
-
-          <button class="admin-tasks__button button" type="submit">Add Task</button>
-        </form>
-      </div>
-
-      <div class="admin-tasks_filter__container">
-        <form action="/admin/tasks" method="GET" class="admin-tasks__filter-form">
-
-          <label for="object_type">Task type:</label>
-          <select name="object_type" id="object_type" class="admintask__object_type--filter">
-            <option value="">All</option>
-            <% taskTypes.forEach(type=> { %>
-              <option value="<%= type.value %>" <%=query && query.object_type===type.value ? "selected" : "" %>>
-                <%= type.value %>
-              </option>
-              <% }) %>
-          </select>
-
-          <label for="object_id">Task type name:</label>
-          <select name="object_id" id="object_id" class="admintask__object_id--filter" >
-            <option value="">All</option>
-            <% objectIdOptions.forEach(opt=> { %>
-              <option value="<%= opt.id %>" <%=query && query.object_id===String(opt.id) ? "selected" : "" %>>
-                <%= opt.title %>
-              </option>
-              <% }) %>
-          </select>
-
-          <label for="interval">Interval:</label>
-          <select name="interval" id="interval">
-            <option value="">All</option>
-            <% intervals.forEach(interval=> { %>
-              <option value="<%= interval.value %>" <%=query && query.interval===interval.value ? "selected" : "" %>>
-                <%= interval.value %>
-              </option>
-              <% }) %>
-          </select>
-
-          <label for="visibility">Visibility:</label>
-          <select name="visibility" id="visibility">
-            <% visibilities.forEach(vis=> { %>
-              <option value="<%= vis.value %>" <%=query && String(query.visibility)===String(vis.value) ? "selected"
-                : "" %>>
-                <%= vis.label %>
-              </option>
-              <% }) %>
-          </select>
-          
-          <div class="admin-tasks__filter-buttons">
-            <button class="button" type="button" onclick="window.location.href='/admin/tasks'">Clear filters</button>
-            <button class="button" type="submit">Apply filter</button>
-          </div>
-
-        </form> 
+  
+            <label class="admin-tasks__label" for="visibility">Visibility:</label>
+            <select name="visibility" id="visibility" class="select">
+              <% visibilities.forEach(vis=> { %>
+                <option value="<%= vis.value %>" <%=query && String(query.visibility)===String(vis.value) ? "selected"
+                  : "" %>>
+                  <%= vis.label %>
+                </option>
+                <% }) %>
+            </select>
+            
+            <div class="admin-tasks__filter-buttons">
+              <button class="button" type="button" onclick="window.location.href='/admin/tasks'">Clear filters</button>
+              <button class="button" type="submit">Apply filter</button>
+            </div>
+  
+          </form> 
+        </div>
       </div>
 
       <div class="admin-tasks__container">
