@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   newForm.style.display = "none";
 
   newButton.addEventListener("click", () => {
-    newForm.style.display = "block";
+    newForm.style.display = "flex";
   });
   closeButton.addEventListener("click", () => {
     newForm.style.display = "none";
