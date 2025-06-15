@@ -131,6 +131,7 @@
                 </tr>
 
                 <% measurement_logs.forEach(log => { 
+                    if(users[log.user_id]) {
                     const subDep = sub_departments.find(sd => sd.id === log.sub_department_id);
                     if (
                         (user.role === "aqua" && log.sub_department_id === 8 && log.time === 1) ||
@@ -139,7 +140,7 @@
                         const measurements = JSON.parse(log.measurements);
                         const date = new Date(log.measured_date);
                         const options = { hour12: false, year: 'numeric', month: '2-digit', day: '2-digit' };
-                %>
+                    %>
                     <tr class="row analysis-page__row" data-sub-department-id="<%= log.sub_department_id %>">
                         <td><%= date.toLocaleString('en-GB', options) %></td>
                         <% for (const key in measurements) { %>
@@ -148,6 +149,7 @@
                         <td><%= users[log.user_id].first_name %></td>
                         <td><%= log.comment %></td>
                     </tr>
+                    <% } %>
                 <% }}); %>
             </table>
         </div>
@@ -180,26 +182,30 @@
                     <th></th>
                 </tr>
 
-                <% measurement_logs.forEach(log => {
-                    if (
-                        (user.role === "aqua" && log.sub_department_id === 8 && log.time === 2) ||
-                        (user.role !== "aqua" && log.time === 2)
-                    ) {
-                        const measurements = JSON.parse(log.measurements);
-                        const date = new Date(log.measured_date);
-                        const options = { hour12: false, year: 'numeric', month: '2-digit', day: '2-digit' };
+                <% measurement_logs.forEach(log => { 
+                    if(users[log.user_id]) { 
+                        if (
+                            (user.role === "aqua" && log.sub_department_id === 8 && log.time === 2) ||
+                            (user.role !== "aqua" && log.time === 2)
+                        ) {
+                            const measurements = JSON.parse(log.measurements);
+                            const date = new Date(log.measured_date);
+                            const options = { hour12: false, year: 'numeric', month: '2-digit', day: '2-digit' };
                 %>
-                    <tr class="row analysis-page__row" data-sub-department-id="<%= log.sub_department_id %>">
-                        <td><%= date.toLocaleString('en-GB', options) %></td>
-                        <% for (const key in measurements) { %>
-                            <% if (measurements[key]) { %>
-                                <td><%= measurements[key] %></td>
-                            <% } %>
-                        <% } %>
-                        <td><%= users[log.user_id].first_name %></td>
-                        <td><%= log.comment %></td>
-                    </tr>
-                <% }}); %>
+                            <tr class="row analysis-page__row" data-sub-department-id="<%= log.sub_department_id %>">
+                                <td><%= date.toLocaleString('en-GB', options) %></td>
+                                <% for (const key in measurements) { %>
+                                    <% if (measurements[key]) { %>
+                                        <td><%= measurements[key] %></td>
+                                    <% } %>
+                                <% } %>
+                                <td><%= users[log.user_id].first_name %></td>
+                                <td><%= log.comment %></td>
+                            </tr>
+                <%
+                        }
+                    } 
+                }); %>
             </table>
         </div>
     </div>
